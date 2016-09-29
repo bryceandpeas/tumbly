@@ -1,6 +1,4 @@
-<snippet>
-  <content>
-  	<![CDATA[
+
 		# ${1:Tumbly}
 
 		A tool to download tagged images from tumblr, add their urls and other associated data (tags etc.) to a database.
@@ -12,12 +10,12 @@
 		## Usage
 		Swap out 'APP KEY HERE' and 'APP SECRET HERE' for your consumer key and consumer secret:
 
-		authorization = tumblpy.Tumblpy(app_key = 'APP KEY HERE',
-						app_secret = 'APP SECRET HERE') 
+		`authorization = tumblpy.Tumblpy(app_key = 'APP KEY HERE',
+						app_secret = 'APP SECRET HERE')`
 
 		Run the script with your arguments:
 
-		python tumbly.py twitterthecomic 10
+		`python tumbly.py twitterthecomic 10`
 		
 		(Required) 1: The tumblr username e.g. 'twitterthecomic' from 'twitterthecomic.tumblr.com'
 		(Required) 2: The number of images to download
@@ -36,10 +34,4 @@
 		4. Push to the branch: `git push origin my-new-feature`
 		5. Submit a pull request!
 
-		]]>
-			
-		</content>
-  <tabTrigger>
-  	readme
-  </tabTrigger>
-</snippet>
+
