@@ -141,7 +141,7 @@ def scrape_tumblr(url_to_scrape, database_name, number_to_scrape, start_offset=0
 									 for y in x.split('\n') ]
 		  image_url = p['photos'][0]['original_size']['url']
 		  
-		  print('Image Found at: {0}, Image number: {1}, Tags are: {2} {3}'.format(sys.argv[1], number_found, image_url,'#' + ' #'.join(tags)))
+		  print('Image Found at: {2}, Image number: {1}, Tags are: {3}'.format(sys.argv[1], number_found, image_url,'#' + ' #'.join(tags)))
 
 		  # Add scraped data to database
 		  add_tags(c, tags)
