@@ -14,11 +14,15 @@ Swap out 'APP KEY HERE' and 'APP SECRET HERE' for your consumer key and consumer
 
 Run the script with your arguments:
 
-```python tumbly.py twitterthecomic 10```
+```python tumbly.py 1 2 3```
 		
-(Required) 1: The tumblr username e.g. 'twitterthecomic' from 'twitterthecomic.tumblr.com'
-(Required) 2: The number of images to download
-(Optional) 3: Offset (what number post to scrape from), the default is 0.
+- Required 1: The tumblr username e.g. 'twitterthecomic' from 'twitterthecomic.tumblr.com'.
+- Required 2: The number of images to download.
+- Optional 3: Offset (what number post to scrape from), the default is 0.
+
+For example:
+
+```python tumbly.py twitterthecomic 10```
 
 A databse will be created in the working directory alongside a folder to contain the downloaded images.
 
