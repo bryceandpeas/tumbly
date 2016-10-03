@@ -1,6 +1,6 @@
 # Tumbly
 
-A tool to download tagged images from tumblr, add their urls and other associated data (tags etc.) to a database.
+A tool to download tagged images from tumblr as well as add their urls and other associated data (tags etc.) to a database.
 
 ## Installation
 
