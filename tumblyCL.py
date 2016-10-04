@@ -79,7 +79,8 @@ def main():
 
     create_check_database(database_name)
 
-    scrape_tumblr(url_to_scrape,
+    scrape_tumblr(username,
+                  url_to_scrape,
                   database_name,
                   number_to_scrape,
                   start_offset=0,
