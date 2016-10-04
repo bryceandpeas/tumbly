@@ -11,7 +11,8 @@ import tumblpy
 ''' Scraping functions '''
 
 
-def scrape_tumblr(url_to_scrape,
+def scrape_tumblr(username, 
+                  url_to_scrape,
                   database_name,
                   number_to_scrape,
                   start_offset=0,
@@ -74,7 +75,7 @@ def scrape_tumblr(url_to_scrape,
 
             print('Image Found at: {2},'
                   'Image number: {1},'
-                  'Tags are: {3}'.format(sys.argv[1],
+                  'Tags are: {3}'.format(username,
                                          number_found,
                                          image_url,
                                          '#' + ' #'.join(tags)))

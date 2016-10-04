@@ -4,14 +4,16 @@ import os
 import sqlite3
 import sys
 
-from database import create_check_database
-from scrape import scrape_tumblr
-from download import download_images
+from tumbly.database import create_check_database
+from tumbly.scrape import scrape_tumblr
+from tumbly.download import download_images
 
-# Better way for lots of imports other than import * ?
-from PyQt5 import QtCore, QtGui
+from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtGui import QBrush, QIcon, QPalette, QPixmap
-from PyQt5.QtWidgets import QApplication, QCheckBox, QComboBox, QDesktopWidget, QGridLayout, QInputDialog, QLabel, QLineEdit, QMessageBox, QPushButton, QSizePolicy, QSpinBox, QTextEdit, QWidget
+from PyQt5.QtWidgets import QApplication, QCheckBox, QComboBox, QDesktopWidget
+from PyQt5.QtWidgets import QGridLayout, QInputDialog, QLabel, QLineEdit
+from PyQt5.QtWidgets import QMessageBox, QPushButton, QSizePolicy, QSpinBox
+from PyQt5.QtWidgets import QTextEdit, QWidget
 
 class Tumbly(QWidget):
     def __init__(self, parent = None):
@@ -19,29 +21,63 @@ class Tumbly(QWidget):
 
         QWidget.__init__(self)
 
+        # Call functions to create GUI
+        self.create_statusbar()
+        self.create_ui()
+
+    def create_ui(self):
+        # Satusbar welcome message
+        self.statusbar.showMessage('Welcome to tumbly!')
+
+        # Create Labels
+        self.number_label = QLabel('Number of images to scrape')
+
+        # Create input boxes
+        self.username_box = QLineEdit(self)
+        self.username_box.setText('Enter username to scrape')
+        self.username_box.textChanged[str].connect(self.text_changed)
+
+        # Create number boxes
+        self.number_of_images = QSpinBox()
+
         # Create get images button
-        self.generate_password_button = QPushButton('Get images')
-        self.generate_password_button.setStyleSheet('font: 12px; background-color:#FFFFFF; border: 1px solid #272727')
+        self.get_button = QPushButton('Get images')
+        self.get_button.setStyleSheet('font: 12px;'
+                                      ' background-color:#FFFFFF;'
+                                      ' border: 1px solid #272727')
 
         # Create layout, add widgets
         self.grid = QGridLayout()
-        # Add widget to row, label to same row, next column
-        
-        self.grid.addWidget(self.generate_password_button, 5, 2)
-        
+        self.grid.addWidget(self.username_box, 1, 0)
+        self.grid.addWidget(self.get_button, 2, 0)
+        self.grid.addWidget(self.number_label, 3, 0)
+        self.grid.addWidget(self.number_of_images, 4, 0)
+        self.grid.addWidget(self.statusbar, 5, 0)
+            
         # Set layout
         self.setLayout(self.grid)
 
-        # Connect password generate button to password generate functions
-        self.generate_password_button.clicked.connect(self.get_images)
+        # Connect get images button to get_images function
+        self.get_button.clicked.connect(self.get_images)
 
         # Set window
         self.setFixedSize(500, 250)
         self.setWindowTitle('tumbly')
         self.setWindowIcon(QIcon(''))
-        self.setStyleSheet('background: #FFFFFF')
+        self.setStyleSheet('background: #FFFFFF')   
+            
 
-    def get_images():
+    def create_statusbar(self):
+        # Create statusbar
+        self.statusbar = QtWidgets.QStatusBar(self)
+        
+        self.statusbar.setStatusTip('')
+        
+    def text_changed(self, text):
+        # Get text changes
+        self.username = str(text)
+
+    def get_images(self, username):
 
         # Init variables
         database_name = ''
@@ -49,44 +85,50 @@ class Tumbly(QWidget):
         start_offset = ''
         url_to_scrape = ''
         
-        username = everylittledefectgetsrespect
-        number = 10
-
+        username = self.username
+        # Get how many images the user wants to scrape
+        number_to_scrape = self.number_of_images.value()
+ 
         # Get user input
         # Create URL
         url_to_scrape = 'http://{0}.tumblr.com'.format(username)
-        print ('Will scrape: {0}'.format(url_to_scrape))
+        self.statusbar.showMessage('Will scrape: {0}'.format(url_to_scrape))
         # Create database name
         database_name = '{0}.db'.format(username)
-        print ('Will save to: {0} database (SQLite3)'.format(database_name))
+        self.statusbar.showMessage('Will save to: {0} database (SQLite3)'.format(database_name))
         # Check if directory exists, create if not
         script_directory = os.path.dirname(os.path.abspath(__file__))
         downloaded_image_directory = os.path.join(script_directory,
                                                   '{0}_saved_images'
                                                   .format(username))
 
-        print('Will download images to: {0}'.format(downloaded_image_directory))
+        self.statusbar.showMessage('Will download images to: {0}'.format(downloaded_image_directory))
         if not os.path.exists(downloaded_image_directory):
             os.makedirs(downloaded_image_directory)
-        # Get how many images the user wants to scrape
-        number_to_scrape = number
 
+        self.statusbar.showMessage('Checking database')
         create_check_database(database_name)
-
-        scrape_tumblr(url_to_scrape,
+        
+        self.statusbar.showMessage('Getting images')
+        scrape_tumblr(username,
+                      url_to_scrape,
                       database_name,
                       number_to_scrape,
                       start_offset=0,
                       limit=20,
                       url_type='blog')
 
-        download_images(database_name,
+        self.statusbar.showMessage('Downloading images')
+        download_images(username,
+                        database_name,
                         downloaded_image_directory,
                         number_to_scrape)
-        
 
-# The usual
+        sys.exit()
+
+    
 def main():
+
     app = QApplication(sys.argv)
 
     ex = Tumbly()
