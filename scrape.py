@@ -1,3 +1,4 @@
+import argparse
 import sqlite3
 import sys
 
@@ -5,6 +6,36 @@ from database import create_check_database
 from database import add_tags, add_photo, link_tags_photo
 
 import tumblpy
+
+# Init argparse
+parser = argparse.ArgumentParser()
+
+parser.add_argument('-u',
+                    '--username',
+                    type=str,
+                    help='The username of the tumblr user whos '
+                         'tumblr you wish to scrape.',
+                    required=True)
+
+parser.add_argument('-n',
+                    '--number',
+                    type=int,
+                    help='The number of images to scrape.',
+                    required=True)
+
+parser.add_argument('-o',
+                    '--start',
+                    type=int,
+                    help='Post number to start from (offset).',
+                    required=False)
+
+args = parser.parse_args()
+
+# Set variables
+
+username = args.username
+number = args.number
+offset = args.start
 
 ''' Scraping functions '''
 
@@ -62,25 +93,25 @@ def scrape_tumblr(url_to_scrape,
 
             number_found += 1
 
-        # Set scraped info
-        note_count = p['note_count']
-        tags = [y.strip().lower() for x in p['tags']
-                for y in x.split('\n')
-                ]
+            # Set scraped info
+            note_count = p['note_count']
+            tags = [y.strip().lower() for x in p['tags']
+                    for y in x.split('\n')
+                    ]
 
-        image_url = p['photos'][0]['original_size']['url']
+            image_url = p['photos'][0]['original_size']['url']
 
-        print('Image Found at: {2},'
-              'Image number: {1},'
-              'Tags are: {3}'.format(sys.argv[1],
-                                     number_found,
-                                     image_url,
-                                     '#' + ' #'.join(tags)))
+            print('Image Found at: {2},'
+                  'Image number: {1},'
+                  'Tags are: {3}'.format(sys.argv[1],
+                                         number_found,
+                                         image_url,
+                                         '#' + ' #'.join(tags)))
 
-        # Add scraped data to database
-        add_tags(c, tags)
-        add_photo(c, image_url, note_count)
-        link_tags_photo(c, tags, image_url)
+            # Add scraped data to database
+            add_tags(c, tags)
+            add_photo(c, image_url, note_count)
+            link_tags_photo(c, tags, image_url)
 
-        conn.commit()
+            conn.commit()
     conn.close()
