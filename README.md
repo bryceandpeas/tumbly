@@ -21,9 +21,9 @@ Swap out 'APP KEY HERE' and 'APP SECRET HERE' for your [consumer key and consume
 
 Run the script with your arguments:
 
-    python tumbly.py -u -n -o
+    python tumblyCL.py -u -n -o
     
-    usage: tumbly.py [-h] -u USERNAME -n NUMBER [-o START]
+    usage: tumblyCL.py [-h] -u USERNAME -n NUMBER [-o START]
 
         arguments:
             -h, --help   show this help message and exit
@@ -44,7 +44,7 @@ Run the script with your arguments:
 
 For example:
 
-    python tumbly.py -u twitterthecomic -n 10
+    python tumblyCL.py -u twitterthecomic -n 10
 
 A databse will be created in the working directory alongside a folder to contain the downloaded images.
 
