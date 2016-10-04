@@ -56,10 +56,11 @@ class Tumbly(QWidget):
 
         # Create layout, add widgets
         self.grid = QGridLayout()
-        self.grid.addWidget(self.username_box, 0, 0)
-        self.grid.addWidget(self.get_button, 0, 1)
-        self.grid.addWidget(self.numbers_label, 1, 0)
-        self.grid.addWidget(self.number_of_images, 1, 1)
+        self.grid.addWidget(self.username_box, 1, 0)
+        self.grid.addWidget(self.get_button, 2, 0)
+        self.grid.addWidget(self.numbers_label, 3, 0)
+        self.grid.addWidget(self.number_of_images, 4, 0)
+        self.grid.addWidget(self.statusbar, 5, 0)
             
             
         # Set layout
@@ -134,11 +135,6 @@ class Tumbly(QWidget):
         sys.exit()
 
     
-    
-    
-
-    
-
 def main():
 
     app = QApplication(sys.argv)
