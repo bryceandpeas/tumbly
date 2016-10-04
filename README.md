@@ -11,22 +11,40 @@ Get [tumblpy](https://github.com/michaelhelmick/python-tumblpy)
 Download the repo.
 
 ## Usage
-Swap out 'APP KEY HERE' and 'APP SECRET HERE' for your [consumer key and consumer secret](https://www.tumblr.com/docs/en/api/v2):
+
+
+Swap out 'APP KEY HERE' and 'APP SECRET HERE' for your [consumer key and consumer secret](https://www.tumblr.com/docs/en/api/v2) in ```scrape.py```:
 
     authorization = tumblpy.Tumblpy(app_key = 'APP KEY HERE',
 					    	app_secret = 'APP SECRET HERE')
 
+
 Run the script with your arguments:
 
-    python tumbly.py 1 2 3
+    python tumbly.py -u -n -o
+    
+    usage: tumbly.py [-h] -u USERNAME -n NUMBER [-o START]
+
+        arguments:
+            -h, --help   show this help message and exit
+        
+            -u USERNAME, --username USERNAME
+                         The username of the tumblr user whos tumblr you wish to scrape.
+                     
+            -n NUMBER,   --number NUMBER
+                         The number of images to scrape.
+                     
+            -o START,    --start START
+                         Post number to start from (offset).
 		
-- Required 1: The tumblr username e.g. 'twitterthecomic' from 'twitterthecomic.tumblr.com'.
-- Required 2: The number of images to download.
-- Optional 3: Offset (what number post to scrape from), the default is 0.
+- Required -u: ```The tumblr username e.g. 'twitterthecomic' from 'twitterthecomic.tumblr.com'.```
+- Required -n: ```The number of images to download.```
+- Optional -o: ```Offset (what number post to scrape from), the default is 0.```
+
 
 For example:
 
-    python tumbly.py twitterthecomic 10
+    python tumbly.py -u twitterthecomic -n 10
 
 A databse will be created in the working directory alongside a folder to contain the downloaded images.
 
