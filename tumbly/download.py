@@ -8,7 +8,8 @@ import urllib.request
 ''' Downloading Functions '''
 
 
-def download_images(database_name,
+def download_images(username,
+                    database_name,
                     downloaded_image_directory,
                     number_to_scrape):
 

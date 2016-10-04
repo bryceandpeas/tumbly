@@ -2,8 +2,8 @@ import argparse
 import sqlite3
 import sys
 
-from database import create_check_database
-from database import add_tags, add_photo, link_tags_photo
+from tumbly.database import create_check_database
+from tumbly.database import add_tags, add_photo, link_tags_photo
 
 import tumblpy
 
