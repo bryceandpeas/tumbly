@@ -4,16 +4,14 @@ import os
 import sqlite3
 import sys
 
-from database import create_check_database
-from scrape import scrape_tumblr
-from download import download_images
+from tumbly.database import create_check_database
+from tumbly.scrape import scrape_tumblr
+from tumbly.download import download_images
 
 import tumblpy
 
 
 ''' Run '''
-
-# (Fix long argument passing - named tuples or classes?)
 
 
 def main():
@@ -88,7 +86,8 @@ def main():
                   limit=20,
                   url_type='blog')
 
-    download_images(database_name,
+    download_images(username,
+                    database_name,
                     downloaded_image_directory,
                     number_to_scrape)
 
