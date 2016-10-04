@@ -11,7 +11,7 @@ import tumblpy
 ''' Scraping functions '''
 
 
-def scrape_tumblr(username, 
+def scrape_tumblr(username,
                   url_to_scrape,
                   database_name,
                   number,
@@ -45,9 +45,9 @@ def scrape_tumblr(username,
             posts = authorization.get('posts',
                                       blog_url=url_to_scrape,
                                       params={'limit': limit,
-                                              'offset': post_count *
-                                              limit +
-                                              offset})
+                                              'offset': int(post_count) *
+                                              int(limit) +
+                                              int(offset)})
 
         post_count += 1
 
@@ -72,8 +72,8 @@ def scrape_tumblr(username,
 
             image_url = p['photos'][0]['original_size']['url']
 
-            print('Image Found at: {2},'
-                  'Image number: {1},'
+            print('Image Found at: {2}, '
+                  'Image number: {1}, '
                   'Tags are: {3}'.format(username,
                                          number_found,
                                          image_url,

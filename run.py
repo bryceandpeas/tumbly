@@ -9,7 +9,7 @@ from tumbly.download import download_images
 
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtCore import pyqtSignal, pyqtSlot, QObject, QThread
-from PyQt5.QtGui import QBrush, QIcon, QPalette, QPixmap
+from PyQt5.QtGui import QBrush, QIcon, QPalette, QPixmap, QTextCursor
 from PyQt5.QtWidgets import QApplication, QCheckBox, QComboBox, QDesktopWidget
 from PyQt5.QtWidgets import QGridLayout, QInputDialog, QLabel, QLineEdit
 from PyQt5.QtWidgets import QMessageBox, QPushButton, QSizePolicy, QSpinBox
@@ -44,13 +44,14 @@ class MyReceiver(QObject):
 
 class RunMain(QObject):
     @pyqtSlot()
-    def run(self, username, number, offset):
-
+    def run(self):
+        get_input = Tumbly()
         # Init variables
+        username = str(get_input.set_username)
         database_name = ''
+        number = 5
         url_to_scrape = ''
-        offset = 20
-        
+
         # Get user input
         # Create URL
         url_to_scrape = 'http://{0}.tumblr.com'.format(username)
@@ -71,7 +72,7 @@ class RunMain(QObject):
             os.makedirs(downloaded_image_directory)
 
         create_check_database(database_name)
-        
+
         scrape_tumblr(username,
                       url_to_scrape,
                       database_name,
@@ -85,28 +86,16 @@ class RunMain(QObject):
                         downloaded_image_directory,
                         number)
 
-        sys.exit()
-
 
 class Tumbly(QWidget):
-    def __init__(self, parent=None):
-        super(Tumbly, self).__init__(parent)
-
-        QWidget.__init__(self)
-
-        # Call functions to create GUI
-        self.create_ui()
-
-    def create_ui(self):
-
-        self.username = ''
-        self.number = 1
-        self.offest = 0
+    def __init__(self, *args, **kwargs):
+        QWidget.__init__(self, *args, **kwargs)
 
         # Create Labels
         self.number_label = QLabel('Number of images to scrape:')
         self.offset_label = QLabel('Post offest (start point):')
 
+        # Create output box
         self.status_out = QTextEdit()
         self.status_out.setSizePolicy(QSizePolicy.Preferred,
                                       QSizePolicy.Expanding)
@@ -150,9 +139,7 @@ class Tumbly(QWidget):
         self.offset = self.post_offset.value()
 
         # Connect get images button to get_images function
-        self.get_button.clicked.connect(self.start_thread(self.username,
-                                                          self.number,
-                                                          self.offset))
+        self.get_button.clicked.connect(self.start_thread)
 
         # Set window
         self.setFixedSize(500, 250)
@@ -164,42 +151,37 @@ class Tumbly(QWidget):
         # Get text changes
         self.username = str(text)
 
+    def set_username(self, username):
+        return(self.username)
+
     @pyqtSlot(str)
     def append_text(self, text):
         self.status_out.moveCursor(QTextCursor.End)
         self.status_out.insertPlainText(text)
 
     @pyqtSlot()
-    def start_thread(self, username, number, offset):
-
+    def start_thread(self):
         self.thread = QThread()
-        self.run_main = RunMain()
-        self.run_main.moveToThread(self.thread)
-        self.thread.started.connect(self.run_main.run(username,
-                                                      number,
-                                                      offset))
+        self.main_thread = RunMain()
+        self.main_thread.moveToThread(self.thread)
+        self.thread.started.connect(self.main_thread.run)
         self.thread.start()
+
 
 queue = queue.Queue()
 sys.stdout = WriteStream(queue)
 
 
-def main():
+qapp = QApplication(sys.argv)
+app = Tumbly()
+app.show()
 
-    app = QApplication(sys.argv)
 
-    ex = Tumbly()
-    ex.show()
-    sys.exit(app.exec_())
+thread = QThread()
+my_receiver = MyReceiver(queue)
+my_receiver.mysignal.connect(app.append_text)
+my_receiver.moveToThread(thread)
+thread.started.connect(my_receiver.run)
+thread.start()
 
-    thread = QThread()
-    my_receiver = MyReceiver(queue)
-    my_receiver.mysignal.connect(app.append_text)
-    my_receiver.moveToThread(thread)
-    thread.started.connect(my_receiver.run)
-    thread.start()
-
-    qapp.exec_()
-
-if __name__ == '__main__':
-    main()
+qapp.exec_()
