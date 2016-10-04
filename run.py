@@ -21,15 +21,16 @@ class Tumbly(QWidget):
 
         QWidget.__init__(self)
 
+        # Call functions to create GUI
         self.create_statusbar()
         self.create_ui()
 
     def create_ui(self):
-        # Satusbar welcome
+        # Satusbar welcome message
         self.statusbar.showMessage('Welcome to tumbly!')
 
         # Create Labels
-        self.numbers_label = QLabel('Number of images to scrape')
+        self.number_label = QLabel('Number of images to scrape')
 
         # Create input boxes
         self.username_box = QLineEdit(self)
@@ -45,23 +46,13 @@ class Tumbly(QWidget):
                                       ' background-color:#FFFFFF;'
                                       ' border: 1px solid #272727')
 
-        # Create output box
-        self.password_output = QTextEdit()
-        self.password_output.setReadOnly(True)
-        self.password_output.setSizePolicy(QSizePolicy.Preferred, 
-                                           QSizePolicy.Expanding)
-        self.password_output.setStyleSheet('font: bold 12px;'
-                                           'background: #FFFFFF;'
-                                           'border: 1px solid #272727')
-
         # Create layout, add widgets
         self.grid = QGridLayout()
         self.grid.addWidget(self.username_box, 1, 0)
         self.grid.addWidget(self.get_button, 2, 0)
-        self.grid.addWidget(self.numbers_label, 3, 0)
+        self.grid.addWidget(self.number_label, 3, 0)
         self.grid.addWidget(self.number_of_images, 4, 0)
         self.grid.addWidget(self.statusbar, 5, 0)
-            
             
         # Set layout
         self.setLayout(self.grid)
@@ -83,6 +74,7 @@ class Tumbly(QWidget):
         self.statusbar.setStatusTip('')
         
     def text_changed(self, text):
+        # Get text changes
         self.username = str(text)
 
     def get_images(self, username):
