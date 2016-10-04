@@ -10,67 +10,46 @@ from download import download_images
 
 import tumblpy
 
-# Init argparse
-parser = argparse.ArgumentParser()
-
-parser.add_argument('-u',
-                    '--username',
-                    type=str,
-                    help='The username of the tumblr user whos '
-                         'tumblr you wish to scrape.',
-                    required=True)
-
-parser.add_argument('-n',
-                    '--number',
-                    type=int,
-                    help='The number of images to scrape.',
-                    required=True)
-
-parser.add_argument('-o',
-                    '--start',
-                    type=int,
-                    help='Post number to start from (offset).',
-                    required=False)
-
-args = parser.parse_args()
-
-# Set variables
-
-username = args.username
-number = args.number
-offset = args.start
 
 ''' Run '''
 
 # (Fix long argument passing - named tuples or classes?)
 
 
-def main(database_name,
-         downloaded_image_directory,
-         url_to_scrape,
-         number_to_scrape,
-         start_offset=0,
-         limit=20,
-         url_type='blog'):
+def main():
 
-    create_check_database(database_name)
+    # Init argparse
+    parser = argparse.ArgumentParser()
 
-    scrape_tumblr(url_to_scrape,
-                  database_name,
-                  number_to_scrape,
-                  start_offset=0,
-                  limit=20,
-                  url_type='blog')
+    parser.add_argument('-u',
+                        '--username',
+                        type=str,
+                        help='The username of the tumblr user whos '
+                             'tumblr you wish to scrape.',
+                        required=True)
 
-    download_images(database_name,
-                    downloaded_image_directory,
-                    number_to_scrape)
+    parser.add_argument('-n',
+                        '--number',
+                        type=int,
+                        help='The number of images to scrape.',
+                        required=True)
 
-if __name__ == '__main__':
+    parser.add_argument('-o',
+                        '--start',
+                        type=int,
+                        help='Post number to start from (offset).',
+                        required=False)
 
-    ''' Init '''
+    args = parser.parse_args()
+
+    # Set argument variables
+
+    username = args.username
+    number = args.number
+    offset = args.start
 
     # Init variables
+
     database_name = ''
     number_to_scrape = ''
     start_offset = ''
@@ -100,10 +79,18 @@ if __name__ == '__main__':
     else:
         start_offset = 0
 
-    main(database_name,
-         downloaded_image_directory,
-         url_to_scrape,
-         number_to_scrape,
-         start_offset=0,
-         limit=20,
-         url_type='blog')
+    create_check_database(database_name)
+
+    scrape_tumblr(url_to_scrape,
+                  database_name,
+                  number_to_scrape,
+                  start_offset=0,
+                  limit=20,
+                  url_type='blog')
+
+    download_images(database_name,
+                    downloaded_image_directory,
+                    number_to_scrape)
+
+if __name__ == '__main__':
+    main()

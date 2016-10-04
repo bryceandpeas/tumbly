@@ -7,35 +7,6 @@ from database import add_tags, add_photo, link_tags_photo
 
 import tumblpy
 
-# Init argparse
-parser = argparse.ArgumentParser()
-
-parser.add_argument('-u',
-                    '--username',
-                    type=str,
-                    help='The username of the tumblr user whos '
-                         'tumblr you wish to scrape.',
-                    required=True)
-
-parser.add_argument('-n',
-                    '--number',
-                    type=int,
-                    help='The number of images to scrape.',
-                    required=True)
-
-parser.add_argument('-o',
-                    '--start',
-                    type=int,
-                    help='Post number to start from (offset).',
-                    required=False)
-
-args = parser.parse_args()
-
-# Set variables
-
-username = args.username
-number = args.number
-offset = args.start
 
 ''' Scraping functions '''
 
@@ -49,8 +20,8 @@ def scrape_tumblr(url_to_scrape,
 
     # Set authorization
 
-    authorization = tumblpy.Tumblpy(app_key='APP KEY HERE',
-                                    app_secret='APP SECRET HERE')
+    authorization = tumblpy.Tumblpy(app_key='V55FKUe1lMSdx0UyGSFknmO8DoSaeNzT9oByUwOE1Hvp7diQJ7',
+                                    app_secret='TD9eTgRhoo8ceu0cjcF0nROWAAMkst1uAkSx5XuSOjnYxrGq50')
 
     # Connect to database
     print('Connecting to {0}'.format(database_name))
@@ -115,3 +86,40 @@ def scrape_tumblr(url_to_scrape,
 
             conn.commit()
     conn.close()
+
+
+def main():
+
+    # Init argparse
+    parser = argparse.ArgumentParser()
+
+    parser.add_argument('-u',
+                        '--username',
+                        type=str,
+                        help='The username of the tumblr user whos '
+                             'tumblr you wish to scrape.',
+                        required=True)
+
+    parser.add_argument('-n',
+                        '--number',
+                        type=int,
+                        help='The number of images to scrape.',
+                        required=True)
+
+    parser.add_argument('-o',
+                        '--start',
+                        type=int,
+                        help='Post number to start from (offset).',
+                        required=False)
+
+    args = parser.parse_args()
+
+    # Set variables
+
+    username = args.username
+    number = args.number
+    offset = args.start
+
+
+if __name__ == '__main__':
+    main()
