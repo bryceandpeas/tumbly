@@ -11,7 +11,7 @@ import urllib.request
 def download_images(username,
                     database_name,
                     downloaded_image_directory,
-                    number_to_scrape):
+                    number):
 
     # Connect to database
     con = sqlite3.connect(database_name)
@@ -23,7 +23,7 @@ def download_images(username,
 
         # Init J
         j = 0
-        while j < number_to_scrape:
+        while j < number:
             for url in cur:
                 for i in url:
                     print('Image url: ' + i)

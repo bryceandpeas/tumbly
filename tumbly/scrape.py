@@ -14,8 +14,8 @@ import tumblpy
 def scrape_tumblr(username, 
                   url_to_scrape,
                   database_name,
-                  number_to_scrape,
-                  start_offset=0,
+                  number,
+                  offset=20,
                   limit=20,
                   url_type='blog'):
 
@@ -32,14 +32,13 @@ def scrape_tumblr(username,
     print('Scraping : {0}'.format(url_to_scrape))
     number_found = 0
     post_count = 0
-    while number_found < number_to_scrape:
+    while number_found < number:
         # Get tumblr posts
         print('Checking posts: {0} : {1}'.format(post_count *
                                                  limit +
-                                                 start_offset,
+                                                 offset,
                                                  (1 + post_count) *
-                                                 limit +
-                                                 start_offset))
+                                                 limit + offset))
 
         # Check url is correct, authorize
         if url_type == 'blog':
@@ -48,7 +47,7 @@ def scrape_tumblr(username,
                                       params={'limit': limit,
                                               'offset': post_count *
                                               limit +
-                                              start_offset})
+                                              offset})
 
         post_count += 1
 
