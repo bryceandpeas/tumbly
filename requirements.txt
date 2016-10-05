@@ -1,0 +1,2 @@
+tumblpy
+pyqt5

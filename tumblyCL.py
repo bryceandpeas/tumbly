@@ -44,7 +44,10 @@ def main():
 
     username = args.username
     number = args.number
-    offset = args.start
+    if args.start:
+        offset = args.start
+    else:
+        offset = 0
 
     # Init variables
 
@@ -83,7 +86,7 @@ def main():
                   url_to_scrape,
                   database_name,
                   number_to_scrape,
-                  start_offset=0,
+                  offset,
                   limit=20,
                   url_type='blog')
 
