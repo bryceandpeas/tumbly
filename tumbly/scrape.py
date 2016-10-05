@@ -20,8 +20,12 @@ def scrape_tumblr(username,
                   url_type='blog'):
 
     # Default offset
-    if offset == None or offset == 0:
-      offset = 20
+    if offset is None or offset == 0:
+        offset = 20
+
+    # Default number
+    if number is None:
+        number = 1
 
     # Set authorization
 
@@ -30,7 +34,7 @@ def scrape_tumblr(username,
 
     # Connect to database
     print('Connecting to {0}'.format(database_name))
-    conn = sqlite3.connect(database_name)
+    conn = create_check_database(database_name)
     c = conn.cursor()
     # Start scraping
     print('Scraping : {0}'.format(url_to_scrape))

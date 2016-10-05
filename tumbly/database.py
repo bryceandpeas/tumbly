@@ -1,15 +1,20 @@
-from os.path import exists
+from os.path import exists, join, abspath, dirname
 import sqlite3
 
 ''' Database Functions '''
+
+
+BASE_PATH = 'databases'
 
 # Check database exists, if not, create it and necessary table etc.
 
 
 def create_check_database(database_name):
-    if not exists(database_name):
+    # Update the path
+    database_path = join(BASE_PATH, database_name)
+    if not exists(database_path):
         # Create the database
-        conn = sqlite3.connect(database_name)
+        conn = sqlite3.connect(database_path)
         c = conn.cursor()
         # Create table for tags, photos and photo tags
         c.execute('''CREATE TABLE IF NOT EXISTS tags
@@ -31,7 +36,7 @@ def create_check_database(database_name):
         return conn
     else:
         # If it exists connect
-        return sqlite3.connect(database_name)
+        return sqlite3.connect(database_path)
 
 # Functions to call to insert data into database tables
 

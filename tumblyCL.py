@@ -66,6 +66,7 @@ def main():
     # Check if directory exists, create if not
     script_directory = os.path.dirname(os.path.abspath(__file__))
     downloaded_image_directory = os.path.join(script_directory,
+                                              'images',
                                               '{0}_saved_images'
                                               .format(username))
 
