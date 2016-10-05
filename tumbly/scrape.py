@@ -19,10 +19,14 @@ def scrape_tumblr(username,
                   limit=20,
                   url_type='blog'):
 
+    # Default offset
+    if offset == None or offset == 0:
+      offset = 20
+
     # Set authorization
 
-    authorization = tumblpy.Tumblpy(app_key='V55FKUe1lMSdx0UyGSFknmO8DoSaeNzT9oByUwOE1Hvp7diQJ7',
-                                    app_secret='TD9eTgRhoo8ceu0cjcF0nROWAAMkst1uAkSx5XuSOjnYxrGq50')
+    authorization = tumblpy.Tumblpy(app_key='APP KEY HERE',
+                                    app_secret='APP SECRET HERE')
 
     # Connect to database
     print('Connecting to {0}'.format(database_name))
