@@ -2,7 +2,17 @@
 
 A tool to download tagged images from tumblr as well as add their urls and other associated data (tags etc.) to a database.
 
-## Installation
+## Contents  
+1. [Installation](#installation)
+
+2. [Usage](#usage)
+ - [Graphical](#graphical)
+ - [Commandline/Terminal](#terminal)
+ 
+3. [Contributing](#contributing)
+4. [TO DO](#todo)
+  
+## Installation<a name="installation"/>
 
 Get [tumblpy](https://github.com/michaelhelmick/python-tumblpy):
 
@@ -12,9 +22,9 @@ Get [tumblpy](https://github.com/michaelhelmick/python-tumblpy):
 
 Download the repo.
 
-## Usage
+## Usage<a name="usage"/>
 
-### Graphical (```run.py```)
+### Graphical<a name="graphical"/> (```run.py```)
 
 Swap out the consumer key and [consumer key and consumer secret](https://www.tumblr.com/docs/en/api/v2) as shown below and run ```run.py```.
 
@@ -24,7 +34,7 @@ Enter the twitter username, number of images to download and the offset (default
 
 ![](https://gitlab.com/PyQT/tumbly/raw/267f5e6a62a9da9753f6bbd2ed63916c883063b8/assets/screenshots/tumbly_screenshot.png)
 
-### Commandline/Terminal (```tumblyCL.py```)
+### Commandline/Terminal<a name="terminal"/> (```tumblyCL.py```)
 
 
 Swap out 'APP KEY HERE' and 'APP SECRET HERE' for your [consumer key and consumer secret](https://www.tumblr.com/docs/en/api/v2) in ```scrape.py```:
@@ -66,11 +76,22 @@ Each downloaded image's filename will be the tumblr username and an incremented 
 
 Currently does not support posts with multiple images and will ignore posts without tags.
 		
-## Contributing
+## Contributing<a name="contributing"/> 
 1. Fork it!
-2. Create your feature branch: `git checkout -b my-new-feature`
-3. Commit your changes: `git commit -am 'Add some feature'`
-4. Push to the branch: `git push origin my-new-feature`
-5. Submit a pull request!
+2. Checkout the to do list below or any open issues.
+3. Create your feature branch: `git checkout -b my-new-feature`
+4. Commit your changes: `git commit -am 'Add some feature'`
+5. Push to the branch: `git push origin my-new-feature`
+6. Submit a pull request!
+
+## TO DO<a name="todo"/> 
+
+- [ ] Code refactoring.
+- [ ] Prettier GUI.
+- [ ] Image viewing functionality for downloaded images.
+- [ ] Unit testing.
+- [ ] Data viewing for downloaded tags, etc.
+- [ ] Better filepaths e.g. ../databases/username.db
+
 
 
