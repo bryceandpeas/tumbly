@@ -4,7 +4,7 @@ A tool to download tagged images from tumblr as well as add their urls and other
 
 ## Installation
 
-Get [tumblpy](https://github.com/michaelhelmick/python-tumblpy)
+Get [tumblpy](https://github.com/michaelhelmick/python-tumblpy):
 
 
     pip install python-tumblpy
@@ -14,7 +14,7 @@ Download the repo.
 
 ## Usage
 
-### Graphical ```run.py```
+### Graphical (```run.py```)
 
 Swap out the consumer key and [consumer key and consumer secret](https://www.tumblr.com/docs/en/api/v2) as shown below and run ```run.py```.
 
@@ -24,7 +24,7 @@ Enter the twitter username, number of images to download and the offset (default
 
 ![](https://gitlab.com/PyQT/tumbly/raw/267f5e6a62a9da9753f6bbd2ed63916c883063b8/assets/screenshots/tumbly_screenshot.png)
 
-### Commandline/Terminal ```tumblyCL.py```
+### Commandline/Terminal (```tumblyCL.py```)
 
 
 Swap out 'APP KEY HERE' and 'APP SECRET HERE' for your [consumer key and consumer secret](https://www.tumblr.com/docs/en/api/v2) in ```scrape.py```:
