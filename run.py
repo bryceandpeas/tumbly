@@ -15,6 +15,10 @@ from PyQt5.QtWidgets import QGridLayout, QInputDialog, QLabel, QLineEdit
 from PyQt5.QtWidgets import QMessageBox, QPushButton, QSizePolicy, QSpinBox
 from PyQt5.QtWidgets import QTextEdit, QWidget
 
+# Globals
+user_username = None
+user_number = None
+user_offset = None
 
 class WriteStream(object):
     def __init__(self, queue):
@@ -45,28 +49,29 @@ class MyReceiver(QObject):
 class RunMain(QObject):
     @pyqtSlot()
     def run(self):
-        get_input = Tumbly()
+
+        # Get globals
+        global user_username
+        global user_number
+        global user_offset
+
         # Init variables
-        username = str(get_input.set_username)
-        database_name = ''
-        number = 5
+        username = user_username
         url_to_scrape = ''
+        database_name = ''
+        number = user_number
+        offset = user_offset
 
         # Get user input
         # Create URL
         url_to_scrape = 'http://{0}.tumblr.com'.format(username)
-        # print('Will scrape: {0}'.format(url_to_scrape))
         # Create database name
         database_name = '{0}.db'.format(username)
-        # print('Will save to: {0} database (SQLite3)'.format(database_name))
         # Check if directory exists, create if not
         script_directory = os.path.dirname(os.path.abspath(__file__))
         downloaded_image_directory = os.path.join(script_directory,
                                                   '{0}_saved_images'
                                                   .format(username))
-
-        # print('Will download images to: {0}'
-        #      .format(downloaded_image_directory))
 
         if not os.path.exists(downloaded_image_directory):
             os.makedirs(downloaded_image_directory)
@@ -77,7 +82,7 @@ class RunMain(QObject):
                       url_to_scrape,
                       database_name,
                       number,
-                      offset=20,
+                      offset,
                       limit=20,
                       url_type='blog')
 
@@ -110,9 +115,11 @@ class Tumbly(QWidget):
         # Create number boxes
         self.number_of_images = QSpinBox()
         self.number_of_images.setMinimum(1)
+        self.number_of_images.valueChanged[int].connect(self.number_changed)
 
         self.post_offset = QSpinBox()
-        self.post_offset.setMinimum(0)
+        self.post_offset.setMinimum(20)
+        self.post_offset.valueChanged[int].connect(self.offset_changed)
 
         # Create get images button
         self.get_button = QPushButton('Get images')
@@ -135,9 +142,10 @@ class Tumbly(QWidget):
         # Set layout
         self.setLayout(self.grid)
 
+        # Get values
         self.number = self.number_of_images.value()
         self.offset = self.post_offset.value()
-
+        
         # Connect get images button to get_images function
         self.get_button.clicked.connect(self.start_thread)
 
@@ -150,9 +158,18 @@ class Tumbly(QWidget):
     def text_changed(self, text):
         # Get text changes
         self.username = str(text)
+        global user_username
+        user_username = self.username
 
-    def set_username(self, username):
-        return(self.username)
+    def number_changed(self, number):
+        self.number = int(number)
+        global user_number
+        user_number = self.number
+
+    def offset_changed(self, number):
+        self.offset = int(number)
+        global user_offset
+        user_offset = self.offset
 
     @pyqtSlot(str)
     def append_text(self, text):

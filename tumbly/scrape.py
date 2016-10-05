@@ -15,7 +15,7 @@ def scrape_tumblr(username,
                   url_to_scrape,
                   database_name,
                   number,
-                  offset=20,
+                  offset,
                   limit=20,
                   url_type='blog'):
 
@@ -46,8 +46,8 @@ def scrape_tumblr(username,
                                       blog_url=url_to_scrape,
                                       params={'limit': limit,
                                               'offset': int(post_count) *
-                                              int(limit) +
-                                              int(offset)})
+                                              limit +
+                                              offset})
 
         post_count += 1
 
