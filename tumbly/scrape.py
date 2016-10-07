@@ -1,12 +1,16 @@
 import argparse
+import os
 import sqlite3
 import sys
 
+from tumbly.confighandler import get_config, put_config
 from tumbly.arguments import init_argparse
 from tumbly.database import create_check_database
 from tumbly.database import add_tags, add_photo, link_tags_photo
 
 import tumblpy
+
+# Get configuration
 
 
 ''' Scraping functions '''
@@ -20,6 +24,23 @@ def scrape_tumblr(username,
                   limit=20,
                   url_type='blog'):
 
+    def getconfig():
+        if not os.path.isfile('config/tumblyconfig.ini'):
+            print('You do not appear to have a config file'
+                  ' let\'s create one')
+            key = input('Please enter an app key: ')
+            secret = input('Please enter an app secret: ')
+            config_write = put_config('config/tumblyconfig.ini', key, secret)
+            print('config file created')
+            return (key, secret)
+
+        else:
+            config_pull = get_config('config/tumblyconfig.ini')
+            app_key = str(config_pull[0])
+            app_secret = str(config_pull[1])
+
+            return (app_key, app_secret)
+
     # Default offset
     if offset is None or offset == 0:
         offset = 20
@@ -29,9 +50,9 @@ def scrape_tumblr(username,
         number = 1
 
     # Set authorization
-
-    authorization = tumblpy.Tumblpy(app_key='APP KEY HERE',
-                                    app_secret='APP SECRET HERE')
+    app_key, app_secret = getconfig()
+    authorization = tumblpy.Tumblpy(app_key=app_key,
+                                    app_secret=app_secret)
 
     # Connect to database
     print('Connecting to {0}'.format(database_name))
