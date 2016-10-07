@@ -3,6 +3,7 @@ import sqlite3
 import sys
 import queue
 
+from tumbly.confighandler import put_config
 from tumbly.database import create_check_database
 from tumbly.scrape import scrape_tumblr
 from tumbly.download import download_images
@@ -10,10 +11,10 @@ from tumbly.download import download_images
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtCore import pyqtSignal, pyqtSlot, QObject, QThread
 from PyQt5.QtGui import QBrush, QIcon, QPalette, QPixmap, QTextCursor
-from PyQt5.QtWidgets import QApplication, QCheckBox, QComboBox, QDesktopWidget
-from PyQt5.QtWidgets import QGridLayout, QInputDialog, QLabel, QLineEdit
-from PyQt5.QtWidgets import QMessageBox, QPushButton, QSizePolicy, QSpinBox
-from PyQt5.QtWidgets import QTextEdit, QWidget
+from PyQt5.QtWidgets import QAction, QApplication, QCheckBox, QComboBox
+from PyQt5.QtWidgets import QDesktopWidget, QGridLayout, QInputDialog, QLabel
+from PyQt5.QtWidgets import QLineEdit, QMainWindow, QMessageBox, QPushButton
+from PyQt5.QtWidgets import QSizePolicy, QSpinBox, QTextEdit, QWidget
 
 # Globals
 user_username = None
@@ -130,6 +131,14 @@ class Tumbly(QWidget):
         self.get_button.setStyleSheet('font: 12px;'
                                       ' background-color:#FFFFFF;'
                                       ' border: 1px solid #272727')
+        
+        # Create get images button
+        self.get_settings = QPushButton('Set Auth')
+        self.get_settings.setSizePolicy(QSizePolicy.Preferred,
+                                      QSizePolicy.Expanding)
+        self.get_settings.setStyleSheet('font: 12px;'
+                                      ' background-color:#FFFFFF;'
+                                      ' border: 1px solid #272727')
 
         # Create layout, add widgets
         self.grid = QGridLayout()
@@ -140,6 +149,7 @@ class Tumbly(QWidget):
         self.grid.addWidget(self.number_of_images, 4, 0)
         self.grid.addWidget(self.post_offset, 4, 1)
         self.grid.addWidget(self.status_out, 5, 0, 5, 2)
+        self.grid.addWidget(self.get_settings, 6, 0, 6, 2)
 
         # Set layout
         self.setLayout(self.grid)
@@ -147,9 +157,11 @@ class Tumbly(QWidget):
         # Get values
         self.number = self.number_of_images.value()
         self.offset = self.post_offset.value()
-        
+
         # Connect get images button to get_images function
         self.get_button.clicked.connect(self.start_thread)
+        # Connect get settings button to add_auth function
+        self.get_settings.clicked.connect(self.add_auth)
 
         # Set window
         self.setFixedSize(500, 250)
@@ -172,6 +184,23 @@ class Tumbly(QWidget):
         self.offset = int(number)
         global user_offset
         user_offset = self.offset
+
+    def add_auth(self):
+
+        key, ok = QInputDialog.getText(self, 'Input Dialog',
+                                             'Enter your app key:')
+
+        if ok:
+            app_key = key
+
+        secret, ok = QInputDialog.getText(self, 'Input Dialog',
+                                                'Enter your app secret:')
+
+        if ok:
+            app_secret = secret
+
+        config_write = put_config('config/tumblyconfig.ini', 
+                                  app_key, app_secret)
 
     @pyqtSlot(str)
     def append_text(self, text):
