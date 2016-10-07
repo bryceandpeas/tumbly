@@ -15,11 +15,19 @@ A tool to download tagged images from tumblr as well as add their urls and other
   
 ## Installation<a name="installation"/>
 
-Get [tumblpy](https://github.com/michaelhelmick/python-tumblpy):
+Get all the necessities:
+    
+    pip install -r requirements.txt
+    
+or download individually:
 
+Get [tumblpy](https://github.com/michaelhelmick/python-tumblpy):
 
     pip install python-tumblpy
     
+Get [PyQt5](https://www.riverbankcomputing.com/software/pyqt/download5)
+
+    pip install pyqt5
 
 Download the repo.
 
