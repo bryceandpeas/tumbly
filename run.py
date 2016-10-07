@@ -10,7 +10,8 @@ from tumbly.download import download_images
 
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtCore import pyqtSignal, pyqtSlot, QObject, QThread
-from PyQt5.QtGui import QBrush, QIcon, QPalette, QPixmap, QTextCursor
+from PyQt5.QtGui import QBrush, QIcon, QPalette, QPainter
+from PyQt5.QtGui import QPixmap, QTextCursor
 from PyQt5.QtWidgets import QAction, QApplication, QCheckBox, QComboBox
 from PyQt5.QtWidgets import QDesktopWidget, QGridLayout, QInputDialog, QLabel
 from PyQt5.QtWidgets import QLineEdit, QMainWindow, QMessageBox, QPushButton
@@ -101,18 +102,18 @@ class Tumbly(QWidget):
 
         # Create titles
         self.title_tagline = QLabel('Welcome to')
-        self.title_tagline.setStyleSheet('font: 10px;'
-                                         ' background-color:#FFFFFF;'
-                                         )
         self.title_tagline.setSizePolicy(QSizePolicy.Preferred,
                                          QSizePolicy.Expanding)
+        self.title_tagline.setStyleSheet('font: 12px;'
+                                        ' color:#000000;'
+                                         ) 
 
         self.title_text = QLabel('tumbly.')
-        self.title_text.setStyleSheet('font: 24px;'
-                                      ' background-color:#FFFFFF;'
-                                      )
         self.title_text.setSizePolicy(QSizePolicy.Preferred,
                                       QSizePolicy.Expanding)
+        self.title_text.setStyleSheet('font: 24px;'
+                                      ' color:#000000;'
+                                      ) 
 
         # Create Labels
         self.number_label = QLabel('Number of images to scrape:')
@@ -148,16 +149,16 @@ class Tumbly(QWidget):
         self.get_button.setSizePolicy(QSizePolicy.Preferred,
                                       QSizePolicy.Expanding)
         self.get_button.setStyleSheet('font: 12px;'
-                                      ' background-color:#FFFFFF;'
-                                      ' border: 1px solid #272727')
+                                      ' color:#000000;'
+                                      ' border: 1px solid #000000')
 
         # Create get images button
         self.get_settings = QPushButton('Set Auth')
         self.get_settings.setSizePolicy(QSizePolicy.Preferred,
                                         QSizePolicy.Expanding)
         self.get_settings.setStyleSheet('font: 12px;'
-                                        ' background-color:#FFFFFF;'
-                                        ' border: 1px solid #272727')
+                                        ' color:#000000;'
+                                        ' border: 1px solid #000000')                  
 
         # Create layout, add widgets
         self.grid = QGridLayout()
