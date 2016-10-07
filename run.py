@@ -150,14 +150,14 @@ class Tumbly(QWidget):
         self.get_button.setStyleSheet('font: 12px;'
                                       ' background-color:#FFFFFF;'
                                       ' border: 1px solid #272727')
-        
+
         # Create get images button
         self.get_settings = QPushButton('Set Auth')
         self.get_settings.setSizePolicy(QSizePolicy.Preferred,
-                                      QSizePolicy.Expanding)
+                                        QSizePolicy.Expanding)
         self.get_settings.setStyleSheet('font: 12px;'
-                                      ' background-color:#FFFFFF;'
-                                      ' border: 1px solid #272727')
+                                        ' background-color:#FFFFFF;'
+                                        ' border: 1px solid #272727')
 
         # Create layout, add widgets
         self.grid = QGridLayout()
@@ -218,7 +218,7 @@ class Tumbly(QWidget):
             app_key = ''
 
         secret, ok = QInputDialog.getText(self, 'No config file',
-                                                'Enter your app secret:')   
+                                                'Enter your app secret:')
         if ok:
             app_secret = secret
 
@@ -226,11 +226,12 @@ class Tumbly(QWidget):
             app_secret = ''
 
         if app_key == '' or app_secret == '':
-            input_check = QMessageBox.question(self, 
-                                            'Error',
-                                            'You must enter an app key and an'
-                                            ' app secret to use tumbly.', 
-                                            QMessageBox.Retry)
+            input_check = QMessageBox.question(self,
+                                               'Error',
+                                               'You must enter an app key
+                                               ' and an app secret to use
+                                               ' tumbly.', 
+                                               QMessageBox.Retry)
 
             if input_check == QMessageBox.Retry:
                 self.add_auth()
