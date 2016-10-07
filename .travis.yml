@@ -10,7 +10,5 @@ branches:
   only:
     - master
 # command to run tests
-before_script: 
-  -  flake8 . 
 script:
   - python tests.py
