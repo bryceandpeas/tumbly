@@ -11,4 +11,4 @@ branches:
     - master
 # command to run tests
 script:
-  - python tests.py
+  - python -m unittest test/
