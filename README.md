@@ -11,6 +11,7 @@ A tool to download tagged images from tumblr as well as add their urls and other
  
 3. [Contributing](#contributing)
 4. [TO DO](#todo)
+4. [Contributors](#contributors)
   
 ## Installation<a name="installation"/>
 
@@ -92,7 +93,10 @@ Currently does not support posts with multiple images and will ignore posts with
 - [ ] Unit testing.
 - [ ] Data viewing for downloaded tags, etc.
 - [X] Better filepaths e.g. ../databases/username.db
-   - Implemented in #7 by [pratyushprakash](https://github.com/pratyushprakash)
+
+
+## Contributors<a name="contributors"/> 
+- [pratyushprakash](https://github.com/pratyushprakash) - Implemented #6 in #7
 
 
 
