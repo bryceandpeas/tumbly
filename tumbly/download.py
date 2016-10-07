@@ -3,9 +3,11 @@ import sqlite3
 import sys
 import os
 import urllib.request
-
+from os.path import join, dirname, abspath
 
 ''' Downloading Functions '''
+
+BASE_PATH = 'databases'
 
 
 def download_images(username,
@@ -13,9 +15,15 @@ def download_images(username,
                     downloaded_image_directory,
                     number):
 
+    # Update database path
+    database_path = join(BASE_PATH, database_name)
     # Connect to database
-    con = sqlite3.connect(database_name)
+    con = sqlite3.connect(database_path)
 
+    # Default number
+    if number is None:
+        number = 1
+        
     with con:
         # Get image urls from photos table
         cur = con.cursor()
