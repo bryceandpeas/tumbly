@@ -5,6 +5,8 @@ import os
 import urllib.request
 from os.path import join, dirname, abspath
 
+from tumbly.arguments import init_argparse
+
 ''' Downloading Functions '''
 
 BASE_PATH = 'databases'
@@ -23,7 +25,7 @@ def download_images(username,
     # Default number
     if number is None:
         number = 1
-        
+
     with con:
         # Get image urls from photos table
         cur = con.cursor()
@@ -46,36 +48,7 @@ def download_images(username,
 
 def main():
 
-    # Init argparse
-    parser = argparse.ArgumentParser()
-
-    parser.add_argument('-u',
-                        '--username',
-                        type=str,
-                        help='The username of the tumblr user whos '
-                             'tumblr you wish to scrape.',
-                        required=True)
-
-    parser.add_argument('-n',
-                        '--number',
-                        type=int,
-                        help='The number of images to scrape.',
-                        required=True)
-
-    parser.add_argument('-o',
-                        '--start',
-                        type=int,
-                        help='Post number to start from (offset).',
-                        required=False)
-
-    args = parser.parse_args()
-
-    # Set variables
-
-    username = args.username
-    number = args.number
-    offset = args.start
-
+    username, number, offset = init_argparse()
 
 if __name__ == '__main__':
     main()

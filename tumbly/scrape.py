@@ -2,6 +2,7 @@ import argparse
 import sqlite3
 import sys
 
+from tumbly.arguments import init_argparse
 from tumbly.database import create_check_database
 from tumbly.database import add_tags, add_photo, link_tags_photo
 
@@ -98,36 +99,7 @@ def scrape_tumblr(username,
 
 def main():
 
-    # Init argparse
-    parser = argparse.ArgumentParser()
-
-    parser.add_argument('-u',
-                        '--username',
-                        type=str,
-                        help='The username of the tumblr user whos '
-                             'tumblr you wish to scrape.',
-                        required=True)
-
-    parser.add_argument('-n',
-                        '--number',
-                        type=int,
-                        help='The number of images to scrape.',
-                        required=True)
-
-    parser.add_argument('-o',
-                        '--start',
-                        type=int,
-                        help='Post number to start from (offset).',
-                        required=False)
-
-    args = parser.parse_args()
-
-    # Set variables
-
-    username = args.username
-    number = args.number
-    offset = args.start
-
+    username, number, offset = init_argparse()
 
 if __name__ == '__main__':
     main()
