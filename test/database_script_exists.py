@@ -7,7 +7,7 @@ import shutil
 class TumblyCLExists(unittest.TestCase):
 
     def test_file(self):
-        file = os.path.isfile('../tumbly/database.py')
+        file = os.path.isfile('tumbly/database.py')
         self.assertTrue(file)
 
 
