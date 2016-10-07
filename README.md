@@ -119,5 +119,7 @@ Currently does not support posts with multiple images and will ignore posts with
 ## Contributors<a name="contributors"/> 
 - [pratyushprakash](https://github.com/pratyushprakash) - Implemented [#6](https://github.com/BryceFury/tumbly/issues/6) in [#7](https://github.com/BryceFury/tumbly/pull/7)
 
+- [Algogator](https://github.com/Algogator) - Fixed [#15](https://github.com/BryceFury/tumbly/pull/15) in [#16](https://github.com/BryceFury/tumbly/pull/16)
+
 
 
