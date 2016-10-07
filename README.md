@@ -2,7 +2,8 @@
 
 A tool to download tagged images from tumblr as well as add their urls and other associated data (tags etc.) to a database.
 
-[![Build Status](https://travis-ci.org/BryceFury/tumbly.svg?branch=master)](https://travis-ci.org/BryceFury/tumbly)
+[![Build Status](https://travis-ci.org/BryceFury/tumbly.svg?branch=master)](https://travis-ci.org/BryceFury/tumbly) [![codecov](https://codecov.io/gh/BryceFury/tumbly/branch/master/graph/badge.svg)](https://codecov.io/gh/BryceFury/tumbly)
+
 
 ## Contents  
 1. [Installation](#installation)
