@@ -1,2 +1,2 @@
-tumblpy
-pyqt5
+PyQt5==5.7
+python-tumblpy==1.1.0
