@@ -12,7 +12,6 @@ branches:
 # command to run tests
 script:
   - python -m unittest discover -s test -p "*_exists.py"
-  - coverage run --include *_exists.py
-
+  
 after_success:
   - codecov
