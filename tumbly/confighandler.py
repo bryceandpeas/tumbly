@@ -1,5 +1,5 @@
 from configparser import ConfigParser
-
+import os
 
 def get_config(cfg_name):
     # Set config parser
@@ -16,8 +16,11 @@ def get_config(cfg_name):
 def put_config(cfg, key, secret):
     # Set config parser
     Config = ConfigParser()
+    # Check directory exists, create if not
+    if not os.path.exists('config/'):
+        os.makedirs('config/')
     # Create config file
-    cfgfile = open(cfg, 'w')
+    cfgfile = open(cfg, 'w+')
     # Add section
     Config.add_section('Auth')
     # Add key and secret

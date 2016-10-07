@@ -99,6 +99,21 @@ class Tumbly(QWidget):
     def __init__(self, *args, **kwargs):
         QWidget.__init__(self, *args, **kwargs)
 
+        # Create titles
+        self.title_tagline = QLabel('Welcome to')
+        self.title_tagline.setStyleSheet('font: 10px;'
+                                         ' background-color:#FFFFFF;'
+                                         )
+        self.title_tagline.setSizePolicy(QSizePolicy.Preferred,
+                                         QSizePolicy.Expanding)
+
+        self.title_text = QLabel('tumbly.')
+        self.title_text.setStyleSheet('font: 24px;'
+                                      ' background-color:#FFFFFF;'
+                                      )
+        self.title_text.setSizePolicy(QSizePolicy.Preferred,
+                                      QSizePolicy.Expanding)
+
         # Create Labels
         self.number_label = QLabel('Number of images to scrape:')
         self.offset_label = QLabel('Post offest (start point):')
@@ -118,10 +133,14 @@ class Tumbly(QWidget):
         # Create number boxes
         self.number_of_images = QSpinBox()
         self.number_of_images.setMinimum(1)
+        self.number_of_images.setSizePolicy(QSizePolicy.Preferred,
+                                            QSizePolicy.Expanding)
         self.number_of_images.valueChanged[int].connect(self.number_changed)
 
         self.post_offset = QSpinBox()
         self.post_offset.setMinimum(20)
+        self.post_offset.setSizePolicy(QSizePolicy.Preferred,
+                                       QSizePolicy.Expanding)
         self.post_offset.valueChanged[int].connect(self.offset_changed)
 
         # Create get images button
@@ -142,14 +161,16 @@ class Tumbly(QWidget):
 
         # Create layout, add widgets
         self.grid = QGridLayout()
-        self.grid.addWidget(self.username_box, 1, 0, 1, 2)
-        self.grid.addWidget(self.get_button, 2, 0, 1, 2)
-        self.grid.addWidget(self.number_label, 3, 0)
-        self.grid.addWidget(self.offset_label, 3, 1)
-        self.grid.addWidget(self.number_of_images, 4, 0)
-        self.grid.addWidget(self.post_offset, 4, 1)
-        self.grid.addWidget(self.status_out, 5, 0, 5, 2)
-        self.grid.addWidget(self.get_settings, 6, 0, 6, 2)
+        self.grid.addWidget(self.title_tagline, 1, 0, 1, 2)
+        self.grid.addWidget(self.title_text, 2, 0, 2, 2)
+        self.grid.addWidget(self.username_box, 5, 0, 3, 1)
+        self.grid.addWidget(self.get_button, 8, 0, 4, 2)
+        self.grid.addWidget(self.number_label, 12, 0)
+        self.grid.addWidget(self.offset_label, 12, 1)
+        self.grid.addWidget(self.number_of_images, 13, 0, 2, 1)
+        self.grid.addWidget(self.post_offset, 13, 1, 2, 1)
+        self.grid.addWidget(self.status_out, 15, 0, 2, 2)
+        self.grid.addWidget(self.get_settings, 17, 0, 4, 2)
 
         # Set layout
         self.setLayout(self.grid)
@@ -187,17 +208,34 @@ class Tumbly(QWidget):
 
     def add_auth(self):
 
-        key, ok = QInputDialog.getText(self, 'Input Dialog',
+        key, ok = QInputDialog.getText(self, 'No config file',
                                              'Enter your app key:')
 
         if ok:
             app_key = key
 
-        secret, ok = QInputDialog.getText(self, 'Input Dialog',
-                                                'Enter your app secret:')
+        else:
+            app_key = ''
 
+        secret, ok = QInputDialog.getText(self, 'No config file',
+                                                'Enter your app secret:')   
         if ok:
             app_secret = secret
+
+        else:
+            app_secret = ''
+
+        if app_key == '' or app_secret == '':
+            input_check = QMessageBox.question(self, 
+                                            'Error',
+                                            'You must enter an app key and an'
+                                            ' app secret to use tumbly.', 
+                                            QMessageBox.Retry)
+
+            if input_check == QMessageBox.Retry:
+                self.add_auth()
+            else:
+                self.add_auth()
 
         config_write = put_config('config/tumblyconfig.ini', 
                                   app_key, app_secret)
@@ -211,7 +249,7 @@ class Tumbly(QWidget):
     def start_thread(self):
         # Check config file exists, make one if not
         if not os.path.isfile('config/tumblyconfig.ini'):
-            self.add_auth()
+            self.add_auth() 
         else:
             self.thread = QThread()
             self.main_thread = RunMain()
