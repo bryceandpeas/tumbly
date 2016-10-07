@@ -72,11 +72,12 @@ Run the script with your arguments:
 - Required -u: ```The tumblr username e.g. 'twitterthecomic' from 'twitterthecomic.tumblr.com'.```
 - Required -n: ```The number of images to download.```
 - Optional -o: ```Offset (what number post to scrape from), the default is 0.```
+
 ***
 If it is the first time you have used the script, you will be prompted to add your [consumer key and consumer secret](https://www.tumblr.com/docs/en/api/v2), it will not work otherwise.
 
 
-For example:
+_Example_:
 
     python tumblyCL.py -u twitterthecomic -n 10
 
