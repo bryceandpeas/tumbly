@@ -91,7 +91,7 @@ Currently does not support posts with multiple images and will ignore posts with
 - [ ] Image viewing functionality for downloaded images.
 - [ ] Unit testing.
 - [ ] Data viewing for downloaded tags, etc.
-- [ ] Better filepaths e.g. ../databases/username.db
+- [X] Better filepaths e.g. ../databases/username.db
 
 
 
