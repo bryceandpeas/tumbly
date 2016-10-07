@@ -12,4 +12,6 @@ branches:
 # command to run tests
 script:
   - python -m unittest discover -s test -p "*_exists.py"
-
+  
+after_success:
+  - bash <(curl -s https://codecov.io/bash)
