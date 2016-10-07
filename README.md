@@ -1,8 +1,7 @@
-# Tumbly
+# Tumbly [![Build Status](https://travis-ci.org/BryceFury/tumbly.svg?branch=master)](https://travis-ci.org/BryceFury/tumbly) [![codecov](https://codecov.io/gh/BryceFury/tumbly/branch/master/graph/badge.svg)](https://codecov.io/gh/BryceFury/tumbly) [![Code Climate](https://codeclimate.com/repos/57f7356ba06b6a2fa8001247/badges/037f6832825799fa607f/gpa.svg)](https://codeclimate.com/repos/57f7356ba06b6a2fa8001247/feed) [![Open Source Love](https://badges.frapsoft.com/os/mit/mit.svg?v=102)](https://github.com/ellerbrock/open-source-badge/)
+
 
 A tool to download tagged images from tumblr as well as add their urls and other associated data (tags etc.) to a database.
-
-[![Build Status](https://travis-ci.org/BryceFury/tumbly.svg?branch=master)](https://travis-ci.org/BryceFury/tumbly) [![codecov](https://codecov.io/gh/BryceFury/tumbly/branch/master/graph/badge.svg)](https://codecov.io/gh/BryceFury/tumbly) [![Code Climate](https://codeclimate.com/repos/57f7356ba06b6a2fa8001247/badges/037f6832825799fa607f/gpa.svg)](https://codeclimate.com/repos/57f7356ba06b6a2fa8001247/feed)
 
 
 ## Contents  
@@ -15,6 +14,7 @@ A tool to download tagged images from tumblr as well as add their urls and other
 3. [Contributing](#contributing)
 4. [TO DO](#todo)
 4. [Contributors](#contributors)
+  
   
 ## Installation<a name="installation"/>
 
@@ -34,6 +34,7 @@ Get [PyQt5](https://www.riverbankcomputing.com/software/pyqt/download5)
 
 Download the repo.
 
+
 ## Usage<a name="usage"/>
 
 ### Graphical<a name="graphical"/> (```run.py```)
@@ -47,7 +48,6 @@ Enter the twitter username, number of images to download and the offset (default
 ![](https://gitlab.com/PyQT/tumbly/raw/267f5e6a62a9da9753f6bbd2ed63916c883063b8/assets/screenshots/tumbly_screenshot.png)
 
 ### Commandline/Terminal<a name="terminal"/> (```tumblyCL.py```)
-
 
 Swap out 'APP KEY HERE' and 'APP SECRET HERE' for your [consumer key and consumer secret](https://www.tumblr.com/docs/en/api/v2) in ```scrape.py```:
 
@@ -87,7 +87,8 @@ A databse will be created in the working directory alongside a folder to contain
 Each downloaded image's filename will be the tumblr username and an incremented number.
 
 Currently does not support posts with multiple images and will ignore posts without tags.
-		
+
+
 ## Contributing<a name="contributing"/> 
 1. Fork it!
 2. Checkout the to do list below or any open issues.
@@ -95,6 +96,7 @@ Currently does not support posts with multiple images and will ignore posts with
 4. Commit your changes: `git commit -am 'Add some feature'`
 5. Push to the branch: `git push origin my-new-feature`
 6. Submit a pull request!
+
 
 ## TO DO<a name="todo"/> 
 
