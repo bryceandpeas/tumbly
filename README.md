@@ -47,18 +47,14 @@ Enter the twitter username, number of images to download and the offset (default
 
 ![](https://gitlab.com/PyQT/tumbly/raw/267f5e6a62a9da9753f6bbd2ed63916c883063b8/assets/screenshots/tumbly_screenshot.png)
 
+
 ### Commandline/Terminal<a name="terminal"/> (```tumblyCL.py```)
-
-Swap out 'APP KEY HERE' and 'APP SECRET HERE' for your [consumer key and consumer secret](https://www.tumblr.com/docs/en/api/v2) in ```scrape.py```:
-
-    authorization = tumblpy.Tumblpy(app_key = 'APP KEY HERE',
-					    	app_secret = 'APP SECRET HERE')
 
 
 Run the script with your arguments:
 
     python tumblyCL.py -u -n -o
-    
+***
     usage: tumblyCL.py [-h] -u USERNAME -n NUMBER [-o START]
 
         arguments:
@@ -72,10 +68,12 @@ Run the script with your arguments:
                      
             -o START,    --start START
                          Post number to start from (offset).
-		
+***
 - Required -u: ```The tumblr username e.g. 'twitterthecomic' from 'twitterthecomic.tumblr.com'.```
 - Required -n: ```The number of images to download.```
 - Optional -o: ```Offset (what number post to scrape from), the default is 0.```
+***
+If it is the first time you have used the script, you will be prompted to add your [consumer key and consumer secret](https://www.tumblr.com/docs/en/api/v2), it will not work otherwise.
 
 
 For example:
