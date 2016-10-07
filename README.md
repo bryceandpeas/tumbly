@@ -39,13 +39,16 @@ Download the repo.
 
 ### Graphical<a name="graphical"/> (```run.py```)
 
-Swap out the consumer key and [consumer key and consumer secret](https://www.tumblr.com/docs/en/api/v2) as shown below and run ```run.py```.
+Run:
 
     python run.py
-   
-Enter the twitter username, number of images to download and the offset (defaults to 20).
 
-![](https://gitlab.com/PyQT/tumbly/raw/267f5e6a62a9da9753f6bbd2ed63916c883063b8/assets/screenshots/tumbly_screenshot.png)
+Click the 'add auth' button and add your [consumer key and consumer secret](https://www.tumblr.com/docs/en/api/v2). 
+(You do not need to do this if you have already set them by running ```tumblyCL.py```).
+   
+Enter the tumblr username, number of images to download and the offset (defaults to 20).
+
+![](https://raw.githubusercontent.com/BryceFury/tumbly/master/assets/screenshots/tumbly_screenshot.png)
 
 
 ### Commandline/Terminal<a name="terminal"/> (```tumblyCL.py```)
@@ -54,6 +57,12 @@ Enter the twitter username, number of images to download and the offset (default
 Run the script with your arguments:
 
     python tumblyCL.py -u -n -o
+    
+***
+
+If this is the first time you have used the script, you will be prompted to add your [consumer key and consumer secret](https://www.tumblr.com/docs/en/api/v2), it will not work otherwise.
+(You do not need to do this if you have already set them by running ```run.py```).
+
 ***
     usage: tumblyCL.py [-h] -u USERNAME -n NUMBER [-o START]
 
@@ -68,14 +77,14 @@ Run the script with your arguments:
                      
             -o START,    --start START
                          Post number to start from (offset).
+                         
 ***
+
 - Required -u: ```The tumblr username e.g. 'twitterthecomic' from 'twitterthecomic.tumblr.com'.```
 - Required -n: ```The number of images to download.```
 - Optional -o: ```Offset (what number post to scrape from), the default is 0.```
 
 ***
-If it is the first time you have used the script, you will be prompted to add your [consumer key and consumer secret](https://www.tumblr.com/docs/en/api/v2), it will not work otherwise.
-
 
 _Example_:
 
