@@ -95,16 +95,16 @@ Currently does not support posts with multiple images and will ignore posts with
 
 ## TO DO<a name="todo"/> 
 
-- [ ] Code refactoring.
-- [ ] Prettier GUI.
-- [ ] Image viewing functionality for downloaded images.
-- [ ] Unit testing.
-- [ ] Data viewing for downloaded tags, etc.
-- [X] Better filepaths e.g. ../databases/username.db
+- [ ] Code refactoring. > ([#1](https://github.com/BryceFury/tumbly/issues/1))
+- [ ] Prettier GUI. > ([#2](https://github.com/BryceFury/tumbly/issues/2))
+- [ ] Image viewing functionality for downloaded images. > ([#3](https://github.com/BryceFury/tumbly/issues/3))
+- [ ] Unit testing. > ([#4](https://github.com/BryceFury/tumbly/issues/4))
+- [ ] Data viewing for downloaded tags, etc. > ([#5](https://github.com/BryceFury/tumbly/issues/5))
+- [X] Better filepaths e.g. ../databases/username.db > ([#6](https://github.com/BryceFury/tumbly/issues/6))
 
 
 ## Contributors<a name="contributors"/> 
-- [pratyushprakash](https://github.com/pratyushprakash) - Implemented #6 in #7
+- [pratyushprakash](https://github.com/pratyushprakash) - Implemented [#6](https://github.com/BryceFury/tumbly/issues/6) in [#7](https://github.com/BryceFury/tumbly/pull/7)
 
 
 
