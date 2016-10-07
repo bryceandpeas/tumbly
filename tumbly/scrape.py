@@ -82,39 +82,40 @@ def scrape_tumblr(username,
         post_count += 1
 
         for p in posts['posts']:
-            # Check for posts that don't have a photo and skip
-            if(not('photos' in p)):
-                continue
-            # Check for posts that have multiple photos and skip
-            if(len(p['photos']) != 1):
-                continue
-            # Check for posts that don't have tags and skip
-            if(len(p['tags']) == 0):
-                continue
+            if(number_found < number):
+                # Check for posts that don't have a photo and skip
+                if(not('photos' in p)):
+                    continue
+                # Check for posts that have multiple photos and skip
+                if(len(p['photos']) != 1):
+                    continue
+                # Check for posts that don't have tags and skip
+                if(len(p['tags']) == 0):
+                    continue
 
-            number_found += 1
+                number_found += 1
 
-            # Set scraped info
-            note_count = p['note_count']
-            tags = [y.strip().lower() for x in p['tags']
-                    for y in x.split('\n')
-                    ]
+                # Set scraped info
+                note_count = p['note_count']
+                tags = [y.strip().lower() for x in p['tags']
+                        for y in x.split('\n')
+                        ]
 
-            image_url = p['photos'][0]['original_size']['url']
+                image_url = p['photos'][0]['original_size']['url']
 
-            print('Image Found at: {2}, '
-                  'Image number: {1}, '
-                  'Tags are: {3}'.format(username,
-                                         number_found,
-                                         image_url,
-                                         '#' + ' #'.join(tags)))
+                print('Image Found at: {2}, '
+                      'Image number: {1}, '
+                      'Tags are: {3}'.format(username,
+                                             number_found,
+                                             image_url,
+                                             '#' + ' #'.join(tags)))
 
-            # Add scraped data to database
-            add_tags(c, tags)
-            add_photo(c, image_url, note_count)
-            link_tags_photo(c, tags, image_url)
+                # Add scraped data to database
+                add_tags(c, tags)
+                add_photo(c, image_url, note_count)
+                link_tags_photo(c, tags, image_url)
 
-            conn.commit()
+                conn.commit()
     conn.close()
 
 

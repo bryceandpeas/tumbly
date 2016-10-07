@@ -35,13 +35,14 @@ def download_images(username,
         j = 0
         while j < number:
             for url in cur:
-                for i in url:
-                    print('Image url: ' + i)
-                    os.chdir(downloaded_image_directory)
-                    image_name = (username + '_' + str(j) + '.jpg')
-                    urllib.request.urlretrieve(i, image_name)
-                    print ('Downloaded: {0}'.format(image_name))
-                    j += 1
+                if(j < number):
+                    for i in url:
+                        print('Image url: ' + i)
+                        os.chdir(downloaded_image_directory)
+                        image_name = (username + '_' + str(j) + '.jpg')
+                        urllib.request.urlretrieve(i, image_name)
+                        print ('Downloaded: {0}'.format(image_name))
+                        j += 1
 
         print('Finished scraping and downloading')
 
