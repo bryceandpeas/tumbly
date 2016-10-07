@@ -232,11 +232,9 @@ class Tumbly(QWidget):
                                                'You must enter an app key'
                                                ' and an app secret to use'  
                                                ' tumbly.',
-                                               QMessageBox.Retry)
+                                               QMessageBox.Retry|QMessageBox.Cancel)
 
             if input_check == QMessageBox.Retry:
-                self.add_auth()
-            else:
                 self.add_auth()
 
         config_write = put_config('config/tumblyconfig.ini',
