@@ -209,11 +209,15 @@ class Tumbly(QWidget):
 
     @pyqtSlot()
     def start_thread(self):
-        self.thread = QThread()
-        self.main_thread = RunMain()
-        self.main_thread.moveToThread(self.thread)
-        self.thread.started.connect(self.main_thread.run)
-        self.thread.start()
+        # Check config file exists, make one if not
+        if not os.path.isfile('config/tumblyconfig.ini'):
+            self.add_auth()
+        else:
+            self.thread = QThread()
+            self.main_thread = RunMain()
+            self.main_thread.moveToThread(self.thread)
+            self.thread.started.connect(self.main_thread.run)
+            self.thread.start()
 
 
 queue = queue.Queue()
