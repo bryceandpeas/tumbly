@@ -228,9 +228,9 @@ class Tumbly(QWidget):
         if app_key == '' or app_secret == '':
             input_check = QMessageBox.question(self,
                                                'Error',
-                                               'You must enter an app key
-                                               ' and an app secret to use
-                                               ' tumbly.', 
+                                               'You must enter an app key'
+                                               ' and an app secret to use'  
+                                               ' tumbly.',
                                                QMessageBox.Retry)
 
             if input_check == QMessageBox.Retry:
@@ -238,7 +238,7 @@ class Tumbly(QWidget):
             else:
                 self.add_auth()
 
-        config_write = put_config('config/tumblyconfig.ini', 
+        config_write = put_config('config/tumblyconfig.ini',
                                   app_key, app_secret)
 
     @pyqtSlot(str)
@@ -250,7 +250,7 @@ class Tumbly(QWidget):
     def start_thread(self):
         # Check config file exists, make one if not
         if not os.path.isfile('config/tumblyconfig.ini'):
-            self.add_auth() 
+            self.add_auth()
         else:
             self.thread = QThread()
             self.main_thread = RunMain()
