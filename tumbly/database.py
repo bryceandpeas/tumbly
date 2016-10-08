@@ -1,4 +1,4 @@
-from os.path import exists, join, abspath, dirname
+from os.path import exists, join
 import sqlite3
 
 ''' Database Functions '''
@@ -66,8 +66,8 @@ def link_tags_photo(c, tags, url, verbose=None):
                              where tag = ? LIMIT 1''', (t,)).fetchone()[0]
                for t in tags]
     if verbose:
-        for tag_id, photo_id in product(tags, [url]):
-            print ("#%s %s" % (tag_id, photo_id))
+        for tag_id, photo_id in product(tags, [url]): # noqa
+            print("#%s %s" % (tag_id, photo_id))
     data = [(photo_id, t, photo_id, t) for t in tag_ids]
     c.executemany('''INSERT INTO photo_tags (photo_id, tag_id)
                      SELECT * FROM (SELECT ?, ?)

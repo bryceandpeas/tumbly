@@ -1,5 +1,4 @@
 import os
-import sqlite3
 import sys
 import queue
 
@@ -8,13 +7,12 @@ from tumbly.database import create_check_database
 from tumbly.scrape import scrape_tumblr
 from tumbly.download import download_images
 
-from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtCore import pyqtSignal, pyqtSlot, QObject, QThread
-from PyQt5.QtGui import QBrush, QIcon, QPalette, QPainter
-from PyQt5.QtGui import QPixmap, QTextCursor
-from PyQt5.QtWidgets import QAction, QApplication, QCheckBox, QComboBox
-from PyQt5.QtWidgets import QDesktopWidget, QGridLayout, QInputDialog, QLabel
-from PyQt5.QtWidgets import QLineEdit, QMainWindow, QMessageBox, QPushButton
+from PyQt5.QtGui import QIcon
+from PyQt5.QtGui import QTextCursor
+from PyQt5.QtWidgets import QApplication
+from PyQt5.QtWidgets import QGridLayout, QInputDialog, QLabel
+from PyQt5.QtWidgets import QLineEdit, QMessageBox, QPushButton
 from PyQt5.QtWidgets import QSizePolicy, QSpinBox, QTextEdit, QWidget
 
 # Globals
@@ -24,6 +22,7 @@ user_offset = None
 
 
 class WriteStream(object):
+
     def __init__(self, queue):
         self.queue = queue
 
@@ -50,6 +49,7 @@ class MyReceiver(QObject):
 
 
 class RunMain(QObject):
+
     @pyqtSlot()
     def run(self):
 
@@ -97,6 +97,7 @@ class RunMain(QObject):
 
 
 class Tumbly(QWidget):
+
     def __init__(self, *args, **kwargs):
         QWidget.__init__(self, *args, **kwargs)
 
@@ -105,15 +106,15 @@ class Tumbly(QWidget):
         self.title_tagline.setSizePolicy(QSizePolicy.Preferred,
                                          QSizePolicy.Expanding)
         self.title_tagline.setStyleSheet('font: 12px;'
-                                        ' color:#000000;'
-                                         ) 
+                                         ' color:#000000;'
+                                         )
 
         self.title_text = QLabel('tumbly.')
         self.title_text.setSizePolicy(QSizePolicy.Preferred,
                                       QSizePolicy.Expanding)
         self.title_text.setStyleSheet('font: 24px;'
                                       ' color:#000000;'
-                                      ) 
+                                      )
 
         # Create Labels
         self.number_label = QLabel('Number of images to scrape:')
@@ -158,7 +159,7 @@ class Tumbly(QWidget):
                                         QSizePolicy.Expanding)
         self.get_settings.setStyleSheet('font: 12px;'
                                         ' color:#000000;'
-                                        ' border: 1px solid #000000')                  
+                                        ' border: 1px solid #000000')
 
         # Create layout, add widgets
         self.grid = QGridLayout()
@@ -230,15 +231,15 @@ class Tumbly(QWidget):
             input_check = QMessageBox.question(self,
                                                'Error',
                                                'You must enter an app key'
-                                               ' and an app secret to use'  
+                                               ' and an app secret to use'
                                                ' tumbly.',
-                                               QMessageBox.Retry|QMessageBox.Cancel)
+                                               QMessageBox.Retry | QMessageBox.Cancel)
 
             if input_check == QMessageBox.Retry:
                 self.add_auth()
 
-        config_write = put_config('config/tumblyconfig.ini',
-                                  app_key, app_secret)
+        put_config('config/tumblyconfig.ini',
+                   app_key, app_secret)
 
     @pyqtSlot(str)
     def append_text(self, text):

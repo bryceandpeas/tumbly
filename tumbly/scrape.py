@@ -1,7 +1,4 @@
-import argparse
 import os
-import sqlite3
-import sys
 
 from tumbly.confighandler import get_config, put_config
 from tumbly.arguments import init_argparse
@@ -30,7 +27,7 @@ def scrape_tumblr(username,
                   ' let\'s create one')
             key = input('Please enter an app key: ')
             secret = input('Please enter an app secret: ')
-            config_write = put_config('config/tumblyconfig.ini', key, secret)
+            put_config('config/tumblyconfig.ini', key, secret)
             print('config file created')
             return (key, secret)
 
