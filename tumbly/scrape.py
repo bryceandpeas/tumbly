@@ -32,7 +32,7 @@ def scrape_tumblr(username,
             if(secret == ""):
                 continue
             break
-        config_write = put_config('config/tumblyconfig.ini', key, secret)
+        put_config('config/tumblyconfig.ini', key, secret)
         return (key, secret)
 
     def getconfig():
