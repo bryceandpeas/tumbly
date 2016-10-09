@@ -31,6 +31,9 @@ def init_argparse():
 
     username = args.username
     number = args.number
-    offset = args.start
+    if args.start:
+        offset = args.start
+    else:
+        offset = 0
 
     return(username, number, offset)
