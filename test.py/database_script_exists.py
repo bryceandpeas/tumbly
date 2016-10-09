@@ -1,5 +1,7 @@
 import os
 import unittest
+import tempfile
+import shutil
 
 
 class TumblyCLExists(unittest.TestCase):

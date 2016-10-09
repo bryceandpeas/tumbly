@@ -11,7 +11,8 @@ branches:
     - master
 # command to run tests
 script:
+  - flake8
   - python -m unittest discover -s test -p "*_exists.py"
-  
+
 after_success:
   - codecov

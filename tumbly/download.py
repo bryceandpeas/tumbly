@@ -1,9 +1,7 @@
-import argparse
 import sqlite3
-import sys
 import os
 import urllib.request
-from os.path import join, dirname, abspath
+from os.path import join
 
 from tumbly.arguments import init_argparse
 
@@ -41,7 +39,7 @@ def download_images(username,
                         os.chdir(downloaded_image_directory)
                         image_name = (username + '_' + str(j) + '.jpg')
                         urllib.request.urlretrieve(i, image_name)
-                        print ('Downloaded: {0}'.format(image_name))
+                        print('Downloaded: {0}'.format(image_name))
                         j += 1
 
         print('Finished scraping and downloading')

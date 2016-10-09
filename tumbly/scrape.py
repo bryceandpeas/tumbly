@@ -1,7 +1,4 @@
-import argparse
 import os
-import sqlite3
-import sys
 
 from tumbly.confighandler import get_config, put_config
 from tumbly.arguments import init_argparse
