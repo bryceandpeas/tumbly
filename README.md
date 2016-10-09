@@ -121,7 +121,7 @@ Currently does not support posts with multiple images and will ignore posts with
 
 - [Algogator](https://github.com/Algogator) - Fixed [#15](https://github.com/BryceFury/tumbly/pull/15) in [#16](https://github.com/BryceFury/tumbly/pull/16) fixed [#17](https://github.com/BryceFury/tumbly/pull/17) in [#18](https://github.com/BryceFury/tumbly/pull/18) and  fixed [#20](https://github.com/BryceFury/tumbly/pull/20) in [#21](https://github.com/BryceFury/tumbly/pull/21)
 
- - [aniketmaithani](https://github.com/aniketmaithani) - Fixed [#1](https://github.com/BryceFury/tumbly/pull/1) in [#22](https://github.com/BryceFury/tumbly/pull/22)
+- [aniketmaithani](https://github.com/aniketmaithani) - Fixed [#1](https://github.com/BryceFury/tumbly/pull/1) in [#22](https://github.com/BryceFury/tumbly/pull/22)
 
 
 
