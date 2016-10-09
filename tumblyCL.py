@@ -1,14 +1,10 @@
 import argparse
-from itertools import product
 import os
-import sqlite3
 import sys
 
 from tumbly.database import create_check_database
 from tumbly.scrape import scrape_tumblr
 from tumbly.download import download_images
-
-import tumblpy
 
 
 ''' Run '''
@@ -59,10 +55,10 @@ def main():
     # Get user input
     # Create URL
     url_to_scrape = 'http://{0}.tumblr.com'.format(username)
-    print ('Will scrape: {0}'.format(url_to_scrape))
+    print('Will scrape: {0}'.format(url_to_scrape))
     # Create database name
     database_name = '{0}.db'.format(username)
-    print ('Will save to: {0} database (SQLite3)'.format(database_name))
+    print('Will save to: {0} database (SQLite3)'.format(database_name))
     # Check if directory exists, create if not
     script_directory = os.path.dirname(os.path.abspath(__file__))
     downloaded_image_directory = os.path.join(script_directory,
@@ -77,9 +73,9 @@ def main():
     number_to_scrape = number
     # If there is a third argument, set the offset
     if len(sys.argv) >= 4:
-        start_offset = offset
+        start_offset = offset  # noqa
     else:
-        start_offset = 0
+        start_offset = 0  # noqa
 
     create_check_database(database_name)
 
