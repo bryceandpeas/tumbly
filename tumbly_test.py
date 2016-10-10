@@ -377,10 +377,10 @@ class Tumbly(QtWidgets.QWidget):
         ''' Create GUI '''
 
         # Set main layout
-        self.verticalLayout_2 = QtWidgets.QVBoxLayout(self)
-        self.verticalLayout_2.setContentsMargins(0, 0, 0, 0)
-        self.verticalLayout_2.setSpacing(0)
-        self.verticalLayout_2.setObjectName('verticalLayout_2')
+        self.main_layout = QtWidgets.QVBoxLayout(self)
+        self.main_layout.setContentsMargins(0, 0, 0, 0)
+        self.main_layout.setSpacing(0)
+        self.main_layout.setObjectName('main_layout')
         
         # Create tab window
         self.tab_window = QtWidgets.QTabWidget(self)
@@ -647,10 +647,13 @@ class Tumbly(QtWidgets.QWidget):
         self.scrape_tab_layout.addWidget(self.progress_frame)
 
         # Add invisible pushbutton to catch Enter (Return) key
-        self.enter = QtWidgets.QPushButton(self)
-        self.enter.resize(0,0)
-        self.enter.clicked.connect(self.start_thread)
-        self.enter.setShortcut('Return')
+        self.scrape_enter = QtWidgets.QPushButton(self)
+        self.scrape_enter.resize(0,0)
+        self.scrape_enter.clicked.connect(self.start_thread)
+        self.scrape_enter.setShortcut('Return')
+
+        # Add invisible button to scrape tab
+        self.scrape_tab_layout.addWidget(self.scrape_enter)
 
         # Add scrape tab to main tab window
         self.tab_window.addTab(self.scrape_tab, '')
@@ -837,10 +840,10 @@ class Tumbly(QtWidgets.QWidget):
         self.settings_tab.setObjectName('settings_tab')
 
         # Create settings tab's layout
-        self.verticalLayout_10 = QtWidgets.QVBoxLayout(self.settings_tab)
-        self.verticalLayout_10.setContentsMargins(11, 11, 11, 11)
-        self.verticalLayout_10.setSpacing(6)
-        self.verticalLayout_10.setObjectName('verticalLayout_10')
+        self.settings_tab_layout = QtWidgets.QVBoxLayout(self.settings_tab)
+        self.settings_tab_layout.setContentsMargins(11, 11, 11, 11)
+        self.settings_tab_layout.setSpacing(6)
+        self.settings_tab_layout.setObjectName('settings_tab_layout')
 
         # Create settings tab's top frame
         self.top_frame = QtWidgets.QFrame(self.settings_tab)
@@ -849,10 +852,10 @@ class Tumbly(QtWidgets.QWidget):
         self.top_frame.setObjectName('top_frame')
 
         # Create settings tab's top frame's layout
-        self.horizontalLayout_3 = QtWidgets.QHBoxLayout(self.top_frame)
-        self.horizontalLayout_3.setContentsMargins(0, 0, 0, 0)
-        self.horizontalLayout_3.setSpacing(6)
-        self.horizontalLayout_3.setObjectName('horizontalLayout_3')
+        self.top_frame_layout = QtWidgets.QHBoxLayout(self.top_frame)
+        self.top_frame_layout.setContentsMargins(0, 0, 0, 0)
+        self.top_frame_layout.setSpacing(6)
+        self.top_frame_layout.setObjectName('top_frame_layout')
 
         # Create authorisation frame
         self.auth_frame = QtWidgets.QFrame(self.top_frame)
@@ -861,10 +864,10 @@ class Tumbly(QtWidgets.QWidget):
         self.auth_frame.setObjectName('auth_frame')
 
         # Create authorisation frame's layout
-        self.verticalLayout_14 = QtWidgets.QVBoxLayout(self.auth_frame)
-        self.verticalLayout_14.setContentsMargins(11, 11, 11, 11)
-        self.verticalLayout_14.setSpacing(6)
-        self.verticalLayout_14.setObjectName('verticalLayout_14')
+        self.auth_frame_layout = QtWidgets.QVBoxLayout(self.auth_frame)
+        self.auth_frame_layout.setContentsMargins(11, 11, 11, 11)
+        self.auth_frame_layout.setSpacing(6)
+        self.auth_frame_layout.setObjectName('auth_frame_layout')
 
         # Create authorisation frame's label
         self.auth_label_frame = QtWidgets.QFrame(self.auth_frame)
@@ -873,10 +876,10 @@ class Tumbly(QtWidgets.QWidget):
         self.auth_label_frame.setObjectName('auth_label_frame')
 
         # Create authorisation frame's label's frame layout
-        self.verticalLayout_15 = QtWidgets.QVBoxLayout(self.auth_label_frame)
-        self.verticalLayout_15.setContentsMargins(0, 0, 0, 0)
-        self.verticalLayout_15.setSpacing(6)
-        self.verticalLayout_15.setObjectName('verticalLayout_15')
+        self.auth_frame_label_layout = QtWidgets.QVBoxLayout(self.auth_label_frame)
+        self.auth_frame_label_layout.setContentsMargins(0, 0, 0, 0)
+        self.auth_frame_label_layout.setSpacing(6)
+        self.auth_frame_label_layout.setObjectName('auth_frame_label_layout')
 
         # Create authorisation frame's label
         self.auth_label = QtWidgets.QLabel(self.auth_label_frame)
@@ -887,8 +890,8 @@ class Tumbly(QtWidgets.QWidget):
         self.auth_label.setObjectName('auth_label')
 
         # Create authorisation frame's label's layout
-        self.verticalLayout_15.addWidget(self.auth_label)
-        self.verticalLayout_14.addWidget(self.auth_label_frame)
+        self.auth_frame_label_layout.addWidget(self.auth_label)
+        self.auth_frame_layout.addWidget(self.auth_label_frame)
 
         # Create authorisation key's frame
         self.auth_key_frame = QtWidgets.QFrame(self.auth_frame)
@@ -897,10 +900,10 @@ class Tumbly(QtWidgets.QWidget):
         self.auth_key_frame.setObjectName('auth_key_frame')
 
         # Create authorisation key's frame's layout
-        self.horizontalLayout_9 = QtWidgets.QHBoxLayout(self.auth_key_frame)
-        self.horizontalLayout_9.setContentsMargins(0, 0, 0, 0)
-        self.horizontalLayout_9.setSpacing(6)
-        self.horizontalLayout_9.setObjectName('horizontalLayout_9')
+        self.auth_key_frame_layout = QtWidgets.QHBoxLayout(self.auth_key_frame)
+        self.auth_key_frame_layout.setContentsMargins(0, 0, 0, 0)
+        self.auth_key_frame_layout.setSpacing(6)
+        self.auth_key_frame_layout.setObjectName('auth_key_frame_layout')
 
         # Create authorisation key's frame's label
         self.auth_key_label_frame = QtWidgets.QFrame(self.auth_key_frame)
@@ -909,10 +912,10 @@ class Tumbly(QtWidgets.QWidget):
         self.auth_key_label_frame.setObjectName('auth_key_label_frame')
 
         # Create authorisation key's frame's label's layout
-        self.horizontalLayout_11 = QtWidgets.QHBoxLayout(self.auth_key_label_frame)
-        self.horizontalLayout_11.setContentsMargins(11, 11, 11, 11)
-        self.horizontalLayout_11.setSpacing(6)
-        self.horizontalLayout_11.setObjectName('horizontalLayout_11')
+        self.auth_key_label_layout = QtWidgets.QHBoxLayout(self.auth_key_label_frame)
+        self.auth_key_label_layout.setContentsMargins(11, 11, 11, 11)
+        self.auth_key_label_layout.setSpacing(6)
+        self.auth_key_label_layout.setObjectName('auth_key_label_layout')
 
         # Create authorisation key's frame's label
         self.auth_key_label = QtWidgets.QLabel(self.auth_key_label_frame)
@@ -928,8 +931,8 @@ class Tumbly(QtWidgets.QWidget):
         self.auth_key_label.setObjectName('auth_key_label')
 
         # Create authorisation key's frame's label's layout
-        self.horizontalLayout_11.addWidget(self.auth_key_label)
-        self.horizontalLayout_9.addWidget(self.auth_key_label_frame)
+        self.auth_key_label_layout.addWidget(self.auth_key_label)
+        self.auth_key_frame_layout.addWidget(self.auth_key_label_frame)
 
         # Create authorisation key's input frame
         self.auth_key_input_frame = QtWidgets.QFrame(self.auth_key_frame)
@@ -938,10 +941,10 @@ class Tumbly(QtWidgets.QWidget):
         self.auth_key_input_frame.setObjectName('auth_key_input_frame')
 
         # Create authorisation key's input frame's layout
-        self.horizontalLayout_13 = QtWidgets.QHBoxLayout(self.auth_key_input_frame)
-        self.horizontalLayout_13.setContentsMargins(22, 0, 11, 0)
-        self.horizontalLayout_13.setSpacing(6)
-        self.horizontalLayout_13.setObjectName('horizontalLayout_13')
+        self.auth_key_input_layout = QtWidgets.QHBoxLayout(self.auth_key_input_frame)
+        self.auth_key_input_layout.setContentsMargins(22, 0, 11, 0)
+        self.auth_key_input_layout.setSpacing(6)
+        self.auth_key_input_layout.setObjectName('auth_key_input_layout')
 
         # Create authorisation key's input box
         self.auth_key_input = QtWidgets.QLineEdit(self.auth_key_input_frame)
@@ -953,9 +956,9 @@ class Tumbly(QtWidgets.QWidget):
         self.auth_key_input.setObjectName('auth_key_input')
 
         # Create authorisation key's input box's layout
-        self.horizontalLayout_13.addWidget(self.auth_key_input)
-        self.horizontalLayout_9.addWidget(self.auth_key_input_frame)
-        self.verticalLayout_14.addWidget(self.auth_key_frame)
+        self.auth_key_input_layout.addWidget(self.auth_key_input)
+        self.auth_key_frame_layout.addWidget(self.auth_key_input_frame)
+        self.auth_frame_layout.addWidget(self.auth_key_frame)
 
         # Create authorisation secret's input frame
         self.auth_secret_frame = QtWidgets.QFrame(self.auth_frame)
@@ -964,10 +967,10 @@ class Tumbly(QtWidgets.QWidget):
         self.auth_secret_frame.setObjectName('auth_secret_frame')
 
         # Create authorisation secret's input frame's layout
-        self.horizontalLayout_8 = QtWidgets.QHBoxLayout(self.auth_secret_frame)
-        self.horizontalLayout_8.setContentsMargins(0, 0, 0, 0)
-        self.horizontalLayout_8.setSpacing(6)
-        self.horizontalLayout_8.setObjectName('horizontalLayout_8')
+        self.auth_secret_input_layout = QtWidgets.QHBoxLayout(self.auth_secret_frame)
+        self.auth_secret_input_layout.setContentsMargins(0, 0, 0, 0)
+        self.auth_secret_input_layout.setSpacing(6)
+        self.auth_secret_input_layout.setObjectName('auth_secret_input_layout')
 
         # Create authorisation secret's label's frame
         self.auth_secret_label_frame = QtWidgets.QFrame(self.auth_secret_frame)
@@ -976,10 +979,10 @@ class Tumbly(QtWidgets.QWidget):
         self.auth_secret_label_frame.setObjectName('auth_secret_label_frame')
 
         # Create authorisation secret's label's layout
-        self.horizontalLayout_10 = QtWidgets.QHBoxLayout(self.auth_secret_label_frame)
-        self.horizontalLayout_10.setContentsMargins(11, 11, 11, 11)
-        self.horizontalLayout_10.setSpacing(6)
-        self.horizontalLayout_10.setObjectName('horizontalLayout_10')
+        self.auth_secret_label_layout = QtWidgets.QHBoxLayout(self.auth_secret_label_frame)
+        self.auth_secret_label_layout.setContentsMargins(11, 11, 11, 11)
+        self.auth_secret_label_layout.setSpacing(6)
+        self.auth_secret_label_layout.setObjectName('auth_secret_label_layout')
 
         # Create authorisation secret's label
         self.auth_secret_label = QtWidgets.QLabel(self.auth_secret_label_frame)
@@ -995,8 +998,8 @@ class Tumbly(QtWidgets.QWidget):
         self.auth_secret_label.setObjectName('auth_secret_label')
 
         # Create authorisation secret's label's layout
-        self.horizontalLayout_10.addWidget(self.auth_secret_label)
-        self.horizontalLayout_8.addWidget(self.auth_secret_label_frame)
+        self.auth_secret_label_layout.addWidget(self.auth_secret_label)
+        self.auth_secret_input_layout.addWidget(self.auth_secret_label_frame)
 
         # Create authorisation secret's input box's frame
         self.auth_secret_input_frame = QtWidgets.QFrame(self.auth_secret_frame)
@@ -1005,10 +1008,10 @@ class Tumbly(QtWidgets.QWidget):
         self.auth_secret_input_frame.setObjectName('auth_secret_input_frame')
 
         # Create authorisation secret's input box's frame's layout
-        self.horizontalLayout_12 = QtWidgets.QHBoxLayout(self.auth_secret_input_frame)
-        self.horizontalLayout_12.setContentsMargins(0, 0, 12, 0)
-        self.horizontalLayout_12.setSpacing(6)
-        self.horizontalLayout_12.setObjectName('horizontalLayout_12')
+        self.auth_secret_frame_layout = QtWidgets.QHBoxLayout(self.auth_secret_input_frame)
+        self.auth_secret_frame_layout.setContentsMargins(0, 0, 12, 0)
+        self.auth_secret_frame_layout.setSpacing(6)
+        self.auth_secret_frame_layout.setObjectName('auth_secret_frame_layout')
 
         # Create authorisation secret's input box
         self.auth_secret_input = QtWidgets.QLineEdit(self.auth_secret_input_frame)
@@ -1020,38 +1023,42 @@ class Tumbly(QtWidgets.QWidget):
         self.auth_secret_input.setObjectName('auth_secret_input')
 
         # Create authorisation secret's input box's layout
-        self.horizontalLayout_12.addWidget(self.auth_secret_input)
-        self.horizontalLayout_8.addWidget(self.auth_secret_input_frame)
-        self.verticalLayout_14.addWidget(self.auth_secret_frame)
-        self.horizontalLayout_3.addWidget(self.auth_frame)
-        self.verticalLayout_10.addWidget(self.top_frame)
+        self.auth_secret_frame_layout.addWidget(self.auth_secret_input)
+        self.auth_secret_input_layout.addWidget(self.auth_secret_input_frame)
+        self.auth_frame_layout.addWidget(self.auth_secret_frame)
+        self.top_frame_layout.addWidget(self.auth_frame)
+        self.settings_tab_layout.addWidget(self.top_frame)
 
         # Bottom frame currently empty
         self.bottom_frame = QtWidgets.QFrame(self.settings_tab)
         self.bottom_frame.setFrameShape(QtWidgets.QFrame.StyledPanel)
         self.bottom_frame.setFrameShadow(QtWidgets.QFrame.Raised)
         self.bottom_frame.setObjectName('bottom_frame')
-        self.horizontalLayout_2 = QtWidgets.QHBoxLayout(self.bottom_frame)
-        self.horizontalLayout_2.setContentsMargins(11, 11, 11, 11)
-        self.horizontalLayout_2.setSpacing(6)
-        self.horizontalLayout_2.setObjectName('horizontalLayout_2')
+        self.bottom_frame_layout = QtWidgets.QHBoxLayout(self.bottom_frame)
+        self.bottom_frame_layout.setContentsMargins(11, 11, 11, 11)
+        self.bottom_frame_layout.setSpacing(6)
+        self.bottom_frame_layout.setObjectName('bottom_frame_layout')
         self.frame_5 = QtWidgets.QFrame(self.bottom_frame)
         self.frame_5.setFrameShape(QtWidgets.QFrame.StyledPanel)
         self.frame_5.setFrameShadow(QtWidgets.QFrame.Raised)
         self.frame_5.setObjectName('frame_5')
-        self.horizontalLayout_2.addWidget(self.frame_5)
+        self.bottom_frame_layout.addWidget(self.frame_5)
         self.frame_6 = QtWidgets.QFrame(self.bottom_frame)
         self.frame_6.setFrameShape(QtWidgets.QFrame.StyledPanel)
         self.frame_6.setFrameShadow(QtWidgets.QFrame.Raised)
         self.frame_6.setObjectName('frame_6')
-        self.horizontalLayout_2.addWidget(self.frame_6)
-        self.verticalLayout_10.addWidget(self.bottom_frame)
+
+        # Create bottom frame's layout
+        self.bottom_frame_layout.addWidget(self.frame_6)
+
+        # Add bottom frame to settings tab
+        self.settings_tab_layout.addWidget(self.bottom_frame)
 
         # Add settings tab to main window
         self.tab_window.addTab(self.settings_tab, '')
 
         # Add vertical layout to main window
-        self.verticalLayout_2.addWidget(self.tab_window)
+        self.main_layout.addWidget(self.tab_window)
 
         # Call retranslate
         self.retranslateUi(self)
@@ -1062,8 +1069,9 @@ class Tumbly(QtWidgets.QWidget):
         # Connect
         QtCore.QMetaObject.connectSlotsByName(self)
 
-
+    
     def retranslateUi(self, Tumbly):
+        # Necessary for text in labels etc.
         _translate = QtCore.QCoreApplication.translate
         self.setWindowTitle(_translate('Tumbly', 'Tumbly'))
         self.username_box.setText(_translate('Tumbly', 'Enter username to scrape here'))
@@ -1081,11 +1089,13 @@ class Tumbly(QtWidgets.QWidget):
 
     ''' Get user input '''
 
+
     def text_changed(self, text):
         # Get text changes
         self.username = str(text)
         global user_username
         user_username = self.username
+
 
     def number_changed(self, number):
         # Get number changes
@@ -1093,11 +1103,13 @@ class Tumbly(QtWidgets.QWidget):
         global user_number
         user_number = self.number
 
+
     def offset_changed(self, number):
         # Get offset changes
         self.offset = int(number)
         global user_offset
         user_offset = self.offset
+
 
     def add_auth(self):
 
