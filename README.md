@@ -43,7 +43,7 @@ Run:
 
     python run.py
 
-Click the 'add auth' button and add your [consumer key and consumer secret](https://www.tumblr.com/docs/en/api/v2). 
+Click the 'Set Auth' button and add your [consumer key and consumer secret](https://www.tumblr.com/docs/en/api/v2). 
 (You do not need to do this if you have already set them by running ```tumblyCL.py```).
    
 Enter the tumblr username, number of images to download and the offset (defaults to 20).
@@ -119,9 +119,9 @@ Currently does not support posts with multiple images and will ignore posts with
 ## Contributors<a name="contributors"/> 
 - [pratyushprakash](https://github.com/pratyushprakash) - Implemented [#6](https://github.com/BryceFury/tumbly/issues/6) in [#7](https://github.com/BryceFury/tumbly/pull/7)
 
-- [Algogator](https://github.com/Algogator) - Fixed [#15](https://github.com/BryceFury/tumbly/pull/15) in [#16](https://github.com/BryceFury/tumbly/pull/16) fixed [#17](https://github.com/BryceFury/tumbly/pull/17) in [#18](https://github.com/BryceFury/tumbly/pull/18) and  fixed [#20](https://github.com/BryceFury/tumbly/pull/20) in [#21](https://github.com/BryceFury/tumbly/pull/21)
+- [Algogator](https://github.com/Algogator) - Fixed [#15](https://github.com/BryceFury/tumbly/pull/15) in [#16](https://github.com/BryceFury/tumbly/pull/16), fixed [#17](https://github.com/BryceFury/tumbly/pull/17) in [#18](https://github.com/BryceFury/tumbly/pull/18) and  fixed [#20](https://github.com/BryceFury/tumbly/pull/20) in [#21](https://github.com/BryceFury/tumbly/pull/21). Contibuted to [#1](https://github.com/BryceFury/tumbly/pull/1).
 
-- [aniketmaithani](https://github.com/aniketmaithani) - Fixed [#1](https://github.com/BryceFury/tumbly/pull/1) in [#22](https://github.com/BryceFury/tumbly/pull/22)
+- [aniketmaithani](https://github.com/aniketmaithani) - Contributed to [#1](https://github.com/BryceFury/tumbly/pull/1) in [#22](https://github.com/BryceFury/tumbly/pull/22)
 
 
 
