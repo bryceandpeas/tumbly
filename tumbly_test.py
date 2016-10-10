@@ -1144,8 +1144,8 @@ class Tumbly(QtWidgets.QWidget):
             put_config('config/tumblyconfig.ini',
                        self.key, self.secret)
 
-            self.auth_key_input.setText('Key set to: {0}'.format(self.key))
-            self.auth_secret_input.setText('Key set to: {0}'.format(self.secret_changed))
+            self.auth_key_input.setText('App Key set')
+            self.auth_secret_input.setText('App Secret set')
 
 
     ''' Stream console output to output box'''
