@@ -1,6 +1,7 @@
 from configparser import ConfigParser
 import os
 
+
 def get_config(cfg_name):
     # Set config parser
     cfg = ConfigParser()

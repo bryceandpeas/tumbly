@@ -108,7 +108,7 @@ Currently does not support posts with multiple images and will ignore posts with
 
 ## TO DO<a name="todo"/> 
 
-- [ ] Code refactoring. > ([#1](https://github.com/BryceFury/tumbly/issues/1))
+- [X] Code refactoring. > ([#1](https://github.com/BryceFury/tumbly/issues/1))
 - [ ] Prettier GUI. > ([#2](https://github.com/BryceFury/tumbly/issues/2))
 - [ ] Image viewing functionality for downloaded images. > ([#3](https://github.com/BryceFury/tumbly/issues/3))
 - [ ] Unit testing. > ([#4](https://github.com/BryceFury/tumbly/issues/4))
@@ -119,7 +119,9 @@ Currently does not support posts with multiple images and will ignore posts with
 ## Contributors<a name="contributors"/> 
 - [pratyushprakash](https://github.com/pratyushprakash) - Implemented [#6](https://github.com/BryceFury/tumbly/issues/6) in [#7](https://github.com/BryceFury/tumbly/pull/7)
 
-- [Algogator](https://github.com/Algogator) - Fixed [#15](https://github.com/BryceFury/tumbly/pull/15) in [#16](https://github.com/BryceFury/tumbly/pull/16)
+- [Algogator](https://github.com/Algogator) - Fixed [#15](https://github.com/BryceFury/tumbly/pull/15) in [#16](https://github.com/BryceFury/tumbly/pull/16) fixed [#17](https://github.com/BryceFury/tumbly/pull/17) in [#18](https://github.com/BryceFury/tumbly/pull/18) and  fixed [#20](https://github.com/BryceFury/tumbly/pull/20) in [#21](https://github.com/BryceFury/tumbly/pull/21)
+
+- [aniketmaithani](https://github.com/aniketmaithani) - Fixed [#1](https://github.com/BryceFury/tumbly/pull/1) in [#22](https://github.com/BryceFury/tumbly/pull/22)
 
 
 

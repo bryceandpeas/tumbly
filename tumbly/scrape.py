@@ -1,7 +1,4 @@
-import argparse
 import os
-import sqlite3
-import sys
 
 from tumbly.confighandler import get_config, put_config
 from tumbly.arguments import init_argparse
@@ -24,21 +21,35 @@ def scrape_tumblr(username,
                   limit=20,
                   url_type='blog'):
 
+    def updateconfig():
+        while True:
+            key = input('Please enter an app key: ')
+            if(key == ""):
+                continue
+            break
+        while True:
+            secret = input('Please enter an app secret: ')
+            if(secret == ""):
+                continue
+            break
+        put_config('config/tumblyconfig.ini', key, secret)
+        return (key, secret)
+
     def getconfig():
         if not os.path.isfile('config/tumblyconfig.ini'):
             print('You do not appear to have a config file'
                   ' let\'s create one')
-            key = input('Please enter an app key: ')
-            secret = input('Please enter an app secret: ')
-            config_write = put_config('config/tumblyconfig.ini', key, secret)
+            key, secret = updateconfig()
             print('config file created')
             return (key, secret)
 
         else:
             config_pull = get_config('config/tumblyconfig.ini')
-            app_key = str(config_pull[0])
-            app_secret = str(config_pull[1])
-
+            if(str(config_pull[0]) == "" or str(config_pull[1]) == ""):
+                app_key, app_secret = updateconfig()
+            else:
+                app_key = str(config_pull[0])
+                app_secret = str(config_pull[1])
             return (app_key, app_secret)
 
     # Default offset
