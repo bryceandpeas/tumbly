@@ -869,6 +869,12 @@ class Tumbly(QtWidgets.QWidget):
         self.auth_secret_label.setText(_translate('Tumbly', 'Secret'))
         self.tab_window.setTabText(self.tab_window.indexOf(self.settings_tab), _translate('Tumbly', 'Settings'))
 
+        # Add invisible pushbutton to catch Enter (Return) key
+        self.enter = QtWidgets.QPushButton(self)
+        self.enter.resize(0,0)
+        self.enter.clicked.connect(self.start_thread)
+        self.enter.setShortcut('Return')
+
     ''' Get user input '''
 
     def text_changed(self, text):
