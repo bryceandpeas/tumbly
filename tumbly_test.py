@@ -93,8 +93,6 @@ class Tumbly(QtWidgets.QWidget):
 
     def __init__(self, parent = None):
         QtWidgets.QWidget.__init__(self, parent)
-        #main_widget = QtWidgets.QWidget(self)
-        #self.setCentralWidget(main_widget)
 
         self.setObjectName('Tumbly')
         self.resize(500, 500)
@@ -144,7 +142,7 @@ class Tumbly(QtWidgets.QWidget):
         'border: None;\n'
         '}\n'
         '\n'
-        '#username_frame QtWidgets.QLineEdit{\n'
+        '#username_box {\n'
         'qproperty-alignment: AlignCenter;\n'
         'color: #21262C;\n'
         'border: None;\n'
