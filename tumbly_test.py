@@ -504,6 +504,7 @@ class Tumbly(QtWidgets.QWidget):
 
         # Create number of images input box 
         self.number_input = QtWidgets.QSpinBox(self.number_input_frame)
+        self.number_input.setMinimum(1)
         self.number_input.setObjectName('number_input')
         self.number_input.valueChanged[int].connect(self.number_changed)
 
@@ -646,11 +647,8 @@ class Tumbly(QtWidgets.QWidget):
         # Add progress bar's frame to scrape tab's layout
         self.scrape_tab_layout.addWidget(self.progress_frame)
 
-        # Add invisible pushbutton to start scrape and catch Enter (Return) key
-        self.scrape_enter = QtWidgets.QPushButton(self)
-        self.scrape_enter.resize(0,0)
-        self.scrape_enter.clicked.connect(self.start_thread)
-        self.scrape_enter.setShortcut('Return')
+        # Connect user pressing enter to start thread function
+        self.username_box.returnPressed.connect(self.on_enter)
 
         # Add scrape tab to main tab window
         self.tab_window.addTab(self.scrape_tab, '')
@@ -1161,6 +1159,13 @@ class Tumbly(QtWidgets.QWidget):
             self.main_thread.moveToThread(self.thread)
             self.thread.started.connect(self.main_thread.run)
             self.thread.start()
+
+    ''' Keyboard handling '''
+
+    @QtCore.pyqtSlot()
+    def on_enter(self):
+        self.start_thread()
+        
 
 ''' Main '''
 
