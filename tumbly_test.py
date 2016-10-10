@@ -374,7 +374,7 @@ class Tumbly(QtWidgets.QWidget):
         'border: None;\n'
         '}')
 
-        ''' Main build and Settings '''
+        ''' Create GUI '''
 
         # Set main layout 
         self.verticalLayout_2 = QtWidgets.QVBoxLayout(self)
@@ -384,6 +384,9 @@ class Tumbly(QtWidgets.QWidget):
         # Create tab window
         self.tab_window = QtWidgets.QTabWidget(self)
         self.tab_window.setObjectName('tab_window')
+
+        ''' Scrape tab '''
+
         # Create scrape tab
         self.scrape_tab = QtWidgets.QWidget()
         self.scrape_tab.setObjectName('scrape_tab')
@@ -417,9 +420,6 @@ class Tumbly(QtWidgets.QWidget):
         self.username_box.textChanged[str].connect(self.text_changed)
         self.verticalLayout_5.addWidget(self.username_box)
         self.verticalLayout.addWidget(self.username_frame)
-
-        ''' Scrape settings build and settings '''
-
         # Create scrape settings frame
         self.scrape_settings_frame = QtWidgets.QFrame(self.scrape_tab)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Fixed)
@@ -526,8 +526,17 @@ class Tumbly(QtWidgets.QWidget):
         self.horizontalLayout_5.setSpacing(6)
         self.horizontalLayout_5.setObjectName('horizontalLayout_5')
         self.offset_input = QtWidgets.QSpinBox(self.offset_input_frame)
+        self.offset_input.setMinimum(20)
         self.offset_input.setObjectName('offset_input')
         self.offset_input.valueChanged[int].connect(self.number_changed)
+
+        # Add invisible pushbutton to catch Enter (Return) key
+        self.enter = QtWidgets.QPushButton(self)
+        self.enter.resize(0,0)
+        self.enter.clicked.connect(self.start_thread)
+        self.enter.setShortcut('Return')
+
+        # Create output frame
         self.horizontalLayout_5.addWidget(self.offset_input)
         self.verticalLayout_3.addWidget(self.offset_input_frame)
         self.horizontalLayout.addWidget(self.offset_frame)
@@ -579,6 +588,9 @@ class Tumbly(QtWidgets.QWidget):
         self.verticalLayout_7.addWidget(self.progress_bar)
         self.verticalLayout.addWidget(self.progress_frame)
         self.tab_window.addTab(self.scrape_tab, '')
+
+        ''' Data tab '''
+
         self.data_tab = QtWidgets.QWidget()
         self.data_tab.setObjectName('data_tab')
         self.horizontalLayout_6 = QtWidgets.QHBoxLayout(self.data_tab)
@@ -692,6 +704,9 @@ class Tumbly(QtWidgets.QWidget):
         self.verticalLayout_18.addWidget(self.files_view)
         self.horizontalLayout_6.addWidget(self.view_files_frame)
         self.tab_window.addTab(self.data_tab, '')
+
+        ''' Settings tab '''
+
         self.settings_tab = QtWidgets.QWidget()
         self.settings_tab.setObjectName('settings_tab')
         self.verticalLayout_10 = QtWidgets.QVBoxLayout(self.settings_tab)
@@ -869,12 +884,6 @@ class Tumbly(QtWidgets.QWidget):
         self.auth_secret_label.setText(_translate('Tumbly', 'Secret'))
         self.tab_window.setTabText(self.tab_window.indexOf(self.settings_tab), _translate('Tumbly', 'Settings'))
 
-        # Add invisible pushbutton to catch Enter (Return) key
-        self.enter = QtWidgets.QPushButton(self)
-        self.enter.resize(0,0)
-        self.enter.clicked.connect(self.start_thread)
-        self.enter.setShortcut('Return')
-
     ''' Get user input '''
 
     def text_changed(self, text):
@@ -897,7 +906,7 @@ class Tumbly(QtWidgets.QWidget):
 
     def add_auth(self):
 
-        key, ok = QInputDialog.getText(self, 'No config file',
+        key, ok = QtWidgets.QInputDialog.getText(self, 'No config file',
                                              'Enter your app key:')
 
         if ok:
@@ -906,7 +915,7 @@ class Tumbly(QtWidgets.QWidget):
         else:
             app_key = ''
 
-        secret, ok = QInputDialog.getText(self, 'No config file',
+        secret, ok = QtWidgets.QInputDialog.getText(self, 'No config file',
                                                 'Enter your app secret:')
         if ok:
             app_secret = secret
@@ -915,25 +924,27 @@ class Tumbly(QtWidgets.QWidget):
             app_secret = ''
 
         if app_key == '' or app_secret == '':
-            input_check = QMessageBox.question(self,
+            input_check = QtWidgets.QMessageBox.question(self,
                                                'Error',
                                                'You must enter an app key'
                                                ' and an app secret to use'
                                                ' tumbly.',
-                                               QMessageBox.Retry | QMessageBox.Cancel)
+                                               QtWidgets.QMessageBox.Retry | QtWidgets.QMessageBox.Cancel)
 
-            if input_check == QMessageBox.Retry:
+            if input_check == QtWidgets.QMessageBox.Retry:
                 self.add_auth()
 
         put_config('config/tumblyconfig.ini',
                    app_key, app_secret)
 
-    ''' Call scrape functions / stream console output to output box'''
+    ''' Stream console output to output box'''
 
     @QtCore.pyqtSlot(str)
     def append_text(self, text):
         self.output_box.moveCursor(QtGui.QTextCursor.End)
         self.output_box.insertPlainText(text)
+
+    ''' Run scrape functions in thread '''
 
     @QtCore.pyqtSlot()
     def start_thread(self):
