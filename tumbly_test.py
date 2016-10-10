@@ -648,7 +648,7 @@ class Tumbly(QtWidgets.QWidget):
         self.scrape_tab_layout.addWidget(self.progress_frame)
 
         # Connect user pressing enter to start thread function
-        self.username_box.returnPressed.connect(self.on_enter)
+        self.username_box.returnPressed.connect(self.on_scrape_enter)
 
         # Add scrape tab to main tab window
         self.tab_window.addTab(self.scrape_tab, '')
@@ -1049,6 +1049,10 @@ class Tumbly(QtWidgets.QWidget):
         # Add bottom frame to settings tab
         self.settings_tab_layout.addWidget(self.bottom_frame)
 
+        # Connect user pressing enter to start thread function
+        self.auth_key_input.returnPressed.connect(self.on_auth_enter)
+        self.auth_secret_input.returnPressed.connect(self.on_auth_enter)
+
         # Add settings tab to main window
         self.tab_window.addTab(self.settings_tab, '')
 
@@ -1163,8 +1167,13 @@ class Tumbly(QtWidgets.QWidget):
     ''' Keyboard handling '''
 
     @QtCore.pyqtSlot()
-    def on_enter(self):
+    def on_scrape_enter(self):
         self.start_thread()
+
+
+    @QtCore.pyqtSlot()
+    def on_auth_enter(self):
+        self.add_aut()
         
 
 ''' Main '''
