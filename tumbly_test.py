@@ -425,8 +425,8 @@ class Tumbly(QtWidgets.QWidget):
         self.username_box.textChanged[str].connect(self.text_changed)
         self.username_frame_layout.addWidget(self.username_box)
         self.scrape_tab_layout.addWidget(self.username_frame)
-        
-        # Create scrape settings frame
+
+        # Create scrape settings' frame
         self.scrape_settings_frame = QtWidgets.QFrame(self.scrape_tab)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
@@ -436,18 +436,25 @@ class Tumbly(QtWidgets.QWidget):
         self.scrape_settings_frame.setFrameShape(QtWidgets.QFrame.StyledPanel)
         self.scrape_settings_frame.setFrameShadow(QtWidgets.QFrame.Raised)
         self.scrape_settings_frame.setObjectName('scrape_settings_frame')
-        self.horizontalLayout = QtWidgets.QHBoxLayout(self.scrape_settings_frame)
-        self.horizontalLayout.setContentsMargins(0, 0, 0, 0)
-        self.horizontalLayout.setObjectName('horizontalLayout')
+
+        # Create scrape settings' frame layout
+        self.scrape_settings_frame_layout = QtWidgets.QHBoxLayout(self.scrape_settings_frame)
+        self.scrape_settings_frame_layout.setContentsMargins(0, 0, 0, 0)
+        self.scrape_settings_frame_layout.setObjectName('scrape_settings_frame_layout')
+
+        # Create number of images frame
         self.number_frame = QtWidgets.QFrame(self.scrape_settings_frame)
         self.number_frame.setFrameShape(QtWidgets.QFrame.StyledPanel)
         self.number_frame.setFrameShadow(QtWidgets.QFrame.Raised)
         self.number_frame.setObjectName('number_frame')
-        # Create scrape frame's layout
-        self.verticalLayout_4 = QtWidgets.QVBoxLayout(self.number_frame)
-        self.verticalLayout_4.setContentsMargins(0, 0, 0, 0)
-        self.verticalLayout_4.setSpacing(0)
-        self.verticalLayout_4.setObjectName('verticalLayout_4')
+
+        # Create number of images frame's layout
+        self.number_frame_layout = QtWidgets.QVBoxLayout(self.number_frame)
+        self.number_frame_layout.setContentsMargins(0, 0, 0, 0)
+        self.number_frame_layout.setSpacing(0)
+        self.number_frame_layout.setObjectName('number_frame_layout')
+
+        # Create number of images label frame
         self.number_label_frame = QtWidgets.QFrame(self.number_frame)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
@@ -457,10 +464,14 @@ class Tumbly(QtWidgets.QWidget):
         self.number_label_frame.setFrameShape(QtWidgets.QFrame.StyledPanel)
         self.number_label_frame.setFrameShadow(QtWidgets.QFrame.Raised)
         self.number_label_frame.setObjectName('number_label_frame')
-        self.verticalLayout_9 = QtWidgets.QVBoxLayout(self.number_label_frame)
-        self.verticalLayout_9.setContentsMargins(11, 11, 11, 11)
-        self.verticalLayout_9.setSpacing(6)
-        self.verticalLayout_9.setObjectName('verticalLayout_9')
+
+        # Create number of images' label frame layout
+        self.number_label_frame_layout = QtWidgets.QVBoxLayout(self.number_label_frame)
+        self.number_label_frame_layout.setContentsMargins(11, 11, 11, 11)
+        self.number_label_frame_layout.setSpacing(6)
+        self.number_label_frame_layout.setObjectName('number_label_frame_layout')
+
+        # Create number of images label
         self.number_label = QtWidgets.QLabel(self.number_label_frame)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
@@ -474,22 +485,34 @@ class Tumbly(QtWidgets.QWidget):
         font.setWeight(50)
         self.number_label.setFont(font)
         self.number_label.setObjectName('number_label')
-        self.verticalLayout_9.addWidget(self.number_label)
-        self.verticalLayout_4.addWidget(self.number_label_frame)
+
+        # Create number of images label's layout
+        self.number_label_frame_layout.addWidget(self.number_label)
+        self.number_frame_layout.addWidget(self.number_label_frame)
+
+        # Create number of images input frame
         self.number_input_frame = QtWidgets.QFrame(self.number_frame)
         self.number_input_frame.setFrameShape(QtWidgets.QFrame.StyledPanel)
         self.number_input_frame.setFrameShadow(QtWidgets.QFrame.Raised)
         self.number_input_frame.setObjectName('number_input_frame')
-        self.horizontalLayout_4 = QtWidgets.QHBoxLayout(self.number_input_frame)
-        self.horizontalLayout_4.setContentsMargins(11, 11, 11, 11)
-        self.horizontalLayout_4.setSpacing(6)
-        self.horizontalLayout_4.setObjectName('horizontalLayout_4')
+
+        # Create number of images input frame's layout
+        self.number_input_frame_layout = QtWidgets.QHBoxLayout(self.number_input_frame)
+        self.number_input_frame_layout.setContentsMargins(11, 11, 11, 11)
+        self.number_input_frame_layout.setSpacing(6)
+        self.number_input_frame_layout.setObjectName('number_input_frame_layout')
+
+        # Create number of images input box 
         self.number_input = QtWidgets.QSpinBox(self.number_input_frame)
         self.number_input.setObjectName('number_input')
         self.number_input.valueChanged[int].connect(self.number_changed)
-        self.horizontalLayout_4.addWidget(self.number_input)
-        self.verticalLayout_4.addWidget(self.number_input_frame)
-        self.horizontalLayout.addWidget(self.number_frame)
+
+        # Create number of images input's layout
+        self.number_input_frame_layout.addWidget(self.number_input)
+        self.number_frame_layout.addWidget(self.number_input_frame)
+        self.scrape_settings_frame_layout.addWidget(self.number_frame)
+
+        # Create post offset frame
         self.offset_frame = QtWidgets.QFrame(self.scrape_settings_frame)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
@@ -499,18 +522,26 @@ class Tumbly(QtWidgets.QWidget):
         self.offset_frame.setFrameShape(QtWidgets.QFrame.StyledPanel)
         self.offset_frame.setFrameShadow(QtWidgets.QFrame.Raised)
         self.offset_frame.setObjectName('offset_frame')
-        self.verticalLayout_3 = QtWidgets.QVBoxLayout(self.offset_frame)
-        self.verticalLayout_3.setContentsMargins(0, 0, 0, 0)
-        self.verticalLayout_3.setSpacing(0)
-        self.verticalLayout_3.setObjectName('verticalLayout_3')
+
+        # Create post offset frame's layout
+        self.offset_frame_layout = QtWidgets.QVBoxLayout(self.offset_frame)
+        self.offset_frame_layout.setContentsMargins(0, 0, 0, 0)
+        self.offset_frame_layout.setSpacing(0)
+        self.offset_frame_layout.setObjectName('offset_frame_layout')
+
+        # Create post offset label's frame
         self.offset_label_frame = QtWidgets.QFrame(self.offset_frame)
         self.offset_label_frame.setFrameShape(QtWidgets.QFrame.StyledPanel)
         self.offset_label_frame.setFrameShadow(QtWidgets.QFrame.Raised)
         self.offset_label_frame.setObjectName('offset_label_frame')
-        self.verticalLayout_8 = QtWidgets.QVBoxLayout(self.offset_label_frame)
-        self.verticalLayout_8.setContentsMargins(11, 11, 11, 11)
-        self.verticalLayout_8.setSpacing(6)
-        self.verticalLayout_8.setObjectName('verticalLayout_8')
+
+        # Create post offset label's frame layout
+        self.offset_label_frame_layout = QtWidgets.QVBoxLayout(self.offset_label_frame)
+        self.offset_label_frame_layout.setContentsMargins(11, 11, 11, 11)
+        self.offset_label_frame_layout.setSpacing(6)
+        self.offset_label_frame_layout.setObjectName('offset_label_frame_layout')
+
+        # Create post offset label
         self.offset_label = QtWidgets.QLabel(self.offset_label_frame)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
@@ -522,40 +553,46 @@ class Tumbly(QtWidgets.QWidget):
         font.setPointSize(18)
         self.offset_label.setFont(font)
         self.offset_label.setObjectName('offset_label')
-        self.verticalLayout_8.addWidget(self.offset_label)
-        self.verticalLayout_3.addWidget(self.offset_label_frame)
+
+        # Create post offset label's layout
+        self.offset_label_frame_layout.addWidget(self.offset_label)
+        self.offset_frame_layout.addWidget(self.offset_label_frame)
+
+        # Create post offset input's frame
         self.offset_input_frame = QtWidgets.QFrame(self.offset_frame)
         self.offset_input_frame.setFrameShape(QtWidgets.QFrame.StyledPanel)
         self.offset_input_frame.setFrameShadow(QtWidgets.QFrame.Raised)
         self.offset_input_frame.setObjectName('offset_input_frame')
-        self.horizontalLayout_5 = QtWidgets.QHBoxLayout(self.offset_input_frame)
-        self.horizontalLayout_5.setContentsMargins(11, 11, 11, 11)
-        self.horizontalLayout_5.setSpacing(6)
-        self.horizontalLayout_5.setObjectName('horizontalLayout_5')
+
+        # Create post offset input's frame layout
+        self.offset_input_frame_layout = QtWidgets.QHBoxLayout(self.offset_input_frame)
+        self.offset_input_frame_layout.setContentsMargins(11, 11, 11, 11)
+        self.offset_input_frame_layout.setSpacing(6)
+        self.offset_input_frame_layout.setObjectName('offset_input_frame_layout')
+
+        # Create post offset input's box
         self.offset_input = QtWidgets.QSpinBox(self.offset_input_frame)
         self.offset_input.setMinimum(20)
         self.offset_input.setObjectName('offset_input')
         self.offset_input.valueChanged[int].connect(self.number_changed)
 
-        # Add invisible pushbutton to catch Enter (Return) key
-        self.enter = QtWidgets.QPushButton(self)
-        self.enter.resize(0,0)
-        self.enter.clicked.connect(self.start_thread)
-        self.enter.setShortcut('Return')
-
         # Create output frame
-        self.horizontalLayout_5.addWidget(self.offset_input)
-        self.verticalLayout_3.addWidget(self.offset_input_frame)
-        self.horizontalLayout.addWidget(self.offset_frame)
+        self.offset_input_frame_layout.addWidget(self.offset_input)
+        self.offset_frame_layout.addWidget(self.offset_input_frame)
+        self.scrape_settings_frame_layout.addWidget(self.offset_frame)
         self.scrape_tab_layout.addWidget(self.scrape_settings_frame)
         self.output_frame = QtWidgets.QFrame(self.scrape_tab)
         self.output_frame.setFrameShape(QtWidgets.QFrame.StyledPanel)
         self.output_frame.setFrameShadow(QtWidgets.QFrame.Raised)
         self.output_frame.setObjectName('output_frame')
-        self.verticalLayout_6 = QtWidgets.QVBoxLayout(self.output_frame)
-        self.verticalLayout_6.setContentsMargins(0, 0, 0, 0)
-        self.verticalLayout_6.setSpacing(6)
-        self.verticalLayout_6.setObjectName('verticalLayout_6')
+
+        # Create output frame's layout
+        self.output_frame_layout = QtWidgets.QVBoxLayout(self.output_frame)
+        self.output_frame_layout.setContentsMargins(0, 0, 0, 0)
+        self.output_frame_layout.setSpacing(6)
+        self.output_frame_layout.setObjectName('output_frame_layout')
+
+        # Create output box
         self.output_box = QtWidgets.QTextEdit(self.output_frame)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Preferred)
         sizePolicy.setHorizontalStretch(0)
@@ -569,8 +606,14 @@ class Tumbly(QtWidgets.QWidget):
         font.setWeight(75)
         self.output_box.setFont(font)
         self.output_box.setObjectName('output_box')
-        self.verticalLayout_6.addWidget(self.output_box)
+
+        # Create output box's layout
+        self.output_frame_layout.addWidget(self.output_box)
+
+        # Add ouput frame to scrape tab's layout
         self.scrape_tab_layout.addWidget(self.output_frame)
+
+        # Create progress bar's frame
         self.progress_frame = QtWidgets.QFrame(self.scrape_tab)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
@@ -580,10 +623,14 @@ class Tumbly(QtWidgets.QWidget):
         self.progress_frame.setFrameShape(QtWidgets.QFrame.StyledPanel)
         self.progress_frame.setFrameShadow(QtWidgets.QFrame.Raised)
         self.progress_frame.setObjectName('progress_frame')
-        self.verticalLayout_7 = QtWidgets.QVBoxLayout(self.progress_frame)
-        self.verticalLayout_7.setContentsMargins(0, 0, 0, 0)
-        self.verticalLayout_7.setSpacing(6)
-        self.verticalLayout_7.setObjectName('verticalLayout_7')
+
+        # Create progress bar's frame layout
+        self.progress_frame_layout = QtWidgets.QVBoxLayout(self.progress_frame)
+        self.progress_frame_layout.setContentsMargins(0, 0, 0, 0)
+        self.progress_frame_layout.setSpacing(6)
+        self.progress_frame_layout.setObjectName('progress_frame_layout')
+
+        # Create progress bar
         self.progress_bar = QtWidgets.QProgressBar(self.progress_frame)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Preferred)
         sizePolicy.setHorizontalStretch(0)
@@ -592,26 +639,47 @@ class Tumbly(QtWidgets.QWidget):
         self.progress_bar.setSizePolicy(sizePolicy)
         self.progress_bar.setProperty('value', 24)
         self.progress_bar.setObjectName('progress_bar')
-        self.verticalLayout_7.addWidget(self.progress_bar)
+
+        # Create progress bar's layout
+        self.progress_frame_layout.addWidget(self.progress_bar)
+
+        # Add progress bar's frame to scrape tab's layout
         self.scrape_tab_layout.addWidget(self.progress_frame)
+
+        # Add invisible pushbutton to catch Enter (Return) key
+        self.enter = QtWidgets.QPushButton(self)
+        self.enter.resize(0,0)
+        self.enter.clicked.connect(self.start_thread)
+        self.enter.setShortcut('Return')
+
+        # Add scrape tab to main tab window
         self.tab_window.addTab(self.scrape_tab, '')
 
         ''' Data tab '''
 
+        # Create data tab
         self.data_tab = QtWidgets.QWidget()
         self.data_tab.setObjectName('data_tab')
+
+        # Create data tab's layout
         self.horizontalLayout_6 = QtWidgets.QHBoxLayout(self.data_tab)
         self.horizontalLayout_6.setContentsMargins(11, 11, 11, 11)
         self.horizontalLayout_6.setSpacing(6)
         self.horizontalLayout_6.setObjectName('horizontalLayout_6')
+
+        # Create data output's frame
         self.data_output_frame = QtWidgets.QFrame(self.data_tab)
         self.data_output_frame.setFrameShape(QtWidgets.QFrame.StyledPanel)
         self.data_output_frame.setFrameShadow(QtWidgets.QFrame.Raised)
         self.data_output_frame.setObjectName('data_output_frame')
-        self.verticalLayout_11 = QtWidgets.QVBoxLayout(self.data_output_frame)
-        self.verticalLayout_11.setContentsMargins(0, 0, 0, 0)
-        self.verticalLayout_11.setSpacing(6)
-        self.verticalLayout_11.setObjectName('verticalLayout_11')
+
+        # Create data output's frame's layout
+        self.data__output_frame_layout = QtWidgets.QVBoxLayout(self.data_output_frame)
+        self.data__output_frame_layout.setContentsMargins(0, 0, 0, 0)
+        self.data__output_frame_layout.setSpacing(6)
+        self.data__output_frame_layout.setObjectName('data__output_frame_layout')
+
+        # Create image out frame
         self.image_out_frame = QtWidgets.QFrame(self.data_output_frame)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
@@ -621,26 +689,42 @@ class Tumbly(QtWidgets.QWidget):
         self.image_out_frame.setFrameShape(QtWidgets.QFrame.StyledPanel)
         self.image_out_frame.setFrameShadow(QtWidgets.QFrame.Raised)
         self.image_out_frame.setObjectName('image_out_frame')
-        self.verticalLayout_12 = QtWidgets.QVBoxLayout(self.image_out_frame)
-        self.verticalLayout_12.setContentsMargins(0, 0, 0, 0)
-        self.verticalLayout_12.setSpacing(6)
-        self.verticalLayout_12.setObjectName('verticalLayout_12')
+
+        # Create image out frame's layout
+        self.image_out_frame_layout = QtWidgets.QVBoxLayout(self.image_out_frame)
+        self.image_out_frame_layout.setContentsMargins(0, 0, 0, 0)
+        self.image_out_frame_layout.setSpacing(6)
+        self.image_out_frame_layout.setObjectName('image_out_frame_layout')
+
+        # Create image out label's frame
         self.image_label_frame = QtWidgets.QFrame(self.image_out_frame)
         self.image_label_frame.setFrameShape(QtWidgets.QFrame.StyledPanel)
         self.image_label_frame.setFrameShadow(QtWidgets.QFrame.Raised)
         self.image_label_frame.setObjectName('image_label_frame')
-        self.verticalLayout_17 = QtWidgets.QVBoxLayout(self.image_label_frame)
-        self.verticalLayout_17.setContentsMargins(0, 0, 0, 0)
-        self.verticalLayout_17.setSpacing(6)
-        self.verticalLayout_17.setObjectName('verticalLayout_17')
+
+        # Create image out label's frame's layout
+        self.image_label_frame_layout = QtWidgets.QVBoxLayout(self.image_label_frame)
+        self.image_label_frame_layout.setContentsMargins(0, 0, 0, 0)
+        self.image_label_frame_layout.setSpacing(6)
+        self.image_label_frame_layout.setObjectName('image_label_frame_layout')
+
+        # Create image out label
         self.image_label = QtWidgets.QLabel(self.image_label_frame)
         self.image_label.setObjectName('image_label')
-        self.verticalLayout_17.addWidget(self.image_label)
-        self.verticalLayout_12.addWidget(self.image_label_frame)
+
+        # Create image out label's layout
+        self.image_label_frame_layout.addWidget(self.image_label)
+        self.image_out_frame_layout.addWidget(self.image_label_frame)
+
+        # Create image viewing widget
         self.image_out = QtWidgets.QGraphicsView(self.image_out_frame)
         self.image_out.setObjectName('image_out')
-        self.verticalLayout_12.addWidget(self.image_out)
-        self.verticalLayout_11.addWidget(self.image_out_frame)
+
+        # Create image viewing widget's layout
+        self.image_out_frame_layout.addWidget(self.image_out)
+        self.data__output_frame_layout.addWidget(self.image_out_frame)
+
+        # Create tags out label's frame
         self.tags_label_frame = QtWidgets.QFrame(self.data_output_frame)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
@@ -650,27 +734,41 @@ class Tumbly(QtWidgets.QWidget):
         self.tags_label_frame.setFrameShape(QtWidgets.QFrame.StyledPanel)
         self.tags_label_frame.setFrameShadow(QtWidgets.QFrame.Raised)
         self.tags_label_frame.setObjectName('tags_label_frame')
-        self.verticalLayout_16 = QtWidgets.QVBoxLayout(self.tags_label_frame)
-        self.verticalLayout_16.setContentsMargins(0, 0, 0, 0)
-        self.verticalLayout_16.setSpacing(6)
-        self.verticalLayout_16.setObjectName('verticalLayout_16')
+
+        # Create tags out label's frame's layout
+        self.tags_out_label_layout = QtWidgets.QVBoxLayout(self.tags_label_frame)
+        self.tags_out_label_layout.setContentsMargins(0, 0, 0, 0)
+        self.tags_out_label_layout.setSpacing(6)
+        self.tags_out_label_layout.setObjectName('tags_out_label_layout')
+
+        # Create tags out label
         self.tags_label = QtWidgets.QLabel(self.tags_label_frame)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.tags_label.sizePolicy().hasHeightForWidth())
+
+        # Create tags out label
         self.tags_label.setSizePolicy(sizePolicy)
         self.tags_label.setObjectName('tags_label')
-        self.verticalLayout_16.addWidget(self.tags_label)
-        self.verticalLayout_11.addWidget(self.tags_label_frame)
+
+        # Create tags out label's layout
+        self.tags_out_label_layout.addWidget(self.tags_label)
+        self.data__output_frame_layout.addWidget(self.tags_label_frame)
+
+        # Create tags out frame
         self.tags_out_frame = QtWidgets.QFrame(self.data_output_frame)
         self.tags_out_frame.setFrameShape(QtWidgets.QFrame.StyledPanel)
         self.tags_out_frame.setFrameShadow(QtWidgets.QFrame.Raised)
         self.tags_out_frame.setObjectName('tags_out_frame')
-        self.verticalLayout_13 = QtWidgets.QVBoxLayout(self.tags_out_frame)
-        self.verticalLayout_13.setContentsMargins(0, 0, 0, 0)
-        self.verticalLayout_13.setSpacing(6)
-        self.verticalLayout_13.setObjectName('verticalLayout_13')
+
+        # Create tags out frame's layout
+        self.tags_out_frame_layout = QtWidgets.QVBoxLayout(self.tags_out_frame)
+        self.tags_out_frame_layout.setContentsMargins(0, 0, 0, 0)
+        self.tags_out_frame_layout.setSpacing(6)
+        self.tags_out_frame_layout.setObjectName('tags_out_frame_layout')
+
+        # Create tags out box
         self.tags_out = QtWidgets.QLineEdit(self.tags_out_frame)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Preferred)
         sizePolicy.setHorizontalStretch(0)
@@ -678,9 +776,13 @@ class Tumbly(QtWidgets.QWidget):
         sizePolicy.setHeightForWidth(self.tags_out.sizePolicy().hasHeightForWidth())
         self.tags_out.setSizePolicy(sizePolicy)
         self.tags_out.setObjectName('tags_out')
-        self.verticalLayout_13.addWidget(self.tags_out)
-        self.verticalLayout_11.addWidget(self.tags_out_frame)
+
+        # Create tags out box's layout
+        self.tags_out_frame_layout.addWidget(self.tags_out)
+        self.data__output_frame_layout.addWidget(self.tags_out_frame)
         self.horizontalLayout_6.addWidget(self.data_output_frame)
+
+        # Create file viewer frame
         self.view_files_frame = QtWidgets.QFrame(self.data_tab)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Preferred)
         sizePolicy.setHorizontalStretch(0)
@@ -690,26 +792,42 @@ class Tumbly(QtWidgets.QWidget):
         self.view_files_frame.setFrameShape(QtWidgets.QFrame.StyledPanel)
         self.view_files_frame.setFrameShadow(QtWidgets.QFrame.Raised)
         self.view_files_frame.setObjectName('view_files_frame')
-        self.verticalLayout_18 = QtWidgets.QVBoxLayout(self.view_files_frame)
-        self.verticalLayout_18.setContentsMargins(0, 0, 0, 0)
-        self.verticalLayout_18.setSpacing(6)
-        self.verticalLayout_18.setObjectName('verticalLayout_18')
+
+        # Create file viewer frame's layout
+        self.file_viewer_frame_layout = QtWidgets.QVBoxLayout(self.view_files_frame)
+        self.file_viewer_frame_layout.setContentsMargins(0, 0, 0, 0)
+        self.file_viewer_frame_layout.setSpacing(6)
+        self.file_viewer_frame_layout.setObjectName('file_viewer_frame_layout')
+
+        # Create file viewer's label
         self.view_label_frame = QtWidgets.QFrame(self.view_files_frame)
         self.view_label_frame.setFrameShape(QtWidgets.QFrame.StyledPanel)
         self.view_label_frame.setFrameShadow(QtWidgets.QFrame.Raised)
         self.view_label_frame.setObjectName('view_label_frame')
-        self.verticalLayout_19 = QtWidgets.QVBoxLayout(self.view_label_frame)
-        self.verticalLayout_19.setContentsMargins(0, 0, 0, 0)
-        self.verticalLayout_19.setSpacing(6)
-        self.verticalLayout_19.setObjectName('verticalLayout_19')
+
+        # Create file viewer's label's layout
+        self.file_viewer_label_layout = QtWidgets.QVBoxLayout(self.view_label_frame)
+        self.file_viewer_label_layout.setContentsMargins(0, 0, 0, 0)
+        self.file_viewer_label_layout.setSpacing(6)
+        self.file_viewer_label_layout.setObjectName('file_viewer_label_layout')
+
+        # Create file viewer's label
         self.view_label = QtWidgets.QLabel(self.view_label_frame)
         self.view_label.setObjectName('view_label')
-        self.verticalLayout_19.addWidget(self.view_label)
-        self.verticalLayout_18.addWidget(self.view_label_frame)
+
+        # Create file viewer's label's layout
+        self.file_viewer_label_layout.addWidget(self.view_label)
+        self.file_viewer_frame_layout.addWidget(self.view_label_frame)
+
+        # Create file viewer's box
         self.files_view = QtWidgets.QTreeView(self.view_files_frame)
         self.files_view.setObjectName('files_view')
-        self.verticalLayout_18.addWidget(self.files_view)
+
+        # Create file viewer's box's layout
+        self.file_viewer_frame_layout.addWidget(self.files_view)
         self.horizontalLayout_6.addWidget(self.view_files_frame)
+
+        # Add tab to main tab window
         self.tab_window.addTab(self.data_tab, '')
 
         ''' Settings tab '''
