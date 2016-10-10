@@ -646,14 +646,11 @@ class Tumbly(QtWidgets.QWidget):
         # Add progress bar's frame to scrape tab's layout
         self.scrape_tab_layout.addWidget(self.progress_frame)
 
-        # Add invisible pushbutton to catch Enter (Return) key
+        # Add invisible pushbutton to start scrape and catch Enter (Return) key
         self.scrape_enter = QtWidgets.QPushButton(self)
         self.scrape_enter.resize(0,0)
         self.scrape_enter.clicked.connect(self.start_thread)
         self.scrape_enter.setShortcut('Return')
-
-        # Add invisible button to scrape tab
-        self.scrape_tab_layout.addWidget(self.scrape_enter)
 
         # Add scrape tab to main tab window
         self.tab_window.addTab(self.scrape_tab, '')
