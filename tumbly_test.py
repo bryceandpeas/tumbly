@@ -94,6 +94,13 @@ class Tumbly(QtWidgets.QWidget):
     def __init__(self, parent = None):
         QtWidgets.QWidget.__init__(self, parent)
 
+        # Init Auth
+
+        self.key = None
+        self.secret = None
+
+        # Build GUI
+
         self.setObjectName('Tumbly')
         self.resize(500, 500)
         self.setStyleSheet('/* Style tabs */\n'
@@ -1110,38 +1117,30 @@ class Tumbly(QtWidgets.QWidget):
         user_offset = self.offset
 
 
+    def key_changed(self, text):
+        # Get auth key changes
+        self.key = str(text)
+
+
+    def secret_changed(self, text):
+        # Get auth key changes
+        self.secret = str(text)
+
+
     def add_auth(self):
 
-        key, ok = QtWidgets.QInputDialog.getText(self, 'No config file',
-                                             'Enter your app key:')
-
-        if ok:
-            app_key = key
-
-        else:
-            app_key = ''
-
-        secret, ok = QtWidgets.QInputDialog.getText(self, 'No config file',
-                                                'Enter your app secret:')
-        if ok:
-            app_secret = secret
-
-        else:
-            app_secret = ''
-
-        if app_key == '' or app_secret == '':
+        if self.key == '' or self.key == None or self.secret == '' or self.secret == None:
             input_check = QtWidgets.QMessageBox.question(self,
                                                'Error',
                                                'You must enter an app key'
                                                ' and an app secret to use'
-                                               ' tumbly.',
-                                               QtWidgets.QMessageBox.Retry | QtWidgets.QMessageBox.Cancel)
-
-            if input_check == QtWidgets.QMessageBox.Retry:
-                self.add_auth()
-
-        put_config('config/tumblyconfig.ini',
-                   app_key, app_secret)
+                                               ' tumbly.\n'
+                                               '\nPlease proceed to the'
+                                               ' settings tab to add these',
+                                               QtWidgets.QMessageBox.Ok)
+        else:
+            put_config('config/tumblyconfig.ini',
+                       self.key, self.secret)
 
     ''' Stream console output to output box'''
 
@@ -1173,7 +1172,7 @@ class Tumbly(QtWidgets.QWidget):
 
     @QtCore.pyqtSlot()
     def on_auth_enter(self):
-        self.add_aut()
+        self.add_auth()
         
 
 ''' Main '''
