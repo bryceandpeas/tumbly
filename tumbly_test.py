@@ -437,6 +437,7 @@ class Tumbly(QtWidgets.QWidget):
         self.number_frame.setFrameShape(QtWidgets.QFrame.StyledPanel)
         self.number_frame.setFrameShadow(QtWidgets.QFrame.Raised)
         self.number_frame.setObjectName('number_frame')
+        # Create scrape frame's layout
         self.verticalLayout_4 = QtWidgets.QVBoxLayout(self.number_frame)
         self.verticalLayout_4.setContentsMargins(0, 0, 0, 0)
         self.verticalLayout_4.setSpacing(0)
