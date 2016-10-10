@@ -959,6 +959,7 @@ class Tumbly(QtWidgets.QWidget):
 
         # Create authorisation key's input box's layout
         self.auth_key_input_layout.addWidget(self.auth_key_input)
+        self.auth_key_input.textChanged[str].connect(self.key_changed)
         self.auth_key_frame_layout.addWidget(self.auth_key_input_frame)
         self.auth_frame_layout.addWidget(self.auth_key_frame)
 
@@ -1017,6 +1018,7 @@ class Tumbly(QtWidgets.QWidget):
 
         # Create authorisation secret's input box
         self.auth_secret_input = QtWidgets.QLineEdit(self.auth_secret_input_frame)
+        self.auth_secret_input.textChanged[str].connect(self.secret_changed)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
@@ -1141,6 +1143,10 @@ class Tumbly(QtWidgets.QWidget):
         else:
             put_config('config/tumblyconfig.ini',
                        self.key, self.secret)
+
+            self.auth_key_input.setText('Key set to: {0}'.format(self.key))
+            self.auth_secret_input.setText('Key set to: {0}'.format(self.secret_changed))
+
 
     ''' Stream console output to output box'''
 
