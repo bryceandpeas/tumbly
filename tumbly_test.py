@@ -207,7 +207,6 @@ class Tumbly(QtWidgets.QWidget):
         '}\n'
         '\n'
         '#output_box {\n'
-        'qproperty-alignment: AlignCenter;\n'
         'background: #FFFFFF;\n'
         'color: #21262C;\n'
         'border: None\n'
@@ -374,18 +373,26 @@ class Tumbly(QtWidgets.QWidget):
         '#frame_6 {\n'
         'border: None;\n'
         '}')
+
+        ''' Main build and Settings '''
+
+        # Set main layout 
         self.verticalLayout_2 = QtWidgets.QVBoxLayout(self)
         self.verticalLayout_2.setContentsMargins(0, 0, 0, 0)
         self.verticalLayout_2.setSpacing(0)
         self.verticalLayout_2.setObjectName('verticalLayout_2')
+        # Create tab window
         self.tab_window = QtWidgets.QTabWidget(self)
         self.tab_window.setObjectName('tab_window')
+        # Create scrape tab
         self.scrape_tab = QtWidgets.QWidget()
         self.scrape_tab.setObjectName('scrape_tab')
+        # Set scrape tab's layout
         self.verticalLayout = QtWidgets.QVBoxLayout(self.scrape_tab)
         self.verticalLayout.setContentsMargins(11, 11, 11, 11)
         self.verticalLayout.setSpacing(6)
         self.verticalLayout.setObjectName('verticalLayout')
+        # Create username frame
         self.username_frame = QtWidgets.QFrame(self.scrape_tab)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
@@ -395,18 +402,25 @@ class Tumbly(QtWidgets.QWidget):
         self.username_frame.setFrameShape(QtWidgets.QFrame.StyledPanel)
         self.username_frame.setFrameShadow(QtWidgets.QFrame.Raised)
         self.username_frame.setObjectName('username_frame')
+        # Create username frame's layout
         self.verticalLayout_5 = QtWidgets.QVBoxLayout(self.username_frame)
         self.verticalLayout_5.setContentsMargins(0, 0, 0, 0)
         self.verticalLayout_5.setSpacing(6)
         self.verticalLayout_5.setObjectName('verticalLayout_5')
+        # Create username input box
         self.username_box = QtWidgets.QLineEdit(self.username_frame)
         font = QtGui.QFont()
         font.setFamily('Raleway')
         font.setPointSize(18)
         self.username_box.setFont(font)
         self.username_box.setObjectName('username_box')
+        self.username_box.textChanged[str].connect(self.text_changed)
         self.verticalLayout_5.addWidget(self.username_box)
         self.verticalLayout.addWidget(self.username_frame)
+
+        ''' Scrape settings build and settings '''
+
+        # Create scrape settings frame
         self.scrape_settings_frame = QtWidgets.QFrame(self.scrape_tab)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
@@ -465,6 +479,7 @@ class Tumbly(QtWidgets.QWidget):
         self.horizontalLayout_4.setObjectName('horizontalLayout_4')
         self.number_input = QtWidgets.QSpinBox(self.number_input_frame)
         self.number_input.setObjectName('number_input')
+        self.number_input.valueChanged[int].connect(self.number_changed)
         self.horizontalLayout_4.addWidget(self.number_input)
         self.verticalLayout_4.addWidget(self.number_input_frame)
         self.horizontalLayout.addWidget(self.number_frame)
@@ -512,6 +527,7 @@ class Tumbly(QtWidgets.QWidget):
         self.horizontalLayout_5.setObjectName('horizontalLayout_5')
         self.offset_input = QtWidgets.QSpinBox(self.offset_input_frame)
         self.offset_input.setObjectName('offset_input')
+        self.offset_input.valueChanged[int].connect(self.number_changed)
         self.horizontalLayout_5.addWidget(self.offset_input)
         self.verticalLayout_3.addWidget(self.offset_input_frame)
         self.horizontalLayout.addWidget(self.offset_frame)
@@ -524,7 +540,7 @@ class Tumbly(QtWidgets.QWidget):
         self.verticalLayout_6.setContentsMargins(0, 0, 0, 0)
         self.verticalLayout_6.setSpacing(6)
         self.verticalLayout_6.setObjectName('verticalLayout_6')
-        self.output_box = QtWidgets.QLineEdit(self.output_frame)
+        self.output_box = QtWidgets.QTextEdit(self.output_frame)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Preferred)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
@@ -836,6 +852,7 @@ class Tumbly(QtWidgets.QWidget):
         self.tab_window.setCurrentIndex(0)
         QtCore.QMetaObject.connectSlotsByName(self)
 
+
     def retranslateUi(self, Tumbly):
         _translate = QtCore.QCoreApplication.translate
         self.setWindowTitle(_translate('Tumbly', 'Tumbly'))
@@ -852,16 +869,94 @@ class Tumbly(QtWidgets.QWidget):
         self.auth_secret_label.setText(_translate('Tumbly', 'Secret'))
         self.tab_window.setTabText(self.tab_window.indexOf(self.settings_tab), _translate('Tumbly', 'Settings'))
 
+    ''' Get user input '''
 
-# The usual
-def main():
+    def text_changed(self, text):
+        # Get text changes
+        self.username = str(text)
+        global user_username
+        user_username = self.username
 
-    app = QtWidgets.QApplication(sys.argv)
+    def number_changed(self, number):
+        # Get number changes
+        self.number = int(number)
+        global user_number
+        user_number = self.number
 
-    main = Tumbly()
-    main.show()
+    def offset_changed(self, number):
+        # Get offset changes
+        self.offset = int(number)
+        global user_offset
+        user_offset = self.offset
 
-    sys.exit(app.exec_())
+    def add_auth(self):
 
-if __name__ == '__main__':
-    main()
+        key, ok = QInputDialog.getText(self, 'No config file',
+                                             'Enter your app key:')
+
+        if ok:
+            app_key = key
+
+        else:
+            app_key = ''
+
+        secret, ok = QInputDialog.getText(self, 'No config file',
+                                                'Enter your app secret:')
+        if ok:
+            app_secret = secret
+
+        else:
+            app_secret = ''
+
+        if app_key == '' or app_secret == '':
+            input_check = QMessageBox.question(self,
+                                               'Error',
+                                               'You must enter an app key'
+                                               ' and an app secret to use'
+                                               ' tumbly.',
+                                               QMessageBox.Retry | QMessageBox.Cancel)
+
+            if input_check == QMessageBox.Retry:
+                self.add_auth()
+
+        put_config('config/tumblyconfig.ini',
+                   app_key, app_secret)
+
+    ''' Call scrape functions / stream console output to output box'''
+
+    @QtCore.pyqtSlot(str)
+    def append_text(self, text):
+        self.output_box.moveCursor(QtGui.QTextCursor.End)
+        self.output_box.insertPlainText(text)
+
+    @QtCore.pyqtSlot()
+    def start_thread(self):
+        # Check config file exists, make one if not
+        if not os.path.isfile('config/tumblyconfig.ini'):
+            self.add_auth()
+        else:
+            self.thread = QtCore.QThread()
+            self.main_thread = RunMain()
+            self.main_thread.moveToThread(self.thread)
+            self.thread.started.connect(self.main_thread.run)
+            self.thread.start()
+
+''' Main '''
+
+queue = queue.Queue()
+sys.stdout = WriteStream(queue)
+
+qapp = QtWidgets.QApplication(sys.argv)
+app = Tumbly()
+app.show()
+
+
+thread = QtCore.QThread()
+my_receiver = MyReceiver(queue)
+my_receiver.mysignal.connect(app.append_text)
+my_receiver.moveToThread(thread)
+thread.started.connect(my_receiver.run)
+thread.start()
+
+qapp.exec_()
+
