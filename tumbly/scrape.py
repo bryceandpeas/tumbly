@@ -81,10 +81,10 @@ def scrape_tumblr(username,
     while number_found < number:
         # Get tumblr posts
         log.debug('Checking posts: {0} : {1}'.format(post_count *
-                                                 limit +
-                                                 offset,
-                                                 (1 + post_count) *
-                                                 limit + offset))
+                                                     limit +
+                                                     offset,
+                                                     (1 + post_count) *
+                                                     limit + offset))
 
         # Check url is correct, authorize
         if url_type == 'blog':
@@ -129,11 +129,11 @@ def scrape_tumblr(username,
                 image_url = p['photos'][0]['original_size']['url']
 
                 log.debug('Image Found at: {2}, '
-                      'Image number: {1}, '
-                      'Tags are: {3}'.format(username,
-                                             number_found,
-                                             image_url,
-                                             '#' + ' #'.join(tags)))
+                          'Image number: {1}, '
+                          'Tags are: {3}'.format(username,
+                                                 number_found,
+                                                 image_url,
+                                                 '#' + ' #'.join(tags)))
 
                 # Add scraped data to database
                 add_tags(c, tags)
