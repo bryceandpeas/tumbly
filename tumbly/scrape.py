@@ -1,4 +1,6 @@
 import os
+import sys
+import logging.config
 
 from tumbly.confighandler import get_config, put_config
 from tumbly.arguments import init_argparse
@@ -52,6 +54,9 @@ def scrape_tumblr(username,
                 app_secret = str(config_pull[1])
             return (app_key, app_secret)
 
+    logging.config.fileConfig('./config/log.ini', defaults={'logfilename': 'scrape'})
+    log = logging.getLogger('scrape')
+
     # Default offset
     if offset is None or offset == 0:
         offset = 20
@@ -66,16 +71,16 @@ def scrape_tumblr(username,
                                     app_secret=app_secret)
 
     # Connect to database
-    print('Connecting to {0}'.format(database_name))
+    log.debug('Connecting to {0}'.format(database_name))
     conn = create_check_database(database_name)
     c = conn.cursor()
     # Start scraping
-    print('Scraping : {0}'.format(url_to_scrape))
+    log.debug('Scraping : {0}'.format(url_to_scrape))
     number_found = 0
     post_count = 0
     while number_found < number:
         # Get tumblr posts
-        print('Checking posts: {0} : {1}'.format(post_count *
+        log.debug('Checking posts: {0} : {1}'.format(post_count *
                                                  limit +
                                                  offset,
                                                  (1 + post_count) *
@@ -83,12 +88,21 @@ def scrape_tumblr(username,
 
         # Check url is correct, authorize
         if url_type == 'blog':
-            posts = authorization.get('posts',
-                                      blog_url=url_to_scrape,
-                                      params={'limit': limit,
-                                              'offset': int(post_count) *
-                                              limit +
-                                              offset})
+            posts = None
+            try:
+                posts = authorization.get('posts',
+                                          blog_url=url_to_scrape,
+                                          params={'limit': limit,
+                                                  'offset': int(post_count) *
+                                                  limit +
+                                                  offset})
+            except tumblpy.TumblpyError as e:
+                if e.error_code == 404:
+                    log.error("Invalid user")
+                else:
+                    log.error(e)
+            finally:
+                sys.exit(0)
 
         post_count += 1
 
@@ -114,7 +128,7 @@ def scrape_tumblr(username,
 
                 image_url = p['photos'][0]['original_size']['url']
 
-                print('Image Found at: {2}, '
+                log.debug('Image Found at: {2}, '
                       'Image number: {1}, '
                       'Tags are: {3}'.format(username,
                                              number_found,

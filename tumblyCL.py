@@ -1,5 +1,6 @@
 import os
 import sys
+import logging.config
 
 from tumbly.database import create_check_database
 from tumbly.scrape import scrape_tumblr
@@ -14,6 +15,9 @@ def main():
     # Init argparse
     username, number, offset = init_argparse()
 
+    logging.config.fileConfig('./config/log.ini', defaults={'logfilename': 'tumblyCL'})
+    log = logging.getLogger(__name__)
+
     # Init variables
 
     database_name = ''
@@ -24,10 +28,10 @@ def main():
     # Get user input
     # Create URL
     url_to_scrape = 'http://{0}.tumblr.com'.format(username)
-    print('Will scrape: {0}'.format(url_to_scrape))
+    log.info('Will scrape: {0}'.format(url_to_scrape))
     # Create database name
     database_name = '{0}.db'.format(username)
-    print('Will save to: {0} database (SQLite3)'.format(database_name))
+    log.info('Will save to: {0} database (SQLite3)'.format(database_name))
     # Check if directory exists, create if not
     script_directory = os.path.dirname(os.path.abspath(__file__))
     downloaded_image_directory = os.path.join(script_directory,
@@ -35,7 +39,7 @@ def main():
                                               '{0}_saved_images'
                                               .format(username))
 
-    print('Will download images to: {0}'.format(downloaded_image_directory))
+    log.info('Will download images to: {0}'.format(downloaded_image_directory))
     if not os.path.exists(downloaded_image_directory):
         os.makedirs(downloaded_image_directory)
     # Get how many images the user wants to scrape
