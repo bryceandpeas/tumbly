@@ -15,7 +15,6 @@ def main():
     username, number, offset = init_argparse()
 
     # Init variables
-
     database_name = ''
     number_to_scrape = ''
     start_offset = ''
