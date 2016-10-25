@@ -167,6 +167,39 @@ class Tumbly(QtWidgets.QMainWindow):
 
         # Connect exit button to close function
         self.exit_button.clicked.connect(self.close)
+
+        # Create frame for scrape button
+        self.scrape_frame = QtWidgets.QFrame(self.top_frame)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Preferred)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.scrape_frame.sizePolicy().hasHeightForWidth())
+        self.scrape_frame.setSizePolicy(sizePolicy)
+        self.scrape_frame.setFrameShape(QtWidgets.QFrame.StyledPanel)
+        self.scrape_frame.setFrameShadow(QtWidgets.QFrame.Raised)
+        self.scrape_frame.setObjectName('scrape_frame')
+
+        # Create layout for scrape button frame
+        self.verticalLayout_15 = QtWidgets.QVBoxLayout(self.scrape_frame)
+        self.verticalLayout_15.setContentsMargins(0, 0, 0, 0)
+        self.verticalLayout_15.setSpacing(0)
+        self.verticalLayout_15.setObjectName('verticalLayout_3')
+
+        # Create scrape button
+        self.scrape_button = QtWidgets.QPushButton(self.scrape_frame)
+        self.scrape_button.setText('scrape')
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Fixed)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.scrape_button.sizePolicy().hasHeightForWidth())
+        self.scrape_button.setSizePolicy(sizePolicy)
+        self.scrape_button.setObjectName('scrape_button')
+
+        # Add scrape button to layout
+        self.verticalLayout_15.addWidget(self.scrape_button)
+
+        # Connect exit button to close function
+        self.scrape_button.clicked.connect(self.scrape)
         
         # Set central widget
         self.setCentralWidget(self.centralWidget)
@@ -433,59 +466,10 @@ class Tumbly(QtWidgets.QMainWindow):
 
 
 
-    def generate_passwords(self):
+    def scrape(self):
+        return None
 
-        # Increase window size
-        #self.resize(500, 50)
-
-        # Clear the output box
-        self.password_output.setText('')
-
-        # Set strings to get characters from
-        # Numbers
-        numbers = string.digits
-        # Letters
-        lowercase = string.ascii_lowercase
-        uppercase = string.ascii_uppercase
-        # Special Characters
-        special_characters = '!@#$%^&*()\{\}[]?,.'
-
-        # Init output character string
-        output_characters = ''
-
-        # Init empty password list
-        final_password_list = []
-
-        # Check user has used a lowercase_checkbox, add characters from strings relative to checkboxes, generate password
-        if True in [self.numbers_checkbox.isChecked(), 
-                    self.lowercase_checkbox.isChecked(), 
-                    self.uppercase_checkbox.isChecked(),
-                    self.special_characters_checkbox.isChecked()]:
-
-            output_characters = (numbers * self.numbers_checkbox.isChecked() 
-                                  + lowercase * self.lowercase_checkbox.isChecked() 
-                                  + uppercase * self.uppercase_checkbox.isChecked() 
-                                  + special_characters * self.special_characters_checkbox.isChecked())
-            # Check how many passwords the user requires, generate for that amount
-            for i in range(0, self.number_of_passwords.value()):
-
-                password = ''.join(random.choice(output_characters) for i in range(self.number_of_characters.value()))
-
-                final_password_list.append(password)
-
-        # If user hasn't selected a lowercase_checkbox, inform them in a popup
-        else:
-            informer = QMessageBox()
-            #informer.setWindowTitle('Tumbly - Error')
-            informer.setStandardButtons(QMessageBox.Ok)
-            informer.setDefaultButton(QMessageBox.Ok)
-                # Warning text
-            informer.setText('Error: ' + '\n' + 'You must make a selection using one of the checkboxes, please try again...')
-            informer.exec_()
-
-        # Add each password in the password list to the output box
-        for i in final_password_list:
-            self.password_output.append(i)
+        
 
 
     def mousePressEvent(self, event):
