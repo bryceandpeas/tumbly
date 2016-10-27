@@ -1,3 +1,5 @@
+# coding=UTF-8
+
 import random
 import string
 import sys
@@ -33,7 +35,7 @@ class Tumbly(QtWidgets.QMainWindow):
         self.verticalLayout_10 = QtWidgets.QVBoxLayout(self.centralWidget)
         self.verticalLayout_10.setSizeConstraint(QtWidgets.QLayout.SetDefaultConstraint)
         self.verticalLayout_10.setContentsMargins(0, 0, 0, 0)
-        self.verticalLayout_10.setSpacing(0)
+        self.verticalLayout_10.setSpacing(-1)
         self.verticalLayout_10.setObjectName('verticalLayout_10')
 
          # Create top frame
@@ -42,7 +44,7 @@ class Tumbly(QtWidgets.QMainWindow):
         self.horizontallayout_10 = QtWidgets.QHBoxLayout(self.top_frame)
         self.horizontallayout_10.setSizeConstraint(QtWidgets.QLayout.SetDefaultConstraint)
         self.horizontallayout_10.setContentsMargins(0, 0, 0, 0)
-        self.horizontallayout_10.setSpacing(-1)
+        self.horizontallayout_10.setSpacing(0)
         self.horizontallayout_10.setObjectName('horizontallayout_10')
 
         # Add top frame to layout
@@ -64,7 +66,7 @@ class Tumbly(QtWidgets.QMainWindow):
         # Set menu frames layout
         self.horizontalLayout = QtWidgets.QHBoxLayout(self.menu_frame)
         self.horizontalLayout.setContentsMargins(0, 0, 0, 0)
-        self.horizontalLayout.setSpacing(-1)
+        self.horizontalLayout.setSpacing(0)
         self.horizontalLayout.setObjectName('horizontalLayout')
 
         # Create menubutton
@@ -94,8 +96,6 @@ class Tumbly(QtWidgets.QMainWindow):
         # Add title label to layout
         self.horizontalLayout.addWidget(self.title_label)
 
-        
-        
         # Create frame for generate button
         self.username_input_frame = QtWidgets.QFrame(self.top_frame)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Preferred)
@@ -132,6 +132,39 @@ class Tumbly(QtWidgets.QMainWindow):
         # Add username input frame to layout
         self.horizontallayout_10.addWidget(self.username_input_frame)
 
+        # Create frame for scrape button
+        self.scrape_frame = QtWidgets.QFrame(self.top_frame)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Preferred)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.scrape_frame.sizePolicy().hasHeightForWidth())
+        self.scrape_frame.setSizePolicy(sizePolicy)
+        self.scrape_frame.setFrameShape(QtWidgets.QFrame.StyledPanel)
+        self.scrape_frame.setFrameShadow(QtWidgets.QFrame.Raised)
+        self.scrape_frame.setObjectName('scrape_frame')
+
+        # Create layout for scrape button frame
+        self.verticalLayout_15 = QtWidgets.QVBoxLayout(self.scrape_frame)
+        self.verticalLayout_15.setContentsMargins(0, 0, 0, 0)
+        self.verticalLayout_15.setSpacing(0)
+        self.verticalLayout_15.setObjectName('verticalLayout_3')
+
+        # Create scrape button
+        self.scrape_button = QtWidgets.QPushButton(self.scrape_frame)
+        self.scrape_button.setText('scrape')
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Fixed)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.scrape_button.sizePolicy().hasHeightForWidth())
+        self.scrape_button.setSizePolicy(sizePolicy)
+        self.scrape_button.setObjectName('scrape_button')
+
+        # Add scrape button to layout
+        self.verticalLayout_15.addWidget(self.scrape_button)
+
+        # Add scrape frame to layout
+        self.horizontallayout_10.addWidget(self.scrape_frame)
+
         # Create frame for exit button
         self.exit_frame = QtWidgets.QFrame(self.top_frame)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Preferred)
@@ -167,36 +200,6 @@ class Tumbly(QtWidgets.QMainWindow):
 
         # Connect exit button to close function
         self.exit_button.clicked.connect(self.close)
-
-        # Create frame for scrape button
-        self.scrape_frame = QtWidgets.QFrame(self.top_frame)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Preferred)
-        sizePolicy.setHorizontalStretch(0)
-        sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.scrape_frame.sizePolicy().hasHeightForWidth())
-        self.scrape_frame.setSizePolicy(sizePolicy)
-        self.scrape_frame.setFrameShape(QtWidgets.QFrame.StyledPanel)
-        self.scrape_frame.setFrameShadow(QtWidgets.QFrame.Raised)
-        self.scrape_frame.setObjectName('scrape_frame')
-
-        # Create layout for scrape button frame
-        self.verticalLayout_15 = QtWidgets.QVBoxLayout(self.scrape_frame)
-        self.verticalLayout_15.setContentsMargins(0, 0, 0, 0)
-        self.verticalLayout_15.setSpacing(0)
-        self.verticalLayout_15.setObjectName('verticalLayout_3')
-
-        # Create scrape button
-        self.scrape_button = QtWidgets.QPushButton(self.scrape_frame)
-        self.scrape_button.setText('scrape')
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Fixed)
-        sizePolicy.setHorizontalStretch(0)
-        sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.scrape_button.sizePolicy().hasHeightForWidth())
-        self.scrape_button.setSizePolicy(sizePolicy)
-        self.scrape_button.setObjectName('scrape_button')
-
-        # Add scrape button to layout
-        self.verticalLayout_15.addWidget(self.scrape_button)
 
         # Connect exit button to close function
         self.scrape_button.clicked.connect(self.scrape)
