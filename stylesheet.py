@@ -118,7 +118,7 @@ def set_stylesheet():
 'border: None;\n'
 '}\n'
 '\n'
-'#characters_frame {\n'
+'#option_inputs_frame {\n'
 'border: None;\n'
 '}\n'
 '\n'
