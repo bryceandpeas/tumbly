@@ -4,7 +4,11 @@ import random
 import string
 import sys
 
-from stylesheet import set_stylesheet
+from tumbly.confighandler import put_config
+from tumbly.database import create_check_database
+from tumbly.scrape import scrape_tumblr
+from tumbly.download import download_images 
+from tumbly.stylesheet import set_stylesheet
 
 
 from PyQt5 import QtCore, QtGui, QtWidgets
@@ -346,59 +350,37 @@ class Tumbly(QtWidgets.QMainWindow):
 
         # Set menu open flag
         self.menu_open = False
-        
-        
+    
 
-    def open_password_ouput(self):
-        if not self.password_output_open:
-            self.password_ui()
-            self.generate_passwords()
-        else:
-            self.generate_passwords()
+    ''' Input listening functions '''
 
 
+    def text_changed(self, text):
+        # Get text changes
+        self.username = str(text)
+        global user_username
+        user_username = self.username
 
-    def close_password_ouput(self):
-        self.create_main_ui()
+    def number_changed(self, number):
+        self.number = int(number)
+        global user_number
+        user_number = self.number
+
+    def offset_changed(self, number):
+        self.offset = int(number)
+        global user_offset
+        user_offset = self.offset
 
 
-    def password_ui(self):
-
-        # Set open flag
-        self.password_output_open = True
-
-        # Change menu button to 'open'
-        self.menu_button.setText('☷')
-
-        # Create output frame
-        self.output_frame = QtWidgets.QFrame(self.centralWidget)
-        self.output_frame.setObjectName('output_frame')
-        self.horizontallayout_14 = QtWidgets.QHBoxLayout(self.output_frame)
-        self.horizontallayout_14.setSizeConstraint(QtWidgets.QLayout.SetDefaultConstraint)
-        self.horizontallayout_14.setContentsMargins(0, 0, 0, 0)
-        self.horizontallayout_14.setSpacing(0)
-        self.horizontallayout_14.setObjectName('horizontallayout_14')
-
-        # Add output frame to layout
-        self.verticalLayout_10.addWidget(self.output_frame)
-
-        # Create output box
-        self.password_output = QtWidgets.QTextEdit(self.output_frame)
-        self.password_output.setReadOnly(True)
-        self.password_output.setSizePolicy(QtWidgets.QSizePolicy.Preferred, 
-                                           QtWidgets.QSizePolicy.Expanding)
-        self.password_output.setStyleSheet('font: bold 12px;'
-                                           'background: #FFFFFF; '
-                                           'border: 1px solid #272727')
-
-        self.horizontallayout_14.addWidget(self.password_output)
-
+    ''' Tumblr scraping functions '''
 
 
     def scrape(self):
         return None
 
         
+
+    ''' Main window movement functions '''
 
 
     def mousePressEvent(self, event):
@@ -412,14 +394,11 @@ class Tumbly(QtWidgets.QMainWindow):
         y_w = self.offset.y()
         self.move(x-x_w, y-y_w)
 
-    def text_changed(self, text):
-        # Get text changes
-        self.username = str(text)
-        global user_username
-        user_username = self.username
     
  
-# Run App
+''' Run '''
+
+
 def main():
  
     app = QtWidgets.QApplication(sys.argv)
