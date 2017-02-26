@@ -35,7 +35,7 @@ class Tumbly(QtWidgets.QMainWindow):
         self.verticalLayout_10 = QtWidgets.QVBoxLayout(self.centralWidget)
         self.verticalLayout_10.setSizeConstraint(QtWidgets.QLayout.SetDefaultConstraint)
         self.verticalLayout_10.setContentsMargins(0, 0, 0, 0)
-        self.verticalLayout_10.setSpacing(-1)
+        self.verticalLayout_10.setSpacing(0)
         self.verticalLayout_10.setObjectName('verticalLayout_10')
 
          # Create top frame
@@ -44,7 +44,7 @@ class Tumbly(QtWidgets.QMainWindow):
         self.horizontallayout_10 = QtWidgets.QHBoxLayout(self.top_frame)
         self.horizontallayout_10.setSizeConstraint(QtWidgets.QLayout.SetDefaultConstraint)
         self.horizontallayout_10.setContentsMargins(0, 0, 0, 0)
-        self.horizontallayout_10.setSpacing(0)
+        self.horizontallayout_10.setSpacing(-1)
         self.horizontallayout_10.setObjectName('horizontallayout_10')
 
         # Add top frame to layout
@@ -66,7 +66,7 @@ class Tumbly(QtWidgets.QMainWindow):
         # Set menu frames layout
         self.horizontalLayout = QtWidgets.QHBoxLayout(self.menu_frame)
         self.horizontalLayout.setContentsMargins(0, 0, 0, 0)
-        self.horizontalLayout.setSpacing(0)
+        self.horizontalLayout.setSpacing(-1)
         self.horizontalLayout.setObjectName('horizontalLayout')
 
         # Create menubutton
@@ -219,8 +219,8 @@ class Tumbly(QtWidgets.QMainWindow):
         # Reset window size
         self.resize(500, 50)
 
-        # Set password output open flag
-        self.password_output_open = False
+        # Set progress output open flag
+        self.progress_output_open = False
 
         # Set menu open flag
         self.menu_open = False
@@ -246,61 +246,47 @@ class Tumbly(QtWidgets.QMainWindow):
         # Add options frame to layout
         self.verticalLayout_10.addWidget(self.options_frame)
         
-        # Add options inputs frame        
-        self.option_inputs_frame = QtWidgets.QFrame(self.options_frame)
+        # Add options input frame        
+        self.option_input_frame = QtWidgets.QFrame(self.options_frame)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Preferred)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.option_inputs_frame.sizePolicy().hasHeightForWidth())
-        self.option_inputs_frame.setSizePolicy(sizePolicy)
-        self.option_inputs_frame.setFrameShape(QtWidgets.QFrame.StyledPanel)
-        self.option_inputs_frame.setFrameShadow(QtWidgets.QFrame.Raised)
-        self.option_inputs_frame.setObjectName('option_inputs_frame')
-        self.horizontallayout_3 = QtWidgets.QHBoxLayout(self.option_inputs_frame)
+        sizePolicy.setHeightForWidth(self.option_input_frame.sizePolicy().hasHeightForWidth())
+
+        # Create layout for options input frame
+        self.option_input_frame.setSizePolicy(sizePolicy)
+        self.option_input_frame.setFrameShape(QtWidgets.QFrame.StyledPanel)
+        self.option_input_frame.setFrameShadow(QtWidgets.QFrame.Raised)
+        self.option_input_frame.setObjectName('option_input_frame')
+        self.horizontallayout_3 = QtWidgets.QHBoxLayout(self.option_input_frame)
         self.horizontallayout_3.setContentsMargins(0, 0, 0, 0)
         self.horizontallayout_3.setSpacing(0)
         self.horizontallayout_3.setObjectName('horizontallayout_3')
-        self.option_inputs_frame = QtWidgets.QFrame(self.option_inputs_frame)
-        self.option_inputs_frame.setFrameShape(QtWidgets.QFrame.StyledPanel)
-        self.option_inputs_frame.setFrameShadow(QtWidgets.QFrame.Raised)
-        self.option_inputs_frame.setObjectName('option_inputs_frame')
-        self.verticallayout_6 = QtWidgets.QVBoxLayout(self.option_inputs_frame)
-        self.verticallayout_6.setContentsMargins(11, 11, 11, 11)
+        self.option_input_frame = QtWidgets.QFrame(self.option_input_frame)
+        self.option_input_frame.setFrameShape(QtWidgets.QFrame.StyledPanel)
+        self.option_input_frame.setFrameShadow(QtWidgets.QFrame.Raised)
+        self.option_input_frame.setObjectName('option_input_frame')
+        self.verticallayout_6 = QtWidgets.QVBoxLayout(self.option_input_frame)
+        self.verticallayout_6.setContentsMargins(17, 1, 10, 10)
         self.verticallayout_6.setSpacing(6)
         self.verticallayout_6.setObjectName('verticallayout_6')
 
-        self.key_input = QtWidgets.QLineEdit(self.option_inputs_frame)
+        self.key_input = QtWidgets.QLineEdit(self.option_input_frame)
         self.key_input.setObjectName('key_input')
         self.verticallayout_6.addWidget(self.key_input)
         self.key_input.setText('Please enter your key')
 
-        self.secret_input = QtWidgets.QLineEdit(self.option_inputs_frame)
+        self.secret_input = QtWidgets.QLineEdit(self.option_input_frame)
         self.secret_input.setObjectName('secret_input')
         self.verticallayout_6.addWidget(self.secret_input)
         self.secret_input.setText('Please enter your secret')
 
-        self.horizontallayout_3.addWidget(self.option_inputs_frame)
-        self.case_frame = QtWidgets.QFrame(self.option_inputs_frame)
-        self.case_frame.setFrameShape(QtWidgets.QFrame.StyledPanel)
-        self.case_frame.setFrameShadow(QtWidgets.QFrame.Raised)
-        self.case_frame.setObjectName('case_frame')
-        self.verticallayout_7 = QtWidgets.QVBoxLayout(self.case_frame)
-        self.verticallayout_7.setContentsMargins(11, 11, 11, 11)
-        self.verticallayout_7.setSpacing(6)
-        self.verticallayout_7.setObjectName('verticallayout_7')
-        self.horizontallayout_3.addWidget(self.case_frame)
-        self.horizontallayout_4.addWidget(self.option_inputs_frame)
-        self.spins_frame = QtWidgets.QFrame(self.options_frame)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Preferred)
-        sizePolicy.setHorizontalStretch(0)
-        sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.spins_frame.sizePolicy().hasHeightForWidth())     
+        self.horizontallayout_3.addWidget(self.option_input_frame)
+        
+        self.horizontallayout_4.addWidget(self.option_input_frame)  
         
         self.close_button_frame = QtWidgets.QFrame(self.options_frame)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Preferred)
-        sizePolicy.setHorizontalStretch(0)
-        sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.close_button_frame.sizePolicy().hasHeightForWidth())
+
         
         self.close_button_frame.setSizePolicy(sizePolicy)
         self.close_button_frame.setFrameShape(QtWidgets.QFrame.StyledPanel)
@@ -339,33 +325,31 @@ class Tumbly(QtWidgets.QMainWindow):
         self.options_frame.hide()
 
         # Reset window size
-        self.resize(500, 50)
+        self.layout().setSizeConstraint(QtWidgets.QLayout.SetFixedSize)
 
         # Reset menu button icon
         self.menu_button.setText('☰')
 
         # Set menu open flag
         self.menu_open = False
-        
-        
 
-    def open_password_ouput(self):
-        if not self.password_output_open:
-            self.password_ui()
-            self.generate_passwords()
+
+    def open_progress_ouput(self):
+        if not self.progress_output_open:
+            self.progress_ui()
+            self.generate_progresss()
         else:
-            self.generate_passwords()
+            self.generate_progresss()
 
 
-
-    def close_password_ouput(self):
+    def close_progress_ouput(self):
         self.create_main_ui()
 
 
-    def password_ui(self):
+    def progress_ui(self):
 
         # Set open flag
-        self.password_output_open = True
+        self.progress_output_open = True
 
         # Change menu button to 'open'
         self.menu_button.setText('☷')
@@ -383,15 +367,15 @@ class Tumbly(QtWidgets.QMainWindow):
         self.verticalLayout_10.addWidget(self.output_frame)
 
         # Create output box
-        self.password_output = QtWidgets.QTextEdit(self.output_frame)
-        self.password_output.setReadOnly(True)
-        self.password_output.setSizePolicy(QtWidgets.QSizePolicy.Preferred, 
+        self.progress_output = QtWidgets.QTextEdit(self.output_frame)
+        self.progress_output.setReadOnly(True)
+        self.progress_output.setSizePolicy(QtWidgets.QSizePolicy.Preferred, 
                                            QtWidgets.QSizePolicy.Expanding)
-        self.password_output.setStyleSheet('font: bold 12px;'
+        self.progress_output.setStyleSheet('font: bold 12px;'
                                            'background: #FFFFFF; '
                                            'border: 1px solid #272727')
 
-        self.horizontallayout_14.addWidget(self.password_output)
+        self.horizontallayout_14.addWidget(self.progress_output)
 
 
 
