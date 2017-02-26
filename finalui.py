@@ -95,7 +95,7 @@ class Tumbly(QtWidgets.QMainWindow):
 
         # Add title label to layout
         self.horizontalLayout.addWidget(self.title_label)
-
+        
         # Create frame for username input
         self.username_input_frame = QtWidgets.QFrame(self.top_frame)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Preferred)
@@ -124,7 +124,7 @@ class Tumbly(QtWidgets.QMainWindow):
         self.username_box.setObjectName('username_box')
 
         # Listen input changes
-        self.username_box.textChanged[str].connect(self.text_changed)
+        #self.username_box.textChanged[str].connect(self.text_changed)
 
         # Add username box layout
         self.verticalLayout_3.addWidget(self.username_box)
@@ -200,9 +200,6 @@ class Tumbly(QtWidgets.QMainWindow):
 
         # Connect exit button to close function
         self.exit_button.clicked.connect(self.close)
-
-        # Connect exit button to close function
-        self.scrape_button.clicked.connect(self.scrape)
         
         # Set central widget
         self.setCentralWidget(self.centralWidget)
@@ -217,10 +214,10 @@ class Tumbly(QtWidgets.QMainWindow):
         # Reset menu button icon
         self.menu_button.setText('☰')
         # Reset window size
-        self.resize(500, 50)
+        self.layout().setSizeConstraint(QtWidgets.QLayout.SetFixedSize)
 
-        # Set progress output open flag
-        self.progress_output_open = False
+        # Set password output open flag
+        self.password_output_open = False
 
         # Set menu open flag
         self.menu_open = False
@@ -245,85 +242,83 @@ class Tumbly(QtWidgets.QMainWindow):
 
         # Add options frame to layout
         self.verticalLayout_10.addWidget(self.options_frame)
-        
-        # Add options input frame        
-        self.option_input_frame = QtWidgets.QFrame(self.options_frame)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Preferred)
+       
+        self.spins_frame = QtWidgets.QFrame(self.options_frame)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Preferred)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.option_input_frame.sizePolicy().hasHeightForWidth())
+        sizePolicy.setHeightForWidth(self.spins_frame.sizePolicy().hasHeightForWidth())
 
-        # Create layout for options input frame
-        self.option_input_frame.setSizePolicy(sizePolicy)
-        self.option_input_frame.setFrameShape(QtWidgets.QFrame.StyledPanel)
-        self.option_input_frame.setFrameShadow(QtWidgets.QFrame.Raised)
-        self.option_input_frame.setObjectName('option_input_frame')
-        self.horizontallayout_3 = QtWidgets.QHBoxLayout(self.option_input_frame)
-        self.horizontallayout_3.setContentsMargins(0, 0, 0, 0)
-        self.horizontallayout_3.setSpacing(0)
-        self.horizontallayout_3.setObjectName('horizontallayout_3')
-        self.option_input_frame = QtWidgets.QFrame(self.option_input_frame)
-        self.option_input_frame.setFrameShape(QtWidgets.QFrame.StyledPanel)
-        self.option_input_frame.setFrameShadow(QtWidgets.QFrame.Raised)
-        self.option_input_frame.setObjectName('option_input_frame')
-        self.verticallayout_6 = QtWidgets.QVBoxLayout(self.option_input_frame)
-        self.verticallayout_6.setContentsMargins(17, 1, 10, 1)
-        self.verticallayout_6.setSpacing(6)
-        self.verticallayout_6.setObjectName('verticallayout_6')
+        self.spins_frame.setSizePolicy(sizePolicy)
+        self.spins_frame.setFrameShape(QtWidgets.QFrame.StyledPanel)
+        self.spins_frame.setFrameShadow(QtWidgets.QFrame.Raised)
+        self.spins_frame.setObjectName('spins_frame')
+        self.verticallayout_3 = QtWidgets.QVBoxLayout(self.spins_frame)
+        self.verticallayout_3.setContentsMargins(0, 0, 0, 0)
+        self.verticallayout_3.setSpacing(0)
+        self.verticallayout_3.setObjectName('verticallayout_3')
+        self.labels_frame = QtWidgets.QFrame(self.spins_frame)
+        self.labels_frame.setFrameShape(QtWidgets.QFrame.StyledPanel)
+        self.labels_frame.setFrameShadow(QtWidgets.QFrame.Raised)
+        self.labels_frame.setObjectName('labels_frame')
+        self.horizontallayout_6 = QtWidgets.QHBoxLayout(self.labels_frame)
+        self.horizontallayout_6.setContentsMargins(0, 0, 0, 0)
+        self.horizontallayout_6.setSpacing(0)
+        self.horizontallayout_6.setObjectName('horizontallayout_6')
+        self.characters_label_frame = QtWidgets.QFrame(self.labels_frame)
+        self.characters_label_frame.setFrameShape(QtWidgets.QFrame.StyledPanel)
+        self.characters_label_frame.setFrameShadow(QtWidgets.QFrame.Raised)
+        self.characters_label_frame.setObjectName('characters_label_frame')
+        self.verticallayout_5 = QtWidgets.QVBoxLayout(self.characters_label_frame)
+        self.verticallayout_5.setContentsMargins(0, 0, 0, 0)
+        self.verticallayout_5.setSpacing(0)
+        self.verticallayout_5.setObjectName('verticallayout_5')
+        self.characters_label = QtWidgets.QLabel(self.characters_label_frame)
+        self.characters_label.setObjectName('characters_label')
+        self.verticallayout_5.addWidget(self.characters_label)
+        self.horizontallayout_6.addWidget(self.characters_label_frame)
+        self.passwords_label_frame = QtWidgets.QFrame(self.labels_frame)
+        self.passwords_label_frame.setFrameShape(QtWidgets.QFrame.StyledPanel)
+        self.passwords_label_frame.setFrameShadow(QtWidgets.QFrame.Raised)
+        self.passwords_label_frame.setObjectName('passwords_label_frame')
+        self.horizontallayout_7 = QtWidgets.QHBoxLayout(self.passwords_label_frame)
+        self.horizontallayout_7.setContentsMargins(0, 0, 0, 0)
+        self.horizontallayout_7.setSpacing(0)
+        self.horizontallayout_7.setObjectName('horizontallayout_7')
+        self.passwords_label = QtWidgets.QLabel(self.passwords_label_frame)
+        self.passwords_label.setObjectName('passwords_label')
+        self.horizontallayout_7.addWidget(self.passwords_label)
+        self.horizontallayout_6.addWidget(self.passwords_label_frame)
+        self.verticallayout_3.addWidget(self.labels_frame)
+        self.spin_boxes_frame = QtWidgets.QFrame(self.spins_frame)
+        self.spin_boxes_frame.setFrameShape(QtWidgets.QFrame.StyledPanel)
+        self.spin_boxes_frame.setFrameShadow(QtWidgets.QFrame.Raised)
+        self.spin_boxes_frame.setObjectName('spin_boxes_frame')
+        self.horizontallayout_5 = QtWidgets.QHBoxLayout(self.spin_boxes_frame)
+        self.horizontallayout_5.setContentsMargins(0, 0, 0, 0)
+        self.horizontallayout_5.setSpacing(0)
+        self.horizontallayout_5.setObjectName('horizontallayout_5')
+        self.number_of_characters = QtWidgets.QSpinBox(self.spin_boxes_frame)
+        self.number_of_characters.setMinimum(1)
+        self.number_of_characters.setMaximum(64)
+        self.number_of_characters.setObjectName('number_of_characters')
+        self.horizontallayout_5.addWidget(self.number_of_characters)
+        self.number_of_passwords = QtWidgets.QSpinBox(self.spin_boxes_frame)
+        self.number_of_passwords.setMinimum(1)
+        self.number_of_passwords.setObjectName('number_of_passwords')
+        self.horizontallayout_5.addWidget(self.number_of_passwords)
+        self.verticallayout_3.addWidget(self.spin_boxes_frame)
+        self.horizontallayout_4.addWidget(self.spins_frame)
 
-        self.key_input = QtWidgets.QLineEdit(self.option_input_frame)
-        self.key_input.setObjectName('key_input')
-        self.verticallayout_6.addWidget(self.key_input)
-        self.key_input.setText('Please enter your key')
+        self.characters_label.setText('Number of Imagess')
+        self.passwords_label.setText('Post Offset')
 
-        self.secret_input = QtWidgets.QLineEdit(self.option_input_frame)
-        self.secret_input.setObjectName('secret_input')
-        self.verticallayout_6.addWidget(self.secret_input)
-        self.secret_input.setText('Please enter your secret')
-
-        self.number = QtWidgets.QSpinBox(self.option_input_frame)
-        self.number.setObjectName('number')
-        self.verticallayout_6.addWidget(self.number)
-
-        self.offset = QtWidgets.QSpinBox(self.option_input_frame)
-        self.offset.setObjectName('offset')
-        self.verticallayout_6.addWidget(self.offset)
-
-        self.options_submit = QtWidgets.QPushButton('Save Settings')
-        self.options_submit.setObjectName('options_submit')
-        self.verticallayout_6.addWidget(self.options_submit)
-
-
-
-        self.horizontallayout_3.addWidget(self.option_input_frame)
+        self.auth_button = QtWidgets.QPushButton('Set Auth')
+        self.auth_button.setObjectName('number_of_characters')
+        self.verticallayout_3.addWidget(self.auth_button)
         
-        self.horizontallayout_4.addWidget(self.option_input_frame)  
         
-        self.close_button_frame = QtWidgets.QFrame(self.options_frame)
-
-        
-        self.close_button_frame.setSizePolicy(sizePolicy)
-        self.close_button_frame.setFrameShape(QtWidgets.QFrame.StyledPanel)
-        self.close_button_frame.setFrameShadow(QtWidgets.QFrame.Raised)
-        self.close_button_frame.setObjectName('close_button_frame')
-        self.verticallayout_4 = QtWidgets.QVBoxLayout(self.close_button_frame)
-        self.verticallayout_4.setContentsMargins(0, 0, 0, 0)
-        self.verticallayout_4.setSpacing(0)
-        self.verticallayout_4.setObjectName('verticallayout_4')
-        self.close_options_button = QtWidgets.QPushButton(self.close_button_frame)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Fixed)
-        sizePolicy.setHorizontalStretch(0)
-        sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.close_options_button.sizePolicy().hasHeightForWidth())
-        self.close_options_button.setSizePolicy(sizePolicy)
-        self.close_options_button.setObjectName('close_options_button')
-        self.verticallayout_4.addWidget(self.close_options_button)
-        self.horizontallayout_4.addWidget(self.close_button_frame)
-                
-        self.close_options_button.setText('⇪')
-
-        # Connect options close button to options_close function
-        self.close_options_button.clicked.connect(self.close_menu)
+            
     
 
     def open_menu(self):
@@ -345,25 +340,26 @@ class Tumbly(QtWidgets.QMainWindow):
         self.menu_button.setText('☰')
 
         # Set menu open flag
-        self.menu_open = False
+        self.menu_open = False        
+        
 
-
-    def open_progress_ouput(self):
-        if not self.progress_output_open:
-            self.progress_ui()
-            self.generate_progresss()
+    def open_password_ouput(self):
+        if not self.password_output_open:
+            self.password_ui()
+            self.generate_passwords()
         else:
-            self.generate_progresss()
+            self.generate_passwords()
 
 
-    def close_progress_ouput(self):
+
+    def close_password_ouput(self):
         self.create_main_ui()
 
 
-    def progress_ui(self):
+    def password_ui(self):
 
         # Set open flag
-        self.progress_output_open = True
+        self.password_output_open = True
 
         # Change menu button to 'open'
         self.menu_button.setText('☷')
@@ -381,22 +377,71 @@ class Tumbly(QtWidgets.QMainWindow):
         self.verticalLayout_10.addWidget(self.output_frame)
 
         # Create output box
-        self.progress_output = QtWidgets.QTextEdit(self.output_frame)
-        self.progress_output.setReadOnly(True)
-        self.progress_output.setSizePolicy(QtWidgets.QSizePolicy.Preferred, 
+        self.password_output = QtWidgets.QTextEdit(self.output_frame)
+        self.password_output.setReadOnly(True)
+        self.password_output.setSizePolicy(QtWidgets.QSizePolicy.Preferred, 
                                            QtWidgets.QSizePolicy.Expanding)
-        self.progress_output.setStyleSheet('font: bold 12px;'
+        self.password_output.setStyleSheet('font: bold 12px;'
                                            'background: #FFFFFF; '
                                            'border: 1px solid #272727')
 
-        self.horizontallayout_14.addWidget(self.progress_output)
+        self.horizontallayout_14.addWidget(self.password_output)
 
 
 
-    def scrape(self):
-        return None
+    def generate_passwords(self):
 
-        
+        # Increase window size
+        #self.resize(500, 50)
+
+        # Clear the output box
+        self.password_output.setText('')
+
+        # Set strings to get characters from
+        # Numbers
+        numbers = string.digits
+        # Letters
+        lowercase = string.ascii_lowercase
+        uppercase = string.ascii_uppercase
+        # Special Characters
+        special_characters = '!@#$%^&*()\{\}[]?,.'
+
+        # Init output character string
+        output_characters = ''
+
+        # Init empty password list
+        final_password_list = []
+
+        # Check user has used a lowercase_checkbox, add characters from strings relative to checkboxes, generate password
+        if True in [self.numbers_checkbox.isChecked(), 
+                    self.lowercase_checkbox.isChecked(), 
+                    self.uppercase_checkbox.isChecked(),
+                    self.special_characters_checkbox.isChecked()]:
+
+            output_characters = (numbers * self.numbers_checkbox.isChecked() 
+                                  + lowercase * self.lowercase_checkbox.isChecked() 
+                                  + uppercase * self.uppercase_checkbox.isChecked() 
+                                  + special_characters * self.special_characters_checkbox.isChecked())
+            # Check how many passwords the user requires, generate for that amount
+            for i in range(0, self.number_of_passwords.value()):
+
+                password = ''.join(random.choice(output_characters) for i in range(self.number_of_characters.value()))
+
+                final_password_list.append(password)
+
+        # If user hasn't selected a lowercase_checkbox, inform them in a popup
+        else:
+            informer = QMessageBox()
+            #informer.setWindowTitle('Passwordy - Error')
+            informer.setStandardButtons(QMessageBox.Ok)
+            informer.setDefaultButton(QMessageBox.Ok)
+                # Warning text
+            informer.setText('Error: ' + '\n' + 'You must make a selection using one of the checkboxes, please try again...')
+            informer.exec_()
+
+        # Add each password in the password list to the output box
+        for i in final_password_list:
+            self.password_output.append(i)
 
 
     def mousePressEvent(self, event):
@@ -409,12 +454,6 @@ class Tumbly(QtWidgets.QMainWindow):
         x_w = self.offset.x()
         y_w = self.offset.y()
         self.move(x-x_w, y-y_w)
-
-    def text_changed(self, text):
-        # Get text changes
-        self.username = str(text)
-        global user_username
-        user_username = self.username
     
  
 # Run App

@@ -1,0 +1,3 @@
+2016-10-13 14:35:24,559 - INFO -  Will scrape: http://twitterthecomic.tumblr.com
+2016-10-13 14:35:24,559 - INFO -  Will save to: twitterthecomic.db database (SQLite3)
+2016-10-13 14:35:24,559 - INFO -  Will download images to: /Users/AppleUser/Downloads/PyMove/Python/Qt/tumbly/images/twitterthecomic_saved_images
