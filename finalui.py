@@ -254,8 +254,8 @@ class Tumbly(QtWidgets.QMainWindow):
         self.spins_frame.setFrameShadow(QtWidgets.QFrame.Raised)
         self.spins_frame.setObjectName('spins_frame')
         self.verticallayout_3 = QtWidgets.QVBoxLayout(self.spins_frame)
-        self.verticallayout_3.setContentsMargins(0, 0, 0, 0)
-        self.verticallayout_3.setSpacing(0)
+        self.verticallayout_3.setContentsMargins(10, 5, 5, 5)
+        self.verticallayout_3.setSpacing(5)
         self.verticallayout_3.setObjectName('verticallayout_3')
         self.labels_frame = QtWidgets.QFrame(self.spins_frame)
         self.labels_frame.setFrameShape(QtWidgets.QFrame.StyledPanel)
@@ -265,30 +265,30 @@ class Tumbly(QtWidgets.QMainWindow):
         self.horizontallayout_6.setContentsMargins(0, 0, 0, 0)
         self.horizontallayout_6.setSpacing(0)
         self.horizontallayout_6.setObjectName('horizontallayout_6')
-        self.characters_label_frame = QtWidgets.QFrame(self.labels_frame)
-        self.characters_label_frame.setFrameShape(QtWidgets.QFrame.StyledPanel)
-        self.characters_label_frame.setFrameShadow(QtWidgets.QFrame.Raised)
-        self.characters_label_frame.setObjectName('characters_label_frame')
-        self.verticallayout_5 = QtWidgets.QVBoxLayout(self.characters_label_frame)
+        self.number_label_frame = QtWidgets.QFrame(self.labels_frame)
+        self.number_label_frame.setFrameShape(QtWidgets.QFrame.StyledPanel)
+        self.number_label_frame.setFrameShadow(QtWidgets.QFrame.Raised)
+        self.number_label_frame.setObjectName('number_label_frame')
+        self.verticallayout_5 = QtWidgets.QVBoxLayout(self.number_label_frame)
         self.verticallayout_5.setContentsMargins(0, 0, 0, 0)
         self.verticallayout_5.setSpacing(0)
         self.verticallayout_5.setObjectName('verticallayout_5')
-        self.characters_label = QtWidgets.QLabel(self.characters_label_frame)
-        self.characters_label.setObjectName('characters_label')
-        self.verticallayout_5.addWidget(self.characters_label)
-        self.horizontallayout_6.addWidget(self.characters_label_frame)
-        self.passwords_label_frame = QtWidgets.QFrame(self.labels_frame)
-        self.passwords_label_frame.setFrameShape(QtWidgets.QFrame.StyledPanel)
-        self.passwords_label_frame.setFrameShadow(QtWidgets.QFrame.Raised)
-        self.passwords_label_frame.setObjectName('passwords_label_frame')
-        self.horizontallayout_7 = QtWidgets.QHBoxLayout(self.passwords_label_frame)
+        self.number_label = QtWidgets.QLabel(self.number_label_frame)
+        self.number_label.setObjectName('number_label')
+        self.verticallayout_5.addWidget(self.number_label)
+        self.horizontallayout_6.addWidget(self.number_label_frame)
+        self.offset_label_frame = QtWidgets.QFrame(self.labels_frame)
+        self.offset_label_frame.setFrameShape(QtWidgets.QFrame.StyledPanel)
+        self.offset_label_frame.setFrameShadow(QtWidgets.QFrame.Raised)
+        self.offset_label_frame.setObjectName('offset_label_frame')
+        self.horizontallayout_7 = QtWidgets.QHBoxLayout(self.offset_label_frame)
         self.horizontallayout_7.setContentsMargins(0, 0, 0, 0)
         self.horizontallayout_7.setSpacing(0)
         self.horizontallayout_7.setObjectName('horizontallayout_7')
-        self.passwords_label = QtWidgets.QLabel(self.passwords_label_frame)
-        self.passwords_label.setObjectName('passwords_label')
-        self.horizontallayout_7.addWidget(self.passwords_label)
-        self.horizontallayout_6.addWidget(self.passwords_label_frame)
+        self.offset_label = QtWidgets.QLabel(self.offset_label_frame)
+        self.offset_label.setObjectName('offset_label')
+        self.horizontallayout_7.addWidget(self.offset_label)
+        self.horizontallayout_6.addWidget(self.offset_label_frame)
         self.verticallayout_3.addWidget(self.labels_frame)
         self.spin_boxes_frame = QtWidgets.QFrame(self.spins_frame)
         self.spin_boxes_frame.setFrameShape(QtWidgets.QFrame.StyledPanel)
@@ -298,28 +298,26 @@ class Tumbly(QtWidgets.QMainWindow):
         self.horizontallayout_5.setContentsMargins(0, 0, 0, 0)
         self.horizontallayout_5.setSpacing(0)
         self.horizontallayout_5.setObjectName('horizontallayout_5')
-        self.number_of_characters = QtWidgets.QSpinBox(self.spin_boxes_frame)
-        self.number_of_characters.setMinimum(1)
-        self.number_of_characters.setMaximum(64)
-        self.number_of_characters.setObjectName('number_of_characters')
-        self.horizontallayout_5.addWidget(self.number_of_characters)
-        self.number_of_passwords = QtWidgets.QSpinBox(self.spin_boxes_frame)
-        self.number_of_passwords.setMinimum(1)
-        self.number_of_passwords.setObjectName('number_of_passwords')
-        self.horizontallayout_5.addWidget(self.number_of_passwords)
+        self.number_of_images = QtWidgets.QSpinBox(self.spin_boxes_frame)
+        self.number_of_images.setMinimum(1)
+        self.number_of_images.setMaximum(64)
+        self.number_of_images.setObjectName('number_of_images')
+        self.horizontallayout_5.addWidget(self.number_of_images)
+        self.post_offset = QtWidgets.QSpinBox(self.spin_boxes_frame)
+        self.post_offset.setMinimum(1)
+        self.post_offset.setObjectName('post_offset')
+        self.horizontallayout_5.addWidget(self.post_offset)
         self.verticallayout_3.addWidget(self.spin_boxes_frame)
         self.horizontallayout_4.addWidget(self.spins_frame)
 
-        self.characters_label.setText('Number of Imagess')
-        self.passwords_label.setText('Post Offset')
+        self.number_label.setText('Number of Images')
+        self.offset_label.setText('Post Offset')
 
         self.auth_button = QtWidgets.QPushButton('Set Auth')
-        self.auth_button.setObjectName('number_of_characters')
+        self.auth_button.setObjectName('set_auth')
         self.verticallayout_3.addWidget(self.auth_button)
+        self.auth_button.clicked.connect(self.open_auth_settings)
         
-        
-            
-    
 
     def open_menu(self):
         if not self.menu_open:
@@ -343,13 +341,12 @@ class Tumbly(QtWidgets.QMainWindow):
         self.menu_open = False        
         
 
-    def open_password_ouput(self):
+    def open_auth_settings(self):
         if not self.password_output_open:
             self.password_ui()
             self.generate_passwords()
         else:
             self.generate_passwords()
-
 
 
     def close_password_ouput(self):
@@ -423,9 +420,9 @@ class Tumbly(QtWidgets.QMainWindow):
                                   + uppercase * self.uppercase_checkbox.isChecked() 
                                   + special_characters * self.special_characters_checkbox.isChecked())
             # Check how many passwords the user requires, generate for that amount
-            for i in range(0, self.number_of_passwords.value()):
+            for i in range(0, self.post_offset.value()):
 
-                password = ''.join(random.choice(output_characters) for i in range(self.number_of_characters.value()))
+                password = ''.join(random.choice(output_characters) for i in range(self.number_of_images.value()))
 
                 final_password_list.append(password)
 
